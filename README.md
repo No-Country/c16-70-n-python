@@ -10,4 +10,4 @@ Para este proyecto el equipo decidio utilizar las siguientes tecnologias:
   
 - Back:
 
-  [![My Skills](https://skillicons.dev/icons?i=python,flask)](https://skillicons.dev)
+  [![My Skills](https://skillicons.dev/icons?i=python,flask,mysql)](https://skillicons.dev)
