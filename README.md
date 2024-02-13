@@ -8,11 +8,9 @@ Para este proyecto el equipo decidio utilizar las siguientes tecnologias:
 </p>
 <p align="center">
 Front:
-
-  [![My Skills](https://skillicons.dev/icons?i=js,html,bootstrap)](https://skillicons.dev)
+[![My Skills](https://skillicons.dev/icons?i=js,html,bootstrap)](https://skillicons.dev)
 </p> 
 Back:
 <p align="center">
-  [![My Skills](https://skillicons.dev/icons?i=python,flask,mysql)](https://skillicons.dev)
-  
+[![My Skills](https://skillicons.dev/icons?i=python,flask,mysql)](https://skillicons.dev)
 </p>
