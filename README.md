@@ -5,7 +5,7 @@ Hola! 👋 Somos el equipo c16-70-n-python para el proyecto de No Country
 Para este proyecto el equipo decidio utilizar las siguientes tecnologias:
 - Front:
 
-  [![My Skills](https://skillicons.dev/icons?i=js,html,boostrap)](https://skillicons.dev)
+  [![My Skills](https://skillicons.dev/icons?i=js,html,bootstrap)](https://skillicons.dev)
   
 - Back:
 
