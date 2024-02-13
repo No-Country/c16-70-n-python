@@ -8,11 +8,9 @@ Para este proyecto el equipo decidio utilizar las siguientes tecnologias:
 </p>
 
 <p align="center">
-  <p>Front-End</p>
   <a href="https://skillicons.dev">
     <img src="https://skillicons.dev/icons?i=html,bootstrap,js" />
   </a>
-  <p>Back-End</p>
   <a href="https://skillicons.dev">
     <img src="https://skillicons.dev/icons?i=python,flask,mysql" />
   </a>
