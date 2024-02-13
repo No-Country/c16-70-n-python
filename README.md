@@ -10,7 +10,7 @@ Para este proyecto el equipo decidio utilizar las siguientes tecnologias:
 Front:
 [![My Skills](https://skillicons.dev/icons?i=js,html,bootstrap)](https://skillicons.dev)
 </p> 
-Back:
 <p align="center">
+Back:
 [![My Skills](https://skillicons.dev/icons?i=python,flask,mysql)](https://skillicons.dev)
 </p>
