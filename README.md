@@ -6,14 +6,14 @@ Hola! 👋 Somos el equipo c16-70-n-python para el proyecto de No Country
 <p align="center">
 Para este proyecto el equipo decidio utilizar las siguientes tecnologias:
 </p>
-<p align="center">Back-End</p>
+<h1 align="center">Back-End</h1>
 <p align="center">
   <a href="https://skillicons.dev">
     <img src="https://skillicons.dev/icons?i=html,bootstrap,js" />
   </a>
 </p>
 
-<p align="center">Back-End</p>
+<h1 align="center">Back-End</h1>
 <p align="center">
   <a href="https://skillicons.dev">
     <img src="https://skillicons.dev/icons?i=python,flask,mysql" />
