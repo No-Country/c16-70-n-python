@@ -1,9 +1,8 @@
-CREATE TABLE `railway`.`Usuario` (
-  `usu_id_idusuario` INT NOT NULL AUTO_INCREMENT,
-  `usu_txt_nombre` VARCHAR(45) NULL,
-  `usu_txt_apellido` VARCHAR(45) NULL,
-  `usu_txt_mail` VARCHAR(45) NULL,
-  `usu_pass_pasword` VARCHAR(45) NULL,
-  `usu_txt_tipouser` VARCHAR(45) NULL,
-  PRIMARY KEY (`usu_id_idusuario`));
+CREATE TABLE `railway`.`LoginUser` (
+  `usu_int_iduser` INT NOT NULL AUTO_INCREMENT,
+  `usu_txt_username` VARCHAR(45) NULL,
+  `usu_pass_pass` VARCHAR(45) NULL,
+  `usu_txt_typeprofile` VARCHAR(45) NULL,
+  PRIMARY KEY (`usu_int_iduser`));
+
 
