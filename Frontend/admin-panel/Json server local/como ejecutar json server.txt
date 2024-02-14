@@ -1,0 +1,7 @@
+si no esta instalado json-server ejecutar
+
+npm install -g json-server
+
+luego desde esta carpeta ejecutar
+
+npx json-server db.json
