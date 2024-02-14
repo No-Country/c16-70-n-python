@@ -81,14 +81,31 @@ class Usuario(ConexionMySQL):
     Hereda de ConexionMySQL.
     """
 
-    def crear_user(self,usu_txt_username,usu_pass_pass, usu_txt_typeprofile):
+    def crear_user(self,usu_txt_username,usu_pass_pass, usu_txt_typeprofile, datos):
         """
         Crea un nuevo usuario en la base de datos.
 
         Parameters:
-        - usu_txt_username (str): El nombre de usuario del nuevo usuario.
+        - usu_txt_username (str): El nombre de usuario del nuevo usuario. 
         - usu_pass_pass (str): La contraseña del nuevo usuario.
-        - usu_txt_typeprofile (str): El tipo de perfil del nuevo usuario.
+        - usu_txt_typeprofile (str): El tipo de perfil del nuevo usuario. cli|pro
+        - datos (list): lista de datos para crear tanto cliente como proveedor en el siguiente orden:
+                cliente: (
+                    cli_img_photoprofile, 
+                    cli_txt_name, 
+                    cli_int_phone, 
+                    cli_txt_direction
+                    )
+                proveedor: (
+                    pro_int_cedula, 
+                    pro_txt_name, 
+                    pro_img_photoprofile, 
+                    pro_fec_servicedate, 
+                    pro_txt_direction, 
+                    pro_bol_proceservice, 
+                    pro_txt_phone,
+                    pro_txt_email
+                    )
 
         Returns:
         None
@@ -112,6 +129,40 @@ class Usuario(ConexionMySQL):
         consulta = """INSERT INTO `railway`.`LoginUser` (`usu_txt_username`, `usu_pass_pass`, `usu_txt_typeprofile`) VALUES (%s, %s, %s);"""
         datos = (usu_txt_username, usu_pass_pass, usu_txt_typeprofile)
         self.ejecutar_consulta(consulta,datos)
+        if usu_txt_typeprofile == 'cli':
+            #genero el anta de usuario en clientes
+            cli_img_photoprofile = datos[0]
+            cli_txt_name = datos[1]
+            cli_int_phone = datos[2]
+            cli_txt_direction = datos[3]
+            consulta = """INSERT INTO `railway`.`cliente` 
+                            (`cli_img_photoprofile`,
+                            `cli_txt_name`, 
+                            `cli_txt_username`, 
+                            `cli_int_phone`, 
+                            `cli_txt_direction`, 
+                            `cli_fec_fechainscripcion`, 
+                            `cli_bol_estado`) 
+                            VALUES (%s, %s, %s, %s, %s, NOW(),"1");
+                        """
+            datos = (cli_img_photoprofile,
+                    cli_txt_name,
+                    usu_txt_username,
+                    cli_int_phone,
+                    cli_txt_direction,
+                )
+            self.ejecutar_consulta(consulta,datos)
+            consulta_cliente = "SELECT LAST_INSERT_ID();"
+            numero_cliente = self.ejecutar_consulta(consulta_cliente)[0][0]
+            # Retornar el número de cliente asignado
+            return numero_cliente
+        
+        elif usu_txt_typeprofile == 'pro':
+            #genero el alta de usuario en proveedores
+
+            pass
+        else:
+            print("error de type_profile")
 
 
     def modificar_user(self):
@@ -144,6 +195,7 @@ class Usuario(ConexionMySQL):
 # Ejemplo de uso
 user = Usuario()
 user.crear_user("pepepe","pass",2)
+user.cre
 
 """resultados = user.consulta_user()
 
