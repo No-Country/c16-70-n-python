@@ -1,8 +1,7 @@
-CREATE TABLE `railway`.`proveedor` (
-  `pro_int_idproveedor` INT NOT NULL AUTO_INCREMENT,
+CREATE TABLE `byjmyv89ipb22cehberm`.`proveedor` (
+  `pro_int_idproveedor` INT NOT NULL,
   `pro_int_cedula` INT NULL,
   `pro_txt_name` VARCHAR(45) NULL,
-  `pro_txt_username` VARCHAR(45) NULL,
   `pro_img_photoprofile` TEXT NULL,
   `pro_fec_servicedate` DATE NULL,
   `pro_txt_direction` VARCHAR(255) NULL,

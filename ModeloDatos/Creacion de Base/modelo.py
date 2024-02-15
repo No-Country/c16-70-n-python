@@ -14,11 +14,11 @@ class ConexionMySQL:
         """
         Inicializa una nueva instancia de ConexionMySQL.
         """
-        self.host = os.getenv("MYSQLHOST")         # Host de la base de datos
-        self.usuario = os.getenv("MYSQLUSER")      # Usuario de la base de datos
-        self.contraseña = os.getenv("MYSQLPASSWORD")  # Contraseña de la base de datos
-        self.base_datos = os.getenv("MYSQLDATABASE")  # Nombre de la base de datos
-        self.puerto = os.getenv("MYSQLPORT")       # Puerto de conexión a la base de datos
+        self.host = os.getenv("MYSQL_ADDON_HOST")         # Host de la base de datos
+        self.usuario = os.getenv("MYSQL_ADDON_USER")      # Usuario de la base de datos
+        self.contraseña = os.getenv("MYSQL_ADDON_PASSWORD")  # Contraseña de la base de datos
+        self.base_datos = os.getenv("MYSQL_ADDON_DB")  # Nombre de la base de datos
+        self.puerto = os.getenv("MYSQL_ADDON_PORT")       # Puerto de conexión a la base de datos
         self.conexion = None
 
     def conectar(self):
@@ -126,7 +126,7 @@ class Usuario(ConexionMySQL):
         estructura de la base de datos.
         """
 
-        consulta = """INSERT INTO `railway`.`LoginUser` (`usu_txt_username`, `usu_pass_pass`, `usu_txt_typeprofile`) VALUES (%s, %s, %s);"""
+        consulta = """INSERT INTO `byjmyv89ipb22cehberm`.`LoginUser` (`usu_txt_username`, `usu_pass_pass`, `usu_txt_typeprofile`) VALUES (%s, %s, %s);"""
         datos = (usu_txt_username, usu_pass_pass, usu_txt_typeprofile)
         self.ejecutar_consulta(consulta,datos)
         if usu_txt_typeprofile == 'cli':
@@ -135,7 +135,7 @@ class Usuario(ConexionMySQL):
             cli_txt_name = datos[1]
             cli_int_phone = datos[2]
             cli_txt_direction = datos[3]
-            consulta = """INSERT INTO `railway`.`cliente` 
+            consulta = """INSERT INTO `byjmyv89ipb22cehberm`.`cliente` 
                             (`cli_img_photoprofile`,
                             `cli_txt_name`, 
                             `cli_txt_username`, 
@@ -143,7 +143,7 @@ class Usuario(ConexionMySQL):
                             `cli_txt_direction`, 
                             `cli_fec_fechainscripcion`, 
                             `cli_bol_estado`) 
-                            VALUES (%s, %s, %s, %s, %s, NOW(),"1");
+                            VALUES (%s, %s, %s, %s, %s, NOW(),'1');
                         """
             datos = (cli_img_photoprofile,
                     cli_txt_name,
@@ -159,8 +159,38 @@ class Usuario(ConexionMySQL):
         
         elif usu_txt_typeprofile == 'pro':
             #genero el alta de usuario en proveedores
-
-            pass
+            pro_int_cedula = datos[0]
+            pro_txt_name = datos[1] 
+            pro_img_photoprofile = datos[2] 
+            pro_fec_servicedate = datos[3] 
+            pro_txt_direction = datos[4]
+            pro_bol_priceservice = datos[5]
+            pro_txt_phone = datos[6]
+            pro_txt_email = datos[7]
+            consulta = """INSERT INTO `byjmyv89ipb22cehberm`.`proveedor` 
+                        (`pro_int_cedula`, 
+                        `pro_txt_name`, 
+                        `pro_txt_username`, 
+                        `pro_img_photoprofile`, 
+                        `pro_fec_servicedate`, 
+                        `pro_txt_direction`, 
+                        `pro_bol_priceservice`, 
+                        `pro_txt_phone`, 
+                        `pro_txt_email`, 
+                        `pro_fec_fechainscripcion`, 
+                        `pro_bol_estado`) 
+                        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, NOW(), '1');
+                    """
+            datos = (pro_int_cedula, 
+                    pro_txt_name, 
+                    usu_txt_username,
+                    pro_img_photoprofile, 
+                    pro_fec_servicedate, 
+                    pro_txt_direction, 
+                    pro_bol_priceservice , 
+                    pro_txt_phone, 
+                    pro_txt_email)
+            self.ejecutar_consulta(consulta,datos)
         else:
             print("error de type_profile")
 
@@ -193,9 +223,8 @@ class Usuario(ConexionMySQL):
 
 
 # Ejemplo de uso
-user = Usuario()
-user.crear_user("pepepe","pass",2)
-user.cre
+user = ConexionMySQL()
+user.conectar()
 
 """resultados = user.consulta_user()
 
