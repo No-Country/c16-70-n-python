@@ -25,14 +25,14 @@ La plataforma es versátil, de rápida implementación y tiene un sistema flexib
 <p align="left">
 <h2>En este proyecto se utilizan las siguientes tecnologías:</h2> 
 </p>
-<h1 align="left">Front-End</h1>
+<h3 align="left">Front-End</h3>
 <p align="left">
   <a href="https://skillicons.dev">
     <img src="https://skillicons.dev/icons?i=html,css,bootstrap,js" />
   </a>
 </p>
 
-<h1 align="left">Back-End</h1>
+<h3 align="left">Back-End</h3>
 <p align="left">
   <a href="https://skillicons.dev">
     <img src="https://skillicons.dev/icons?i=python,flask,mysql" />
