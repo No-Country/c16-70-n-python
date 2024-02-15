@@ -1,29 +1,243 @@
-@font-face {
-    font-family: 'Montserrat';
-    src: url(../fonts/Montserrat/Montserrat-VariableFont_wght.ttf) format('truetype');
-}
-
+/* colores */
 :root {
-    --color1: #FF9D00;
-    --color2: #f73C5C;
-    --color3: #2A8BEA;
-    --color4: #4EC9EA;
-    --color5: #222130;
+  --color1: #ef9300;
+  --color2: #e13754;
+  --color3: #2a8bea;
+  --color4: #48caed;
+  --color5: #222130;
+  --color6: #ffffff;
+  --color7: #000000;
+  --color8: #c8c8c8;
+  --color9: #f0f0f0;
+  --color10: #fafafa;
 }
 
-*, a {
-    margin: 10px;
-    padding: 5px;
-    text-decoration: none;
+/* fonts */
+@font-face {
+  font-family: "font_1";
+  src: url(/fuentes/Montserrat-VariableFont_wght.ttf);
+}
+@font-face {
+  font-family: "font_2";
+  src: url(/fuentes/Montserrat-Italic-VariableFont_wght.ttf);
 }
 
+* {
+  margin: 0;
+  padding: 0;
+}
+h1, h2, h3,h4, h5  {
+    font-family: 'font_1';
+}
+
+p {
+  font-family: "font_2";
+}
 
 body {
-    background-color: var(--color5);
-    font-family: 'Montserrat', sans-serif;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: auto 94% auto;
+  grid-template-areas:
+    "header"
+    "main"
+    "footer";
+  transition: background-color 2s ease;
+  background-color: var(--color4);
+  color: var(--color5);
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  padding-top: 100px;
 }
 
+header {
+  grid-area: header;
+  background-color: #22213010;
+  flex-direction: row;
+  color: var(--color7);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
 
-.form-control.border-0 {
-    background-color:#;
+a {
+  text-decoration: none;
+  color: #000000;
+}
+
+a:hover {
+  color: var(--color6);
+  transition: background-color 1.5s ease;
+}
+
+.nav {
+  display: flex;
+  gap: 2rem;
+  margin: 1rem;
+  margin-right: 10px;
+}
+
+main {
+  grid-area: main;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1%;
+}
+/* cascada */
+
+
+/* tarjeta 1 */
+.card {
+  padding: 2rem;
+  margin: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-content: center;
+  gap: 1rem;
+  margin: 2rem;
+  padding-bottom: 2rem;
+}
+
+.cardbody {
+  justify-items: center;
+}
+
+.card img {
+  border-radius: 2rem;
+  padding: 1rem;
+}
+.card p {
+  font-family: "font_1";
+  text-align: center;
+  font-size: 110%;
+  overflow: hidden;
+}
+
+/*Card de formularios*/
+
+.card2 {
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 2rem;
+  color: var(--color6);
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: #000000;
+  background-color: var(--color10);
+  color: var(--color7);
+  box-shadow: inset var(--color7) var(--color8);
+  width: 80%;
+}
+
+.card2 .div1 .title {
+  justify-content: center;
+}
+.card2 .div1 .texts {
+  justify-content: flex-start;
+}
+.card2 .div1 .text {
+  margin: 2rem;
+  gap: 1rem;
+  display: flex;
+  flex-direction: row;
+}
+
+.card2 .div2 {
+  justify-content: center;
+  align-items:center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow:au
+}
+
+.card2 .logo {
+justify-content: center;
+}
+
+.card2 .div2 img {
+    display: grid;
+    grid-row: ;
+    border-radius: 1.0 rem;
+    border: 2px solid #2a8bea;
+    background-color: #2a8bea;
+    width: 100%;
+    height: 20%;
+}
+
+.card2 .div2 form {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.card2 .div2 input {
+  margin: 0.5 rem;
+  background-color: transparent;
+  border: 0.1 rem;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  text-align: center;
+  border-color: var();
+  padding: 0.2 rem;
+  border-color: var(--color3);
+}
+
+.card2 .div2 select {
+  padding: 0.2rem;
+  border: 0.2 rem;
+  background-color: transparent;
+  border-color: var(--color5);
+  border-radius: 5%;
+}
+/**/
+
+/*footer*/
+footer {
+  grid-area: footer;
+  background-color: #22213010;
+  flex-direction: row;
+  color: var(--color7);
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.foother-container {
+  display: flex;
+  padding: 1rem;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+  justify-items: center;
+  align-items: center;
+}
+
+/* darkmode */
+.dark-mode {
+  background-color: var(--color5);
+  color: var(--color6);
+}
+
+.dark-mode .header {
+  background-color: #48caed;
+  color: var(--color5);
+}
+.dark-mode .footer {
+  background-color: #48caed;
+  color: var(--color5);
+}
+
+.dark-mode .card2 {
+  background-color: var(--color10);
+  color: var(--color5);
 }

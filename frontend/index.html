@@ -1,23 +1,62 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/styles.css">
-    <link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="icon" type="image/x-icon" href="./images/favicon.ico" />
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link rel="stylesheet" href="./css/styles.css" />
+    <link rel="stylesheet" href="./css/carousel.css"/>
     <title>Agendify</title>
-</head>
-<body class="body">
-    <div>
-        <a href="./login.html">
-            <button>Ingresar</button>
-        </a>
-        <a href="./register.html">
-            <button>Registrase</button>
-        </a>
-        
+    <link rel="icon" type="image/x-icon" href="./images/favicon.ico" />
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="https://unpkg.com/vue@3.2.20/dist/vue.global.prod.js"></script>
+    <script src="https://unpkg.com/vue-router@4.0.12/dist/vue-router.global.prod.js"></script>
+  </head>
+  <body class="body">
+    <!-- header -->
+    <div id="app">
+      <generic-header :show-login="true" :show-register="true"></generic-header>
+
+      <!-- main -->
+      <div class="main">
+        <div id="app2">
+          <carousel></carousel>
+        </div>
+        <div class="card">
+          <div class="">
+            <div>
+              <img src="./images/Logo.png" alt="Logo" />
+            </div>
+            <div class="">
+              <p>
+                Reserva citas al instante con Agendify ¡Olvídate del estrés de
+                encontrar hora con el profesional que necesitas! Agendify es la
+                nueva forma inteligente de reservar citas médicas, de belleza,
+                servicios para mascotas, o cualquier servicio que imagines.
+                Únete a los más de 500 proveedores que ya gestionan sus agendas
+                a través de Agendify y reciben nuevos clientes sin esfuerzo.
+              </p>
+
+              <p>
+                Toma el control de tu tiempo y ahorra en esperas innecesarias.
+                Nosotros nos encargamos de recordarte tu cita por mail y mensaje
+                de texto para que nunca la olvides.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--foother -->
+      <generic-footer></generic-footer>
+
     </div>
-    <script src="./bootstrap/js/bootstrap.min.js"></script>
-</body>
+    <!-- Script Vue-->
+
+    <script src="./vue/containers.js"></script>
+    <!--Mode Dark-->
+    <script src="./js/theme.js"></script>
+  </body>
 </html>
