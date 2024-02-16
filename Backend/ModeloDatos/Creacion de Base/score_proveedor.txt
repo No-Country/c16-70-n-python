@@ -1,0 +1,7 @@
+CREATE TABLE `railway`.`score_proveedor` (
+  `scr_prov_int_idscore_proveedor` INT NOT NULL AUTO_INCREMENT,
+  `pro_int_idproveedor` INT NOT NULL,
+  `cli_int_idcliente` INT NULL,
+  `scr_prov_int_score` INT NULL,
+  `scr_prov_txt_comment` TEXT NULL,
+  PRIMARY KEY (`scr_prov_int_idscore_proveedor`));

@@ -1,0 +1,6 @@
+CREATE TABLE `railway`.`ubication` (
+  `ubic_int_idubication` INT NOT NULL AUTO_INCREMENT,
+  `pro_int_idproveedor` INT NOT NULL,
+  `ubic_txt_ubication` TEXT NULL,
+  `ubic_txt_direction` VARCHAR(255) NULL,
+  PRIMARY KEY (`ubic_int_idubication`));
