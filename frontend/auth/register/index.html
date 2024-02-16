@@ -9,73 +9,92 @@
   </head>
   <body>
     <!--heade-->
-    <div id="app">
-      <generic-header :show-login="true" :show-register="true"></generic-header>
-    </div>
+    <header class="header">
+      <div class="nav">
+        <div><a href="./">
+          <img class="svg" src="./../../images/icons/house.svg" alt="Inicio" title="Inicio">
+        </a></div>
+        <div><a href="../login/" title="Ingresar"><button>Ingresar</button></a></div>
+        <div><a href="../../contact/" title="Contactar"><button>Contactar</button></a></div>
+        <div>
+          <img title="Modo Oscuro" class="svg" id="toggleModo" src="./../../images/icons/brightness-high.svg" alt="Dark">
+        </div>
+      </div>
+    </header>
     <!--main-->
     <main class="main">
-      
-      <div class="card2">
-        <div class="div1">
-          <div class="title">
-            <h4>GESTIONA TUS TURNOS DE UNA MANERA FACIL Y PRACTICA</h4>
+      <div class="card">
+        <div class="login">
+          <div class="login1">
+            <div class="title">
+              <h4>GESTIONA TUS TURNOS DE UNA MANERA FACIL Y PRACTICA</h4>
+            </div>
+              <div class="texts">
+                <div class="text">
+                  <div><img src="../../images/icons/person.svg" alt="user"/></div>
+                  <div><p>Gestione sus usuarios</p></div>
+                </div>
+                <div class="text">
+                  <div><img src="../../images/icons/calendar-check.svg" alt="calenda.."></div>
+                  
+                  <div><p>Organice sus turnos de una manera sencilla y ágil</p></div>
+                </div>
+                <div class="text">
+                  <div><img src="../../images/icons/envelope.svg" alt="mail"/></div>
+                  <div><p>Notifique a sus clientes por email de forma automática el
+                    recordatorio de sus turnos</p></div>
+                </div>
+              </div>
           </div>
-            
-            <div class="texts">
-              <div class="text">
-                <div><img src="../../images/people.svg" alt="user"/></div>
-                <div><p>Gestione sus usuarios</p></div>
+          <div class="login2">
+            <div class="logo">
+              <img  class="logo" src="../../images/logos/Logo.png" alt="logo">
+            </div>
+            <form>
+              <div>
+                <label for="username"></label>
+                <input placeholder="username" type="text" required="true">
               </div>
-              <div class="text">
-                <div><img src="../../images/calendar-check.svg" alt="calenda.."></div>
-                
-                <div><p>Organice sus turnos de una manera sencilla y ágil</p></div>
+              <div>
+                <label for="email"></label>
+                <input placeholder="email" type="email" request="true">
               </div>
-              <div class="text">
-                <div><img src="../../images/envelope.svg" alt="mail"/></div>
-                <div><p>Notifique a sus clientes por email de forma automática el
-                  recordatorio de sus turnos</p></div>
+              <div>
+                <label for="password"></label>
+                <input placeholder="password" type="password" request="true">
               </div>
-            </div>
-        </div>
-        <div class="div2">
-            <img  class="logo" src="../../images/Logo.png" alt="logo">
-          
-          <form id="loginForm">
-            <div>
-              <label for="username"></label>
-              <input placeholder="username" type="text" required="true">
-            </div>
-            <div>
-              <label for="email"></label>
-              <input placeholder="email" type="email" request="true">
-            </div>
-            <div>
-              <label for="password"></label>
-              <input placeholder="password" type="password" request="true">
-            </div>
-            <div>
-              <label for="password2"></label>
-              <input placeholder="Repite tu password" type="password" request="true">
-            </div>
-            <div>
-              <select required="true" name="role">
-                <option value="cliente">cliente</option>
-                <option value="proveedor">Proveedor</option>
-              </select>
-            </div>
-            <button type="submit">Enviar</button>
-            <button>continuar</button>
-          </form>
-          <div><spam>Ya Tienes cuenta? <a  href="./../login/index.html"> ingresa Aqui</a></spam></div>
-        </div>
+              <div>
+                <label for="password2"></label>
+                <input placeholder="Repite tu password" type="password" request="true">
+              </div>
+              <div>
+                <select required="true" name="role">
+                  <option value="cliente">cliente</option>
+                  <option value="proveedor">Proveedor</option>
+                </select>
+              </div>
+              <button type="submit">Enviar</button>
+              <button>continuar</button>
+            </form>
+            <div><spam>Ya Tienes cuenta? <a  href="./../login/index.html"> ingresa Aqui</a></spam></div>
+          </div>
+      </div>
       </div>
     </main>
     <!--footer-->
-
-    <!-- Script Vue-->
-    <script src="https://unpkg.com/vue@3"></script>
-    <script src="../../vue/containers.js"></script>
+    <footer class="footer">
+      <div class="footer-container">
+        <div>
+          <img title="Facebook" class="svg" src="./../../images/icons/facebook.svg" alt="Facebook">
+        </div>
+        <div>
+          <img title="Twitter" class="svg" src="./../../images/icons/twitter-x.svg" alt="twitter">
+        </div>
+        <div>
+          <img title="Telegram" class="svg" src="./../../images/icons/telegram.svg" alt="telegram">
+        </div>
+      </div>
+    </footer>
     <!--Mode Dark-->
     <script src="../../js/theme.js"></script>
     <script src="./../../api/register.js"></script>

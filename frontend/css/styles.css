@@ -205,6 +205,8 @@ main {
   grid-area: login2;
   display: grid;
   text-align: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
 }
 
 .login2 img {
@@ -218,6 +220,7 @@ main {
   color: #040d15;
   text-align: center;
   border: #0b2640;
+  
 }
 /* End Login */
 footer {
@@ -272,4 +275,8 @@ button:hover {
 
 .dark-mode footer {
   background-color: #48caed20;
+}
+
+.dark-mode .login{
+  color: #000000;
 }
