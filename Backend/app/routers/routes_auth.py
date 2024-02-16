@@ -13,41 +13,50 @@ class Users(Resource):
     def post(self):
         data = request.get_json()
         nombre = data.get('nombre')
-
+        
         if nombre:
             new_user = User(nombre=nombre)
             db.session.add(new_user)
             db.session.commit()
-            return jsonify({'success': True}), 201
-        else:
-            return jsonify({'success': False}), 400
 
+            return jsonify({'mensaje':'usuario creado'})
+        else:
+            return jsonify({'mensaje':'Error al crear el usuario'})
+    
     def put(self):
-        data =request.get_json()
-        nombre =data.get('nombre')
+        nombre = request.args.get('nombre')
 
         if nombre:
-            resp = User.query.filter_by(nombre=nombre).first()
-            db.session.commit()
-            return jsonify({'messager':'dato Actualizado'})
+            user = User.query.filter_by(nombre=nombre).first()
+            if user:
+                user.nombre = request.args.get('nuevo_nombre')
+                db.session.commit()
+                return jsonify({'message': 'Usuario actualizado correctamente'}), 200
+            else:
+                return jsonify({'message': 'Usuario no encontrado'}), 404
         else:
-            return jsonify({'messager':"Usuari no Encontrado"})
-
+            return jsonify({'message': 'Falta el nombre del usuario a actualizar'}), 400
 
     def delete(self):
-        data =request.get_json()
-        nombre =data.get('nombre')
-        if nombre:
-            resp = User.query.order_by(User.nombre).all()
-            db.session.delete(resp)
-            db.session.commit()
-            return jsonify({'mesage':'Usuario Eliminado'})
-        else:
-            return jsonify({'messager':'Usuario no Encontrado'})
+        nombre = request.args.get('nombre')
 
-    def get(self):
-        data =request.get_json()
-        nombre =data.get('nombre')
         if nombre:
-            resp = User.query.order_by(User.nombre).all()
-            return jsonify({resp})
+            user = User.query.filter_by(nombre=nombre).first()
+            if user:
+                db.session.delete(user)
+                db.session.commit()
+                return jsonify({'message': 'Usuario eliminado correctamente'}), 200
+            else:
+                return jsonify({'message': 'Usuario no encontrado'}), 404
+        else:
+            return jsonify({'message': 'Falta el nombre del usuario a eliminar'}), 400
+#GET
+    def get(self):
+        nombre = request.args.get('nombre')
+
+        if nombre:
+            user = User.query.filter_by(nombre=nombre).first()
+            db.session.
+            return jsonify(user)
+        else:
+            return jsonify({'message': 'Usuario no encontrado'})
