@@ -9,60 +9,79 @@
   </head>
   <body>
     <!--header-->
-    <div id="headerl">
-      <headerl>
-      </headerl>
-    </div>
-    <!--main-->
-    <main class="main">
-      <div class="card2">
-        <div class="div1">
-          <div class="title">
-            <h4>GESTIONA TUS TURNOS DE UNA MANERA FACIL Y PRACTICA</h4>
-          </div>
-            
-            <div class="texts">
-              <div class="text">
-                <div><img src="../../images/people.svg" alt="user"/></div>
-                <div><p>Gestione sus usuarios</p></div>
-              </div>
-              <div class="text">
-                <div><img src="../../images/calendar-check.svg" alt="calenda.."></div>
-                
-                <div><p>Organice sus turnos de una manera sencilla y ágil</p></div>
-              </div>
-              <div class="text">
-                <div><img src="../../images/envelope.svg" alt="mail"/></div>
-                <div><p>Notifique a sus clientes por email de forma automática el
-                  recordatorio de sus turnos</p></div>
-              </div>
-            </div>
-        </div>
-        <div class="div2">
-          <div class="logo">
-            <img src="../../images/Logo_Ab.png" alt="logo">
-          </div>
-          <form>
-            <div>
-              <label></label>
-              <input placeholder="username">
-            </div>
-            <div>
-              <label></label>
-              <input placeholder="password">
-            </div>
-          </form>
-          <div><spam>No tienes cuenta? <a class="text-decoration-none" href="./../register/index.html"> Registrate Aqui</a></spam></div>
+    <header class="header">
+      <div class="nav">
+        <div><a href="./">
+          <img class="svg" src="./../../images/icons/house.svg" alt="Inicio" title="Inicio">
+        </a></div>
+        <div><a href="./auth/login" title="Ingresar"><button>Ingresar</button></a></div>
+        <div ><a href="./auth/register" title="Registrarse "><button>Registrar</button></a></div>
+        <div><a href="./contact" title="Contactar"><button>Contactar</button></a></div>
+        <div>
+          <img title="Modo Oscuro" class="svg" id="toggleModo" src="./../../images/icons/brightness-high.svg" alt="Dark">
         </div>
       </div>
-    </main>
-        <!--foother -->
-        <div  id="footerl">
-          <footerl></footerl>
+    </header>
+    <!--main-->
+    <div class="main">
+      <div class="card">
+        <div class="login">
+          <div class="login1">
+            <div class="title">
+              <h4>GESTIONA TUS TURNOS DE UNA MANERA FACIL Y PRACTICA</h4>
+            </div>
+              
+              <div class="texts">
+                <div class="text">
+                  <div><img src="../../images/icons/people.svg" alt="user"/></div>
+                  <div><p>Gestione sus usuarios</p></div>
+                </div>
+                <div class="text">
+                  <div><img src="../../images/icons/calendar-check.svg" alt="calenda.."></div>
+                  
+                  <div><p>Organice sus turnos de una manera sencilla y ágil</p></div>
+                </div>
+                <div class="text">
+                  <div><img src="../../images/icons/envelope.svg" alt="mail"/></div>
+                  <div><p>Notifique a sus clientes por email de forma automática el
+                    recordatorio de sus turnos</p></div>
+                </div>
+              </div>
+          </div>
+          <div class="login2">
+            <div class="logo">
+              <img src="../../images/logos/Logo.png" alt="logo">
+            </div>
+            <form>
+              <div>
+                <label></label>
+                <input placeholder="username">
+              </div>
+              <div>
+                <label></label>
+                <input placeholder="password">
+              </div>
+            </form>
+            <div>
+              <spam>No tienes cuenta? <a href="./../register/index.html"> Registrate Aqui</a></spam></div>
+          </div>
         </div>
-        <!-- Script Vue-->
-        <script src="https://unpkg.com/vue@3"></script>
-        <script src="../../vue/containers.js"></script>
+      </div>
+    </div>
+        <!--foother -->
+        <footer class="footer">
+          <div class="footer-container">
+            <div>
+              <img title="Facebook" class="svg" src="./../../images/icons/facebook.svg" alt="Facebook">
+            </div>
+            <div>
+              <img title="Twitter" class="svg" src="./../../images/icons/twitter-x.svg" alt="twitter">
+            </div>
+            <div>
+              <img title="Telegram" class="svg" src="./../../images/icons/telegram.svg" alt="telegram">
+            </div>
+          </div>
+        </footer>
         <!--Mode Dark-->
         <script src="../../js/theme.js"></script>
     <script src="./../../api/login.js"></script>

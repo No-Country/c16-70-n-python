@@ -1,61 +1,111 @@
 /* colores */
 :root {
   --color1: #ef9300;
+  --color1-1: #1a1000;
+  --color1-2: #452a00;
+  --color1-3: #6f4500;
+  --color1-4: #9a5f00;
+  --color1-5: #c47900;
+  /*  */
   --color2: #e13754;
+  --color2-1: #0c0305;
+  --color2-3: #370d15;
+  --color2-4: #611824;
+  --color2-5: #8c2234;
+  --color2-6: #b62d44;
+  /*  */
   --color3: #2a8bea;
+  --color3-1: #040d15;
+  --color3-2: #0b2640;
+  --color3-3: #133f6a;
+  --color3-4: #1b5995;
+  --color3-5: #2272bf;
+  /*  */
   --color4: #48caed;
+  --color4-1: #071518;
+  --color4-2: #143943;
+  --color4-3: #215d6d;
+  --color4-4: #2e8298;
+  --color4-5: #3ba6c2;
+  /*  */
   --color5: #222130;
+  --color5-1: #403e5a;
+  --color5-2: #5e5b85;
+  --color5-3: #7c79af;
+  --color5-4: #9a96da;
+  --color5-5: #040405;
+  /*  */
   --color6: #ffffff;
   --color7: #000000;
   --color8: #c8c8c8;
   --color9: #f0f0f0;
   --color10: #fafafa;
+  font-size: 10px;
 }
 
 /* fonts */
 @font-face {
-  font-family: "font_1";
-  src: url(/fuentes/Montserrat-VariableFont_wght.ttf);
+  font-family: "font1";
+  src: url(../fonts/Montserrat/Montserrat-VariableFont_wght.ttf);
 }
 @font-face {
-  font-family: "font_2";
-  src: url(/fuentes/Montserrat-Italic-VariableFont_wght.ttf);
+  font-family: "font2";
+  src: url(../fonts/Montserrat/Montserrat-Italic-VariableFont_wght.ttf);
 }
 
 * {
   margin: 0;
   padding: 0;
+  font-family: "font2";
 }
-h1, h2, h3,h4, h5  {
-    font-family: 'font_1';
+/* rutas */
+a {
+  text-decoration: none;
+}
+
+/* fin de rutas */
+
+h1 {
+  font-size: 5rem;
+}
+
+h2 {
+  font-size: 4rem;
+}
+
+h3 {
+  font-size: 3rem;
+}
+
+h4 {
+  font-size: 2rem;
+}
+
+h5 {
+  font-size: 1rem;
 }
 
 p {
-  font-family: "font_2";
+  font-size: 0.5 rem;
 }
 
 body {
+  margin: 0;
+  padding: 0;
   display: grid;
-  grid-template-columns: 100%;
-  grid-template-rows: auto 94% auto;
   grid-template-areas:
     "header"
     "main"
     "footer";
-  transition: background-color 2s ease;
+  grid-template-rows: 10% auto 10%;
+  min-height: 100vh;
   background-color: var(--color4);
-  color: var(--color5);
-  margin: 0;
-  padding: 0;
-  height: 100vh;
-  padding-top: 100px;
+  /* transition: background-color 2s ease; */
 }
 
 header {
   grid-area: header;
-  background-color: #22213010;
   flex-direction: row;
-  color: var(--color7);
   position: fixed;
   top: 0;
   left: 0;
@@ -63,181 +113,163 @@ header {
   z-index: 1000;
 }
 
-a {
-  text-decoration: none;
-  color: #000000;
-}
-
-a:hover {
-  color: var(--color6);
-  transition: background-color 1.5s ease;
-}
-
 .nav {
   display: flex;
+  flex-direction: flex;
   gap: 2rem;
   margin: 1rem;
-  margin-right: 10px;
+  margin-right: 1rem;
+}
+
+.nav img {
+  width: 150%;
+  height: auto;
+}
+
+.nav a::after {
+  font-size: 1rem;
+  text-decoration: var(--color4-5);
+}
+
+.svg {
+  border: 5px solid none;
+  width: 100px;
+  height: 100px;
+  background-color: none;
+  &:hover {
+    filter: invert(100%);
+    cursor: pointer;
+  }
 }
 
 main {
   grid-area: main;
-  display: flex;
+  display: flex; 
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 1%;
+  align-items: center; 
+  justify-content: center; 
+  padding: 1rem;
 }
-/* cascada */
 
-
-/* tarjeta 1 */
 .card {
   padding: 2rem;
   margin: 2rem;
-  display: flex;
   flex-direction: column;
   justify-items: center;
-  align-content: center;
   gap: 1rem;
-  margin: 2rem;
-  padding-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  height: 100vh;
 }
 
-.cardbody {
-  justify-items: center;
+.card1{
+  justify-content: center;
 }
 
-.card img {
-  border-radius: 2rem;
-  padding: 1rem;
-}
-.card p {
-  font-family: "font_1";
-  text-align: center;
-  font-size: 110%;
-  overflow: hidden;
-}
+/* Login */
 
-/*Card de formularios*/
-
-.card2 {
-  padding: 2rem;
+.login {
   display: grid;
-  grid-template-columns: auto auto;
-  gap: 2rem;
-  color: var(--color6);
-  padding: 2rem;
+  grid-template-columns: 40% 60%;
+  grid-template-rows: 100%;
+  grid-template-areas:"login1 login2" ;
+  background-color: var(--color8);
+  padding: 1rem;
+  border: solid 4px var(--color4-2);
   border-radius: 1rem;
-  box-shadow: #000000;
-  background-color: var(--color10);
-  color: var(--color7);
-  box-shadow: inset var(--color7) var(--color8);
-  width: 80%;
+  font-family: 'font1';
+  width: 70%;
+  height: auto;
 }
 
-.card2 .div1 .title {
+
+.login1{
+  grid-area: login1;
+}
+.login1 .title {
   justify-content: center;
-}
-.card2 .div1 .texts {
-  justify-content: flex-start;
-}
-.card2 .div1 .text {
-  margin: 2rem;
-  gap: 1rem;
-  display: flex;
-  flex-direction: row;
-}
-
-.card2 .div2 {
-  justify-content: center;
-  align-items:center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  overflow:au
-}
-
-.card2 .logo {
-justify-content: center;
-}
-
-.card2 .div2 img {
-    display: grid;
-    grid-row: ;
-    border-radius: 1.0 rem;
-    border: 2px solid #2a8bea;
-    background-color: #2a8bea;
-    width: 100%;
-    height: 20%;
-}
-
-.card2 .div2 form {
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-.card2 .div2 input {
-  margin: 0.5 rem;
-  background-color: transparent;
-  border: 0.1 rem;
-  border-top: none;
-  border-left: none;
-  border-right: none;
   text-align: center;
-  border-color: var();
-  padding: 0.2 rem;
-  border-color: var(--color3);
 }
 
-.card2 .div2 select {
-  padding: 0.2rem;
-  border: 0.2 rem;
-  background-color: transparent;
-  border-color: var(--color5);
-  border-radius: 5%;
+.login1 .texts .text {
+  display: flex;
+  flex-direction:row ;
+  gap: 1rem;
+  margin: 1rem;
 }
-/**/
 
-/*footer*/
+
+.login2 {
+  grid-area: login2;
+  display: grid;
+  text-align: center;
+}
+
+.login2 img {
+  width: 60%;
+  height: auto;
+  border: solid 2px var(--color4-5);
+}
+
+.login2 input {
+  background-color: none;
+  color: #040d15;
+  text-align: center;
+  border: #0b2640;
+}
+/* End Login */
 footer {
-  grid-area: footer;
-  background-color: #22213010;
   flex-direction: row;
-  color: var(--color7);
+  position: fixed;
   bottom: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.foother-container {
-  display: flex;
-  padding: 1rem;
-  gap: 2rem;
-  justify-content: center;
-  align-items: center;
+  left: 0;
+  width: 100%;
   justify-items: center;
-  align-items: center;
 }
 
-/* darkmode */
+.footer-container {
+  display: flex;
+  flex-direction: flex;
+  justify-content: space-around;
+  padding: 1rem;
+}
+
+.footer-container img {
+  width: 150%;
+  height: auto;
+}
+
+/* Buttons */
+
+button {
+  padding: 0.4rem;
+  background-color: #133f6a;
+  color: var(--color8);
+  border: none;
+  border-radius: 0.5rem;
+  transition: background-color 0.3s ease; 
+}
+
+button:hover {
+  background-color: #040405;
+  color: #3ba6c2;
+}
+
+/* end Buttons */
+
+/* modo Oscuro */
 .dark-mode {
   background-color: var(--color5);
-  color: var(--color6);
+  font-family: "font1";
+  color: var(--color4);
 }
 
-.dark-mode .header {
-  background-color: #48caed;
-  color: var(--color5);
-}
-.dark-mode .footer {
-  background-color: #48caed;
-  color: var(--color5);
+.dark-mode header {
+  background-color: #48caed20;
 }
 
-.dark-mode .card2 {
-  background-color: var(--color10);
-  color: var(--color5);
+.dark-mode footer {
+  background-color: #48caed20;
 }
