@@ -1,8 +1,7 @@
 # c16-70-n-python
+
 Hola! 👋 Somos el equipo c16-70-n-python para el proyecto de No Country
 <h1 align="center">Agendify</h1>
-
-
 
 Agendify es un **sistema digital de gestión de turnos y reservas** enfocada en facilitar el encuentro entre proveedores de servicios y clientes.
 
@@ -38,3 +37,19 @@ La plataforma es versátil, de rápida implementación y tiene un sistema flexib
     <img src="https://skillicons.dev/icons?i=python,flask,mysql" />
   </a>
 </p>
+
+## API REST
+
+Flask
+
+python3 -m venv .venv
+. .venv/bin/activate
+
+si se instalo un Modulo nuevo y quieres tenerlo en los requirements.txt use este comando
+
+pip freeze > requirements.txt
+
+comando para instalar todos los requeriments.txt
+pip install -r requirements.txt
+
+Leer el archivo ```init__.py``` que esta dentro de la carpeta app
