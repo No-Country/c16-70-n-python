@@ -28,7 +28,7 @@
         <div class="login">
           <div class="login1">
             <div class="title">
-              <h4>GESTIONA TUS TURNOS DE UNA MANERA FACIL Y PRACTICA</h4>
+              <h5>GESTIONA TUS TURNOS DE UNA MANERA FACIL Y PRACTICA</h5>
             </div>
               
               <div class="texts">
@@ -52,15 +52,16 @@
             <div class="logo">
               <img src="../../images/logos/Logo.png" alt="logo">
             </div>
-            <form>
+            <form id="loginForm">
               <div>
-                <label></label>
-                <input placeholder="username">
+                <label for="username"></label>
+                <input type="text" id="username" name="username" placeholder="username" required>
               </div>
               <div>
-                <label></label>
-                <input placeholder="password">
+                <label for="password"></label>
+                <input type="password" id="password" name="password" placeholder="****" required>
               </div>
+              <button type="submit">Iniciar sesión</button>
             </form>
             <div>
               <spam>No tienes cuenta? <a href="./../register/index.html"> Registrate Aqui</a></spam></div>
@@ -87,3 +88,4 @@
     <script src="./../../api/login.js"></script>
   </body>
 </html>
+

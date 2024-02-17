@@ -40,7 +40,7 @@
   --color8: #c8c8c8;
   --color9: #f0f0f0;
   --color10: #fafafa;
-  font-size: 10px;
+  font-size: 15px;
 }
 
 /* fonts */
@@ -180,7 +180,7 @@ main {
   border: solid 4px var(--color4-2);
   border-radius: 1rem;
   font-family: 'font1';
-  width: 70%;
+  width: 100%;
   height: auto;
 }
 

@@ -70,7 +70,6 @@ class Users(Resource):
 
             resp = User.query.filter_by(id=user).first()
             if resp:
-                # Assuming User model has a method to serialize itself to JSON
                 print('\033[93m',resp)
                 print('tipo de dato',type(resp))
                 return jsonify({'datos':resp.nombre})

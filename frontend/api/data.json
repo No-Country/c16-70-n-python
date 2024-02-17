@@ -3,17 +3,20 @@
         {
             "id": 1,
             "username": "orlando",
-            "password": "123"
+            "password": "123",
+            "role":"admin"
         },
         {
             "id": 2,
             "username": "usuario2",
-            "password": "contraseña2"
+            "password": "contraseña2",
+            "role":"client"
         },
         {
             "id": 3,
             "username": "usuario3",
-            "password": "contraseña3"
+            "password": "contraseña3",
+            "role":"provider"
         }
     ]
 }
