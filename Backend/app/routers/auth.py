@@ -20,9 +20,9 @@ class Users(Resource):
         
         try:
             busqueda = Users.query.filter_by(use_str_email=email)
-
+            print(busqueda)
             if busqueda :
                 descodificarPassword(password=password, passwordDB=busqueda.use_str_password)
-                
+
         except:
             pass
