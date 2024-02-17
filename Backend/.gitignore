@@ -2,3 +2,4 @@
 producionDB.db
 __pycache__/
 *.py[cod]
+.vscode
