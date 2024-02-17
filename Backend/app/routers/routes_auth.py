@@ -52,11 +52,20 @@ class Users(Resource):
             return jsonify({'message': 'Falta el nombre del usuario a eliminar'}), 400
 #GET
     def get(self):
-        nombre = request.args.get('nombre')
+        consulta = request.get_json()
 
-        if nombre:
-            user = User.query.filter_by(nombre=nombre).first()
-            db.session.
-            return jsonify(user)
+        user = consulta.get('id')
+
+        print(consulta)
+        if user :
+
+            resp = User.query.filter_by(id=user).first()
+            if resp:
+                # Assuming User model has a method to serialize itself to JSON
+                print('\033[93m',resp)
+                print('tipo de dato',type(resp))
+                return jsonify({'datos':resp.nombre})
+            else:
+                return jsonify({'error': 'User not found'})
         else:
-            return jsonify({'message': 'Usuario no encontrado'})
+            return jsonify({'error': 'Invalid request'})
