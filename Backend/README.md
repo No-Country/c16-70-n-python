@@ -22,7 +22,7 @@ La plataforma es versátil, de rápida implementación y tiene un sistema flexib
 + Panel de administración para gestionar usuarios y servicios
 
 <p align="left">
-<h2>En este proyecto se utilizan las siguientes tecnologías:</h2> 
+<h2>En este proyecto se utilizan las siguientes tecnologías:</h2>
 </p>
 <h1 align="left">Front-End</h1>
 <p align="left">
@@ -38,7 +38,7 @@ La plataforma es versátil, de rápida implementación y tiene un sistema flexib
   </a>
 </p>
 
-## API REST
+## API REST FALSA
 
 Flask
 
@@ -52,4 +52,4 @@ pip freeze > requirements.txt
 comando para instalar todos los requeriments.txt
 pip install -r requirements.txt
 
-Leer el archivo ```init__.py``` que esta dentro de la carpeta app
+Leer el archivo ```__init__.py``` que esta dentro de la carpeta app
