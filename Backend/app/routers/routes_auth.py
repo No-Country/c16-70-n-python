@@ -22,21 +22,28 @@ class Users(Resource):
             return jsonify({'mensaje':'usuario creado'})
         else:
             return jsonify({'mensaje':'Error al crear el usuario'})
-    
+#UPDATE
     def put(self):
-        nombre = request.args.get('nombre')
+        consulta = request.get_json()
+        nombre = consulta.get('nombre')
+        user_id = consulta.get('id')
 
-        if nombre:
-            user = User.query.filter_by(nombre=nombre).first()
-            if user:
-                user.nombre = request.args.get('nuevo_nombre')
+        if nombre is None:
+            return jsonify({'message': 'Falta el nombre del usuario a actualizar'})
+
+        if user_id:
+            resp = User.query.filter_by(id=user_id).first()
+            print('\033[93m',resp)
+            if resp:
+                resp.nombre = nombre
                 db.session.commit()
-                return jsonify({'message': 'Usuario actualizado correctamente'}), 200
+                return jsonify({'message': 'Usuario actualizado correctamente'})
             else:
-                return jsonify({'message': 'Usuario no encontrado'}), 404
+                return jsonify({'message': 'Usuario no encontrado'})
         else:
-            return jsonify({'message': 'Falta el nombre del usuario a actualizar'}), 400
-
+            return jsonify({'message': 'Falta el ID del usuario a actualizar'})
+        
+#DELETE
     def delete(self):
         consulta = request.get_json()
         user = consulta.get('id')
