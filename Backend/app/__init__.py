@@ -3,9 +3,8 @@ from flask import Flask,Blueprint
 #importacion de la instancia db de SQLalchemy
 from .models.models import db
 #importacion de la rutas
-from .routers.routes_auth import auth
-# conexion con mysql
-import pymysql
+from .routers.auth import auth
+from .routers.admin import admi
 #para leer variables de entorno
 import os
 from dotenv import load_dotenv
@@ -24,11 +23,11 @@ def create_app():
     # Configura la base de datos 
 
     #SQlite --> Para desarrollo Descomenta esta linea y comenta la configuracion para MySQl
-    #app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + db_path
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + db_path
     #MySQL ---> Cuando ya esta Desplegado
 
-    app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://{os.getenv('MYSQL_USER')}:{os.getenv('MYSQL_PASSWORD')}@{os.getenv('MYSQL_HOST')}/{os.getenv('MYSQL_DB')}"
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    #app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://{os.getenv('MYSQL_USER')}:{os.getenv('MYSQL_PASSWORD')}@{os.getenv('MYSQL_HOST')}/{os.getenv('MYSQL_DB')}"
+    #app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     
     db.init_app(app)
 
@@ -36,5 +35,6 @@ def create_app():
     # es una forma pararegistrar que rutas deseas crear asi se evita de crear muchas rutas en un solo archivo
     
     app.register_blueprint(auth)
+    app.register_blueprint(admi)
 
     return app
