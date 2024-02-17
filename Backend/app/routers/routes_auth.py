@@ -38,18 +38,20 @@ class Users(Resource):
             return jsonify({'message': 'Falta el nombre del usuario a actualizar'}), 400
 
     def delete(self):
-        nombre = request.args.get('nombre')
+        consulta = request.get_json()
+        user = consulta.get('id')
 
-        if nombre:
-            user = User.query.filter_by(nombre=nombre).first()
-            if user:
-                db.session.delete(user)
+        if user:
+            resp = User.query.filter_by(id=user).first()
+            if resp:
+                print('\033[93m',resp)
+                db.session.delete(resp)
                 db.session.commit()
-                return jsonify({'message': 'Usuario eliminado correctamente'}), 200
+                return jsonify({'message': 'Usuario eliminado correctamente'})
             else:
-                return jsonify({'message': 'Usuario no encontrado'}), 404
+                return jsonify({'message': 'Usuario no encontrado'})
         else:
-            return jsonify({'message': 'Falta el nombre del usuario a eliminar'}), 400
+            return jsonify({'message': 'Falta el nombre del usuario a eliminar'})
 #GET
     def get(self):
         consulta = request.get_json()
