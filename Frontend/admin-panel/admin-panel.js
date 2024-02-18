@@ -1,15 +1,52 @@
-function obtenerDatosAPI() {
-  const apiUrl = 'http://localhost:3000/users';
+const paginationPrev = document.getElementById('pagination-prev');
+const paginationNext = document.getElementById('pagination-next');
 
-  return fetch(apiUrl)
-    .then(response => response.json())
+let currentPage = 1;
+const limitPerPage = 10;
+
+paginationPrev.addEventListener('click', () => {
+  if (currentPage > 1) {
+    currentPage--;
+    obtenerDatosAPI(currentPage, limitPerPage)
+      .then(renderUserCards)
+      .catch(error => console.error('Error:', error));
+  }
+});
+
+paginationNext.addEventListener('click', () => {
+  currentPage++;
+  obtenerDatosAPI(currentPage, limitPerPage)
+    .then(renderUserCards)
     .catch(error => console.error('Error:', error));
-}
+});
 
+async function obtenerDatosAPI(page, limit) {
+  const apiUrl = `http://localhost:3000/users?_page=${page}&_per_page=${limit}`;
+  
+
+  try {
+    const response = await fetch(apiUrl);
+    const data = await response.json();
+    console.log("aqui",data);
+    return data.data;
+  } catch (error) {
+    return console.error('Error:', error);
+  }
+}
+function cleanUserCards() {
+  const container = document.getElementById('table-container');
+  let child = container.lastElementChild;
+  while (child && child !== document.getElementById('table-person-template')) {
+    container.removeChild(child);
+    child = container.lastElementChild;
+  }
+}
 function renderUserCards(data) {
+  console.log(data);
+  cleanUserCards();
   const container = document.getElementById('table-container');
   const template = document.getElementById('table-person-template').content;
-
+  
   data.forEach(user => {
     const userCard = document.importNode(template, true);
     if (user.profileImgUrl == undefined) {
@@ -27,22 +64,23 @@ function renderUserCards(data) {
   });
 }
 
+
+
+
+
 function main() {
-  obtenerDatosAPI()
+  obtenerDatosAPI(currentPage, limitPerPage)
     .then(datos => {
       renderUserCards(datos);
     })
     .catch(error => console.error('Error:', error));
 }
 
-
+//switch between active and inactive
 document.addEventListener('DOMContentLoaded', () => {
   const navSelection = document.querySelector('.nav-selection');
-
   navSelection.addEventListener('click', (event) => {
     const target = event.target;
-    console.log(target.classList.contains('nav-selection--active'))
-    console.log(target.classList.contains('nav-selection--inactive'))
     if (target.classList.contains('nav-selection--inactive')) {
       const active = navSelection.querySelector('.nav-selection--active');
       active.classList.replace('nav-selection--active', 'nav-selection--inactive');
@@ -52,3 +90,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 main()
+
+
+// ! los datos devueltos son los mismo cada vez que se hace la paginacion

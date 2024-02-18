@@ -2,7 +2,7 @@
     --primary-color: rgb(34, 33, 48);
     --secondary-color: rgb(78, 201, 234);
     --third-color: rgb(42, 139, 234);
-    --fourth-color: rgb(247, 60, 92);
+    --fourth-color: #f73c5c;
     --fifth-color: rgb(255, 157, 0);
     --bagraun-color: #fafafa;
     --white-color-black:#f0f0f0;
@@ -199,8 +199,19 @@ header{
 .edit img{
     width: 30px;
     margin-right: 10px;
+    cursor: pointer;
+}
+
+.edit:hover img {
+    scale: 1.2;
 }
 
 .delete img{
     width: 30px;
+    cursor: pointer;
+}
+
+.delete:hover img {
+    content: url('images/backspace-svgrepo-com\ copy.svg');
+    scale: 1.2;
 }
