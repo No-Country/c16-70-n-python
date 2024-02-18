@@ -47,9 +47,7 @@ class Cliente(db.Model):
     cli_str_first_name = db.Column(db.String(100))  # Added length
     cli_str_phone = db.Column(db.String(15), nullable=True)
     cli_str_direction = db.Column(db.String(100), nullable=True)
-    cli_str_last_name = db.Column(
-        db.String(100)
-    )  # Added length and changed from cli_str_last_name to cli_str_last_name
+    cli_str_last_name = db.Column(db.String(100))  # Added length and changed from cli_str_last_name to cli_str_last_name
     cli_str_profile_img = db.Column(db.String(200), nullable=True)  # Added length
     cli_date_register_date = db.Column(db.Date)
     cli_date_suspension_date = db.Column(db.Date, nullable=True)

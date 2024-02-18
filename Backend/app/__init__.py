@@ -7,6 +7,7 @@ from .models.models import db
 # importacion de la rutas
 from .routers.auth import auth
 from .routers.admin import admi
+from .routers.cliente import clien
 
 # para leer variables de entorno
 import os
@@ -39,5 +40,6 @@ def create_app():
 
     app.register_blueprint(auth)
     app.register_blueprint(admi)
+    app.register_blueprint(clien)
 
     return app
