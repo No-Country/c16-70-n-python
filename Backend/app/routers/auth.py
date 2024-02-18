@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from ..models.models import Users, db
+from ..models.models import User, db
 from flask_restx import Api, Resource
 from ..utils.segurity import descodificarPassword, codificarPassword
 
@@ -19,13 +19,17 @@ class Users(Resource):
         role = data.get("role")
 
         try:
-            exitsEmail = Users.query.filter_by(use_str_email=email).first()
+            exitsEmail = User.query.filter_by(use_str_email=email).first()
+
+            if exitsEmail:
+                return jsonify({"messager":"Email en uso Porfavor Intente con Otro"})
             if not exitsEmail:
                 passwordH = codificarPassword(password)
-                new_user = Users(use_str_email=email, use_str_password=passwordH, use_str_type_profile=role)
+                new_user = User(use_str_email=email, use_str_password=passwordH, use_str_type_profile=role)
                 db.session.add(new_user)
                 db.session.commit()
-            print(new_user)
             return jsonify({"messager":"EL Usuario Fue Creado"})
-        except:
-            return jsonify({"messager":"Error al Conectarse con la BD"})
+        except Exception as e:
+            print("Error:", e)
+            return jsonify({"message": "Error al conectarse con la BD"})
+        

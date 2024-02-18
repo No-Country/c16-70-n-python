@@ -1,8 +1,0 @@
-CREATE TABLE `railway`.`LoginUser` (
-  `usu_int_iduser` INT NOT NULL AUTO_INCREMENT,
-  `usu_txt_email` VARCHAR(45) NULL,
-  `usu_pass_pass` VARCHAR(45) NULL,
-  `usu_txt_typeprofile` VARCHAR(45) NULL,
-  PRIMARY KEY (`usu_int_iduser`));
-
-

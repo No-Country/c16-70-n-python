@@ -5,31 +5,25 @@ from datetime import datetime
 db = SQLAlchemy()
 
 
-class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    nombre = db.Column(db.String(100), nullable=False)
-
-
 # Doc: https://flask-sqlalchemy.palletsprojects.com/en/2.x/models simple-example
 
 
-# Definición de los modelos
+class User(db.Model):
+    __tablename__ = "user"
+    use_int_id = db.Column(db.Integer, primary_key=True, unique=True)
+    use_str_email = db.Column(db.String(120), unique=True)
+    use_str_password = db.Column(db.String(128), nullable=False)
+    use_str_type_profile = db.Column(db.String(5), nullable=False)
 
-
-class Users(db.Model):
-    __tablename__ = "users"
-    use_int_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    use_str_email = db.Column(db.String(50))
-    use_str_password = db.Column(db.String(50))
-    use_str_type_profile = db.Column(db.String(10))
-
-
+    def __repr__(self):
+        return '<User %r>' % self.use_str_email
+    
 class Proveedor(db.Model):
     __tablename__ = "proveedor"
     pro_int_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    pro_int_user_id = db.Column(db.Integer, db.ForeignKey("users.use_int_id"))
-    pro_str_first_name = db.Column(db.String(100))
-    pro_last_name = db.Column(db.String(100))
+    pro_int_user_id = db.Column(db.Integer, db.ForeignKey("user.use_int_id"))
+    pro_str_first_name = db.Column(db.String(100), nullable=True)
+    pro_str_last_name = db.Column(db.String(100),nullable=True)
     pro_str_phone = db.Column(db.String(20), nullable=True)
     pro_str_direction = db.Column(db.String(200), nullable=True)
     pro_str_profile_img = db.Column(db.String(200), nullable=True)
@@ -37,23 +31,23 @@ class Proveedor(db.Model):
     pro_date_suspension_date = db.Column(db.Date, nullable=True)
 
     # Definición de la relación con Users
-    user = db.relationship("Users", backref="proveedor")
+    user = db.relationship("User", backref="proveedor")
 
 
 class Cliente(db.Model):
     __tablename__ = "cliente"
     cli_int_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    cli_int_user_id = db.Column(db.Integer, db.ForeignKey("users.use_int_id"))
-    cli_str_first_name = db.Column(db.String(100))  # Added length
+    cli_int_user_id = db.Column(db.Integer, db.ForeignKey("user.use_int_id"))
+    cli_str_first_name = db.Column(db.String(100),nullable=True)
     cli_str_phone = db.Column(db.String(15), nullable=True)
     cli_str_direction = db.Column(db.String(100), nullable=True)
-    cli_str_last_name = db.Column(db.String(100))  # Added length and changed from cli_str_last_name to cli_str_last_name
-    cli_str_profile_img = db.Column(db.String(200), nullable=True)  # Added length
+    cli_str_last_name = db.Column(db.String(100), nullable=True)
+    cli_str_profile_img = db.Column(db.String(200), nullable=True)
     cli_date_register_date = db.Column(db.Date)
     cli_date_suspension_date = db.Column(db.Date, nullable=True)
 
     # Definición de la relación con Users
-    user = db.relationship("Users", backref="cliente")
+    user = db.relationship("User", backref="cliente")
 
 
 class ScoreProveedor(db.Model):
@@ -71,6 +65,20 @@ class ScoreProveedor(db.Model):
     cliente = db.relationship("Cliente", backref="score_proveedor")
 
 
+class Categories(db.Model):
+    __tablename__ = "categories"
+    cat_int_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    cat_str_category_name = db.Column(db.String(100))
+
+
+class Ubication(db.Model):
+    __tablename__ = "ubication"
+    ubi_int_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    ubi_int_proveedor_id = db.Column(db.Integer, db.ForeignKey("proveedor.pro_int_id"))
+    ubi_str_ubication = db.Column(db.String(100))  # Added length
+    ubi_str_direction = db.Column(db.String(200))  # Added length
+
+
 class Turn(db.Model):
     __tablename__ = "turn"
     turn_int_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -85,17 +93,3 @@ class Turn(db.Model):
     turn_time_start_turn = db.Column(db.Time)
     turn_time_finish_turn = db.Column(db.Time)
     turn_bol_assigned = db.Column(db.Boolean, default=False)
-
-
-class Categories(db.Model):
-    __tablename__ = "categories"
-    cat_int_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    cat_str_category_name = db.Column(db.String(100))
-
-
-class Ubication(db.Model):
-    __tablename__ = "ubication"
-    ubi_int_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    ubi_int_proveedor_id = db.Column(db.Integer, db.ForeignKey("proveedor.pro_int_id"))
-    ubi_str_ubication = db.Column(db.String(100))  # Added length
-    ubi_str_direction = db.Column(db.String(200))  # Added length

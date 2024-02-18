@@ -1,4 +1,0 @@
-CREATE TABLE `railway`.`categories` (
-  `catg_int_idcategories` INT NOT NULL, AUTO_INCREMENT,
-  `catg_str_category_name` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`catg_int_idcategories`));

@@ -36,7 +36,7 @@ class PostClient(Resource):
 
 
 # Rutas PUT del cliente
-@client.rout("/cliente/int:<id>")
+@client.route("/cliente/int:<id>")
 class PutClient(Resource):
     def put(self):
         pass
