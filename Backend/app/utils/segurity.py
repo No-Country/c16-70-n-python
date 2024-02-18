@@ -21,7 +21,7 @@ def descodificarPassword(password, passwordDB):
 def codificarToken(data):
     playload = {
         'id' : data.get('id'),
-        'role': data.get('use_str_type_profile')
+        'role': data.get('role')
     }
     return jwt.encode(playload, key, algorithm='HS256')
 
