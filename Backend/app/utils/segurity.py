@@ -36,10 +36,8 @@ def descodificarToken(token):
 
     try:
         payload = jwt.decode(token, key, algorithms='HS256')
-        user_id = payload.get('id')
-        user_role = payload.get('role')
 
-        return (user_id, user_role)
+        return (payload)
     ###
     except jwt.ExpiredSignatureError:
          return {'message': 'Token expirado, inicie sesión nuevamente'}, 401
