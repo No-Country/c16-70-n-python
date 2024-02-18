@@ -1,4 +1,3 @@
-from crypt import methods
 from flask_restx import Api, Resource
 from flask import Blueprint, jsonify, request
 from ..routers.auth import api
@@ -13,13 +12,8 @@ client = api.namespace("client", description="Rutas para el modelo cliente")
 @client.route("")
 class GetClient(Resource):
     def get(self):
-        client_data = Cliente.query.all()
-        
-        if client_data.cli_int_user_id in client_data:
-            return jsonify({'mensaje':'Usuario ya esta registrado'})
-        
+        client_data = Cliente.query.all()        
         client_list = []
-
         for data in client_data:
             clients_data = {
                 'id': data.cli_int_user_id,
@@ -34,24 +28,15 @@ class GetClient(Resource):
             client_list.append(clients_data)
         return jsonify(client_list)
 
-def get_users():
-    users = User.query.all()
-    user_list = []
-    for user in users:
-        user_data = {
-            'id': user.id,
-            'username': user.username,
-            'email': user.email
-        }
-        user_list.append(user_data)
-    return jsonify({'users': user_list})
-
 # Rutas POST del cliente
 @client.route("/post")
-class Client(Resource):
+class PostClient(Resource):
     def post(self):
         pass
 
 
 # Rutas PUT del cliente
-#@client.rout("/cliente/int:<id>", methods=["PUT"])
+@client.rout("/cliente/int:<id>")
+class PutClient(Resource):
+    def put(self):
+        pass
