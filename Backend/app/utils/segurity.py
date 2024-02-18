@@ -2,6 +2,9 @@ from werkzeug.security import check_password_hash, generate_password_hash
 import jwt
 import os
 from flask import jsonify
+import os
+import re
+
 
 key = os.getenv('KEY')
 
@@ -45,3 +48,22 @@ def descodificarToken(token):
         return {'message': 'Token inválido'}, 401
     except Exception as e:
         return {'message': 'Error en el servidor', 'error': str(e)}, 500
+
+
+
+#
+def secure_filename(filename):
+    """
+    Función para generar un nombre de archivo seguro.
+
+    Args:
+        filename (str): El nombre de archivo original.
+
+    Returns:
+        str: El nombre de archivo seguro.
+    """
+    # Remueve caracteres no seguros
+    filename = re.sub(r'[^\w\s-]', '', filename)
+    # Reemplaza espacios con guiones
+    filename = re.sub(r'\s+', '-', filename)
+    return filename

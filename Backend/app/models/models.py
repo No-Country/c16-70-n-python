@@ -4,6 +4,10 @@ from datetime import datetime
 
 db = SQLAlchemy()
 
+fecha_registro = datetime.now()
+
+
+# ejemplo 
 
 # Doc: https://flask-sqlalchemy.palletsprojects.com/en/2.x/models simple-example
 
