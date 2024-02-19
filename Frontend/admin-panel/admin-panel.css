@@ -190,6 +190,22 @@ header{
     margin-right: 20px;
 }
 
+.role{
+    min-width: 80px;
+}
+
+.count-type{
+    min-width: 80px;
+}
+
+.status{
+    min-width: 110px;
+}
+
+.date-incription{
+    min-width: 110px;
+}
+
 .action{
     display: flex;
     justify-content: left;
@@ -202,8 +218,8 @@ header{
     cursor: pointer;
 }
 
-.edit:hover img {
-    scale: 1.2;
+.edit:active img {
+    scale: 0.9;
 }
 
 .delete img{
@@ -213,5 +229,68 @@ header{
 
 .delete:hover img {
     content: url('images/backspace-svgrepo-com\ copy.svg');
+}
+
+.delete:active img {
+    content: url('images/backspace-svgrepo-com\ copy.svg');
+    scale: 0.9;
+}
+
+.pagination-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.pagination-prev img{
+    width: 30px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.pagination-next:hover img{
     scale: 1.2;
+}
+
+.pagination-next img{
+    width: 30px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.pagination-prev:hover img{
+    scale: 1.2;
+}
+
+.hidden{
+    display: none;
+}
+
+@media screen and (max-width: 970px) {
+    .role{
+        display: none;
+    }
+}
+
+@media screen and (max-width: 870px) {
+    .count-type{
+        display: none;
+    }
+    
+}
+
+@media screen and (max-width: 770px) {
+    .date-incription{
+        display: none;
+    }
+    
+}
+
+@media screen and (max-width: 645px) {
+    .status{
+        display: none;
+    }
+    
 }

@@ -28,7 +28,7 @@ async function obtenerDatosAPI(page, limit) {
     const response = await fetch(apiUrl);
     const data = await response.json();
     console.log("aqui",data);
-    return data.data;
+    return data;
   } catch (error) {
     return console.error('Error:', error);
   }
@@ -46,8 +46,10 @@ function renderUserCards(data) {
   cleanUserCards();
   const container = document.getElementById('table-container');
   const template = document.getElementById('table-person-template').content;
+  const paginationPrev = document.getElementById('pagination-prev');
+  const paginationNext = document.getElementById('pagination-next');
   
-  data.forEach(user => {
+  data.data.forEach(user => {
     const userCard = document.importNode(template, true);
     if (user.profileImgUrl == undefined) {
         userCard.querySelector('.user img').src = 'images/profile_8.jpg';
@@ -62,6 +64,8 @@ function renderUserCards(data) {
     userCard.querySelector('.date-incription p').textContent = user.registrationDate;
     container.appendChild(userCard);
   });
+  paginationPrev.classList.toggle('hidden', data.prev <= 0);
+  paginationNext.classList.toggle('hidden', data.next == null);
 }
 
 
@@ -89,7 +93,8 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+
+
+
+
 main()
-
-
-// ! los datos devueltos son los mismo cada vez que se hace la paginacion
