@@ -65,27 +65,30 @@ class Users(Resource):
 class Login(Resource):
     def post(self):
         data = request.get_json()
-        email= data.get("email")
-        password= data.get("password")
+        email = data.get("email")
+        password = data.get("password")
 
         try:
             exitsEmail = User.query.filter_by(use_str_email=email).first()
 
             if exitsEmail:
                 passwordDB = exitsEmail.use_str_password
-                compararPassword= descodificarPassword(password=password, passwordDB=passwordDB)
-            if  compararPassword is False:
-                return jsonify({'message':'la password no Coiciden'})
-            
-            if compararPassword is True:
-                id = exitsEmail.use_int_id
-                role= exitsEmail.use_str_type_profile
+                compararPassword = descodificarPassword(password=password, passwordDB=passwordDB)
 
-                print (role)
+                if compararPassword:
+                    id = exitsEmail.use_int_id
+                    role = exitsEmail.use_str_type_profile
 
-                token = codificarToken({'id':id, 'role':role})
-                print (token)
-                return jsonify({'token':token})
+                    print(role)
+
+                    token = codificarToken({'id': id, 'role': role})
+                    print(token)
+                    return jsonify({'token': token})
+                else:
+                    return jsonify({'message': 'La contraseña ingresada no coincide'})
+            else:
+                return jsonify({'message': 'El email ingresado no está registrado'})
+
         except Exception as e:
             print("Error:", e)
             return jsonify({"message": "Error al conectarse con la BD"})
