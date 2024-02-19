@@ -19,6 +19,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 db_path = os.path.join(basedir, "..", "producionDB.db")
 
 
+
 def create_app():
     app = Flask(__name__)
 
@@ -40,3 +41,4 @@ def create_app():
     app.register_blueprint(clien)
 
     return app
+

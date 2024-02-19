@@ -1,7 +1,7 @@
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request, jsonify, current_app
 from ..models.models import User, db, Cliente, Proveedor
 from flask_restx import Api, Resource
-from ..utils.segurity import descodificarPassword, codificarPassword, codificarToken, descodificarToken, secure_filename
+from ..utils.segurity import descodificarPassword, codificarPassword, codificarToken, descodificarToken
 import os
 from datetime import datetime
 
@@ -129,82 +129,82 @@ class Token(Resource):
 # EndPoint para Actualizar la Imagen
 # se pueden mover para las rutas respectivas
 
-# @autho.route("/user/img")
-# class Img(Resource):
-#     def post(self):
-#         #Solicitud de Token por el headers
-#         auth = request.headers.get('Authorization')
-#         if not auth:
-#             return jsonify({"message": "Token no proporcionado"}), 401
+#NOTA:  las rutas para lasimagenes puede ser movidas a su archivo correspondiente, queda por revisar bien la ruta delete de img
+        
+@autho.route("/user/img")
+class Img(Resource):
+    def put(self):
+        #Solicitud de Token por el headers
+        auth = request.headers.get('Authorization')
+        img = request.files['img']
 
-#         datosToken = descodificarToken(auth)
-#         id = datosToken.get('id')
-#         role = datosToken.get('role')
+        if not auth:
+            return jsonify({"message": "Token no proporcionado"})
 
-#         try:
-#             # Verificar el rol del usuario
-#             if role == 'clie' or role == 'prov':
-#                 # Obtener el usuario
-#                 user = None
-#                 if role == 'clie':
-#                     user = Cliente.query.filter_by(cli_int_user_id=id).first()
-#                 elif role == 'prov':
-#                     user = Proveedor.query.filter_by(pro_int_user_id=id).first()
-                
-#                 if not user:
-#                     return jsonify({"message": "Usuario no encontrado"}), 404
-                
-#                 # Verificar si la solicitud contiene una imagen
-#                 if 'image' not in request.files:
-#                     return jsonify({"message": "No se encontró ninguna imagen en la solicitud"}), 400
-                
-#                 image_file = request.files['image']
-                
-#                 # Verificar si el nombre de archivo está vacío
-#                 if image_file.filename == '':
-#                     return jsonify({"message": "Nombre de archivo vacío"}), 400
-                
-#                 # Guardar la imagen
-#                 filename = secure_filename(image_file.filename)
-#                 file_path = os.path.join('fotos', 'profile_pictures', filename)
-#                 image_file.save(file_path)
-                
-#                 # Actualizar el campo de la imagen de perfil en la base de datos
-#                 if role == 'clie':
-#                     Cliente.cli_str_profile_img = file_path
-#                 elif role == 'prov':
-#                     Proveedor.pro_str_profile_img = file_path
-                
-#                 db.session.commit()
-                
-#                 return jsonify({"message": "Imagen de perfil actualizada correctamente"}), 200
-#             else:
-#                 return jsonify({"message": "Rol de usuario desconocido"}), 400
+        datosToken = descodificarToken(auth)
+        id = datosToken.get('id')
+        role = datosToken.get('role')
 
-#         except Exception as e:
-#             print("Error:", e)
-#             return jsonify({"message": "Error al conectarse con la BD"}), 500
+        try:
+            # Verificar el rol del usuario
+            if role == 'clie' or role == 'prov':
+                user = None
+                if role == 'clie':
+                    user = Cliente.query.filter_by(cli_int_user_id=id).first()
+                    if not user:
+                        return jsonify({"message": "Cliente no encontrado"})
+                    # Guardar la imagen para el cliente
+                    user.save_cli_profile_img(img)
+                elif role == 'prov':
+                    user = Proveedor.query.filter_by(pro_int_user_id=id).first()
+                    if not user:
+                        return jsonify({"message": "Proveedor no encontrado"})
+                    # Guardar la imagen para el proveedor
+                    user.save_pro_str_profile_img(img)
 
+                return jsonify({"message": "Imagen de perfil actualizada correctamente"})
+            else:
+                return jsonify({"message": "Rol de usuario desconocido"})
 
-
-#Actualizar la imagen 
-    # def put(self):
-    #     auth = request.headers.get('Authorization')
-    #     if not auth:
-    #         return jsonify({"message": "Token no proporcionado"})
-
-    #     datosToken = descodificarToken(auth)
-    #     id = datosToken.get('id')
-    #     role = datosToken.get('role')
+        except Exception as e:
+            print("Error:", e)
+            return jsonify({"message": "Error al conectarse con la BD"})
 
 
 #Borrar la Iamgen 
         
-    # def delete(self):
-    #     auth = request.headers.get('Authorization')
-    #     if not auth:
-    #         return jsonify({"message": "Token no proporcionado"})
+    def delete(self):
+        # Solicitud de Token por el headers
+        auth = request.headers.get('Authorization')
 
-    #     datosToken = descodificarToken(auth)
-    #     id = datosToken.get('id')
-    #     role = datosToken.get('role')
+        if not auth:
+            return jsonify({"message": "Token no proporcionado"})
+
+        datosToken = descodificarToken(auth)
+        id = datosToken.get('id')
+        role = datosToken.get('role')
+
+        try:
+            # Verificar el rol del usuario
+            if role == 'clie' or role == 'prov':
+                user = None
+                if role == 'clie':
+                    user = Cliente.query.filter_by(cli_int_user_id=id).first()
+                    if not user:
+                        return jsonify({"message": "Cliente no encontrado"})
+                    # Eliminar la imagen del cliente
+                    user.delete_profile_img()
+                elif role == 'prov':
+                    user = Proveedor.query.filter_by(pro_int_user_id=id).first()
+                    if not user:
+                        return jsonify({"message": "Proveedor no encontrado"})
+                    # Eliminar la imagen del proveedor
+                    user.delete_profile_img()
+
+                return jsonify({"message": "Imagen de perfil eliminada correctamente"})
+            else:
+                return jsonify({"message": "Rol de usuario desconocido"})
+
+        except Exception as e:
+            print("Error:", e)
+            return jsonify({"message": "Error al conectarse con la BD"})

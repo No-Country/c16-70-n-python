@@ -1,6 +1,7 @@
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
-
+import os
+from flask import Blueprint, request, jsonify, current_app
 
 db = SQLAlchemy()
 
@@ -37,6 +38,33 @@ class Proveedor(db.Model):
     # Definición de la relación con Users
     user = db.relationship("User", backref="proveedor")
 
+    #Metodo para guardar img
+    def save_pro_str_profile_img(self, picture):
+        if picture:
+            picture_filename = f"user_{self.pro_int_user_id}_pro_str_profile_img.jpg"
+            picture_path = os.path.join(current_app.root_path, 'static/pro_str_profile_imgs', picture_filename)
+
+            os.makedirs(os.path.dirname(picture_path), exist_ok=True)
+
+            picture.save(picture_path)
+            self.pro_str_profile_img = f"profile_pictures/{picture_filename}"
+            db.session.commit()
+
+    def get_pro_str_profile_img_url(self):
+        if self.pro_str_profile_img:
+            return f"{request.url_root}static/{self.pro_str_profile_img}"
+        else:
+            return None
+
+    def delete_profile_img(self):
+        if self.pro_str_profile_img:
+            # Eliminar la imagen del sistema de archivos
+            img_path = os.path.join(current_app.root_path, 'static', self.pro_str_profile_img)
+            if os.path.exists(img_path):
+                os.remove(img_path)
+            # Actualizar la base de datos
+            self.pro_str_profile_img = None
+            db.session.commit()
 
 class Cliente(db.Model):
     __tablename__ = "cliente"
@@ -53,6 +81,27 @@ class Cliente(db.Model):
     # Definición de la relación con Users
     user = db.relationship("User", backref="cliente")
 
+    #metodo para guardar imagen de cliente
+    def save_cli_str_profile_img(self, picture):
+        if picture:
+            picture_filename = f"user_{self.cli_int_user_id}_cli_str_profile_img.jpg"
+            picture_path = os.path.join(current_app.root_path, 'static/cli_str_profile_imgs', picture_filename)
+
+            os.makedirs(os.path.dirname(picture_path), exist_ok=True)
+
+            picture.save(picture_path)
+            self.cli_str_profile_img = f"profile_pictures/{picture_filename}"
+            db.session.commit()
+
+    def delete_profile_img(self):
+        if self.cli_str_profile_img:
+            # Eliminar la imagen del sistema de archivos
+            img_path = os.path.join(current_app.root_path, 'static', self.cli_str_profile_img)
+            if os.path.exists(img_path):
+                os.remove(img_path)
+            # Actualizar la base de datos
+            self.cli_str_profile_img = None
+            db.session.commit()
 
 class ScoreProveedor(db.Model):
     __tablename__ = "score_proveedor"
