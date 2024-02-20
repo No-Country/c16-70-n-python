@@ -157,7 +157,7 @@ class Img(Resource):
                     if not user:
                         return jsonify({"message": "Cliente no encontrado"})
                     # Guardar la imagen para el cliente
-                    user.save_cli_profile_img(img)
+                    user.save_cli_str_profile_img(img)
                 elif role == 'prov':
                     user = Proveedor.query.filter_by(pro_int_user_id=id).first()
                     if not user:
