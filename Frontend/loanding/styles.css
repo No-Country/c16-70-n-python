@@ -9,18 +9,18 @@
   
       /* Estilo para la imagen */
       .loading-image {
-        animation: pulse 2s infinite alternate; /* Aplicar la animación */
+        animation: pulse 3s linear forwards; /* Aplicar la animación */
       }
-  
+      
       /* Animación de palpitar */
       @keyframes pulse {
         0% {
           transform: scale(1);
         }
         50% {
-          transform: scale(1.1);
+          transform: scale(3.0);
         }
         100% {
-          transform: scale(1);
+          transform: scale(1) rotate(3600deg); /* Girar 360 grados */
         }
       }

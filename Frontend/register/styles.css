@@ -50,20 +50,27 @@
   
 }
 
-p{
-  font-family: 'font_2';
-}
+
 @font-face {
   font-family: 'font_1';
-  src: url(/fuentes/Montserrat-VariableFont_wght.ttf);
+  src: url(../fuentes/Montserrat-VariableFont_wght.ttf);
 }
 @font-face {
   font-family: 'font_2';
-  src: url(/fuentes/Montserrat-Italic-VariableFont_wght.ttf);
+  src: url(../fuentes/Montserrat-Italic-VariableFont_wght.ttf);
 }
 
 a{
   text-decoration: none;
+}
+
+
+h1, h2, h3, h4, h5{
+  font-family: 'font_1';
+}
+
+p{
+  font-family: 'font_2';
 }
 
 body{
@@ -76,7 +83,7 @@ body{
   "footer";
   margin: 0;
   padding: 0;
-  background-color: rgb(240, 238, 238);
+  background-color: var(--color8);
   font-family: font_1;
 }
 
@@ -127,15 +134,6 @@ header {
   transform: translateY(-6px);
 }
 
-footer {
-  grid-area: footer;
-  display: flex;
-  flex-direction: row;
-  background-color: rgb(34, 33, 48);
-  padding-top: 0.5rem;
-  width: 100%;
-  margin-bottom: 0px;
-}
 /* Login */
 
 .login {
@@ -216,9 +214,28 @@ footer {
   border-color: var(--color5);
   color: var(--color10);
   border: 2px solid var(--color3);
+  font-family: fon_;
 }
 
 
+footer {
+  grid-area: footer;
+  display: flex;
+  flex-direction: row;
+  background-color: #222130;
+  padding-top: 0.5rem;
+  width: 100%;
+  margin-bottom: 0px;
+}
+
+.div-footer{
+  display: flex;
+  flex-direction: row;
+  padding: 1rem;
+  justify-content: center;
+  justify-items: center;
+  gap: 2rem;
+}
 
 /* @media screen and (min-width: 768px) {
   .login {
