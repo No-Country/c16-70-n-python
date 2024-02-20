@@ -1,0 +1,89 @@
+* {
+    margin: 0;
+    padding: 0 0 0 0;
+    box-sizing: border-box;
+    font-weight: bold;
+    font-family:'Courier New', Courier, monospace; 
+}
+
+.navbar {
+    background-color: rgb(34, 33, 48);
+}
+
+.container-navbar {
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.navbar img {
+    width: 90px;
+    height: 50px;
+}
+
+
+.socials {
+    display: flex;
+    
+}
+
+.select{
+    color: white;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 45px;
+}
+
+.select select{
+    background-color: rgb(34, 33, 48);
+    color: white;
+    border: none;
+    padding: 5px;
+    font-size: 20px;
+    border-radius: 5px;
+}
+
+.social {
+    margin: 0 10px;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+
+.social img{
+    width: 50%;
+    height: 50%;
+    transition: all ease-in 0.5s;
+}
+
+.social:hover {
+    background-color: rgb(42, 139, 234);
+    transform: scale(1.1);
+}
+
+section{
+    background-color: rgb(78, 201, 234);
+}
+
+.container-registro{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container-boton button{
+    background-color: rgb(34, 33, 48);
+    color: white;
+    
+}
+
+.container-boton button:hover{
+    background-color: rgb(247, 60, 92);
+    color: white;
+}
+
