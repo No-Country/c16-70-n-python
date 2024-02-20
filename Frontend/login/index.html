@@ -1,24 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <form id="loginForm">
-      <div id="message-container"></div>
-        <div id="error-container" style="color: red;"></div>
-        <div>
-          <label for="email"></label>
-          <input type="email" id="email" name="email" placeholder="Correo Electronico" required>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+      integrity="sha384-4LISF5TTJX/fLmGSxO53rV4miRxdg84mZsxmO8Rx5jGtp/LbrixFETvWa5a6sESd"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../register/styles.css" />
+    <title>Angendify - Login</title>
+  </head>
+  <body>
+    <!--Navegacion-->
+    <header class="header">
+      <nav class="nav">
+        <ul class="lista">
+          <li><a href="../Home Page/Index.html">Agendify</a></li>
+          <li><a href="../register/index.html">Registrarse</a></li>
+        </ul>
+      </nav>
+    </header>
+    <!--Main-->
+    <main class="main">
+      <div class="card">
+        <div class="login">
+          <div class="login1">
+            <div class="title">
+              <h4>GESTIONA TUS TURNOS DE UNA MANERA FACIL Y PRACTICA</h4>
+            </div>
+            <div class="texts">
+              <div class="text">
+                <div><i class="bi bi-person-circle"></i></div>
+                <div><h4>Gestione sus usuarios</h4></div>
+              </div>
+              <div class="text">
+                <div><i class="bi bi-calendar-check"></i></div>
+                <div>
+                  <h4>Organice sus turnos de una manera sencilla y ágil</h4>
+                </div>
+              </div>
+              <div class="text">
+                <div><i class="bi bi-envelope"></i></div>
+                <div>
+                  <h4>
+                    Notifique a sus clientes por email de forma automática el
+                    recordatorio de sus turnos
+                  </h4>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="login2">
+            <div class="logo">
+              <img src="./../imagenes/Logo.png" alt="logo" />
+            </div>
+            <form id="loginForm" class="formulario">
+              <div id="message-container"></div>
+              <div id="error-container" style="color: red;"></div>
+              <div>
+                <label for="email"> </label>
+                <br/>
+                <input
+                  id="email"
+                  placeholder="Correo electrónico"
+                  type="email"
+                  required
+                  autocomplete="off"
+                />
+              </div>
+              <div>
+                <label for="password"></label>
+                <br/>
+                <input
+                  id="password"
+                  placeholder="Contraseña"
+                  type="password"
+                  required
+                  autocomplete="off"
+                />
+              </div>
+              <br/>
+              <button type="submit" class="btn">Enviar</button>
+            </form>
+            <div>
+              <spam
+                >No Tienes Cuenta ?
+                <a href="./../register/index.html"> Ingrese Aqui</a></spam
+              >
+            </div>
+          </div>
         </div>
-        <div>
-          <label for="password"></label>
-          <input type="password" id="password" name="password" placeholder="****" required>
-        </div>
-        <button type="submit">Iniciar sesión</button>
-      </form>
-      <script></script>
-</body>
+      </div>
+    </main>
+    <footer class="footer">
+      <div>
+        <h1>@Agendify</h1>
+      </div>
+    </footer>
+    <script src="./login.js"></script>
+  </body>
 </html>
