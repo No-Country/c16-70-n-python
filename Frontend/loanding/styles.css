@@ -1,0 +1,26 @@
+    /* Centrar vertical y horizontalmente */
+    body, html {
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #333333;
+      }
+  
+      /* Estilo para la imagen */
+      .loading-image {
+        animation: pulse 2s infinite alternate; /* Aplicar la animación */
+      }
+  
+      /* Animación de palpitar */
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.1);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
