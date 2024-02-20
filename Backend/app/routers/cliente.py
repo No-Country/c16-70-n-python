@@ -22,15 +22,13 @@ class GetDataClient(Resource):
         
         try:
             # Ejecuta la consulta para obtener el usuario
-            user = User.query.filter_by(use_int_id=id, use_str_type_profile=role).first()
+            user = Cliente.query.filter_by(cli_int_user_id=id).first()
             
             # Traemos la data del cliente
-            client_data = User.query.all()
+            client_data = Cliente.query.all()
             client_list = []
             for data in client_data:
                 clients_data = {
-                    'id': data.cli_int_user_id,
-                    'iduser': data.pro_int_user_id,
                     'firstname': data.cli_str_first_name,
                     'lastname': data.cli_str_last_name,
                     'phone': data.cli_str_phone,
@@ -41,10 +39,9 @@ class GetDataClient(Resource):
                 }
                 client_list.append(clients_data)
             return jsonify({'users': client_list})
-        
-        except Exception as c:
-            print("Error:", c)
-            return jsonify({'message': "Error al conectarse con la BD"})
+        except Exception as db:
+            print("Error:", db)
+            return jsonify({"message": "Error al conectarse con la BD"})
 
 # Rutas registrar información del cliente
 @client.route("/post")
