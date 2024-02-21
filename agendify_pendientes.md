@@ -50,8 +50,9 @@
    - [ ] mostrar botón todos
    - [ ] agregar funcionabilidad para que al hacer click sobre botón todos se muestren todos los proveedores
    - [ ] agregar paginación a lista de todos los proveedores
-   - [ ] agregar paginación a lista de proveedores según el servicio seleccionado 
-   - [ ] agregar funcionalidad para al hacer click sobre un proveedor se redireccione a panel_cliente_detalle_proveedor
+   - [ ] agregar paginación a lista de proveedores según el servicio seleccionado
+   - [ ] agregar boton ver mas en cada proveedor 
+   - [ ] agregar funcionalidad para al hacer click sobre boton ver mas se redireccione a panel_cliente_detalle_proveedor
    
 - panel_cliente_detalle_proveedor
     - [ ] mostrar detalles de proveedor
