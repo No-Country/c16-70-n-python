@@ -15,7 +15,7 @@ admi = Blueprint("admin", __name__)
 admin = api.namespace("admin", description="Rutas administrativas")
 
 
-@admin.route("/clients")
+@admin.route("/clies")
 class ClientsAll(Resource):
     @admin.doc(params={'page': 'Número de página', 'per_page': 'Número de elementos por página'})
     def get(self):
@@ -76,7 +76,7 @@ class ClientsAll(Resource):
 
 
 
-@admin.route("/proves")
+@admin.route("/provs")
 class ClientsAll(Resource):
     @admin.doc(params={'page': 'Número de página', 'per_page': 'Número de elementos por página'})
     def get(self):
@@ -140,7 +140,7 @@ class ClientsAll(Resource):
 
 #  rutaspendiendes,para  actulizar la suspnsion de los usuarios
 
-@admin.route("/client/<int:id>")
+@admin.route("/clie/<int:id>")
 class ClientID(Resource):
     def put(self, id):
         """
