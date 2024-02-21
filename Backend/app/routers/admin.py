@@ -120,14 +120,14 @@ class ClientsAll(Resource):
                     'user_id': user.use_int_id,
                     'email': user.use_str_email,
                     'type_profile': user.use_str_type_profile,
-                    'client_id': prov.pro_int_id,
+                    'prove_id': prov.pro_int_user_id,
                     'first_name': prov.pro_str_first_name,
                     'last_name': prov.pro_str_last_name,
                     'phone': prov.pro_str_phone,
                     'direction': prov.pro_str_direction,
                     'profile_img': prov.pro_str_profile_img,
-                    'register_date': prov.pro_date_register_date.strftime('%Y-%m-%d'),
-                    'suspension_date': prov.pro_date_suspension_date.strftime('%Y-%m-%d') if client.cli_date_suspension_date else None
+                    'register_date': prov.pro_date_registration_date.strftime('%Y-%m-%d'),
+                    'suspension_date': prov.pro_date_suspension_date.strftime('%Y-%m-%d') if prov.pro_date_suspension_date else None
                 }
                 results.append(result_item)
             
@@ -135,3 +135,7 @@ class ClientsAll(Resource):
 
         except Exception as e:
             return jsonify({'message': str(e)})
+
+
+
+#  rutaspendiendes,para  actulizar lasuspnsion de los usuarios

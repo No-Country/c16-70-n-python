@@ -80,3 +80,24 @@ class PostSuppliter(Resource):
             print("Error:", e)
             return jsonify({"message": "Error al actualizar el proveedor"})
 
+
+@prov.route("/turn")
+class UpgradeProveedorTurn(Resource):
+    def get(self):
+        pass
+
+@prov.route("/put")
+class UpgradeProveedorTurn(Resource):
+    def post(self):
+        pass
+
+# Obtener los turnos por id  
+# actualizar infor del turno
+# borrar turno 
+# crear servicio == categoria
+# obtener categorias
+# crear Ubicacion
+# actualizar ubicacion
+# delete ubicacion
+
+
