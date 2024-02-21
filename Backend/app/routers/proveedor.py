@@ -46,7 +46,16 @@ class GetDataSupplier(Resource):
         
 @supplier.route("put")
 class PostSuppliter(Resource):
+
     def put(self):
+        #solicitud de Token
+        auth = request.headers.get('Authorization')
+        if not auth:
+            return jsonify({"menssage": "Token no proporcionado"})
+        
+        datostoken = descodificarToken(auth)
+        id = datostoken.get('id')
+        #tengo dudas con que id usar para la consulta 
         data = request.get_json()
         user_id = data.get("iduser")
         firstname = data.get("firstname")
