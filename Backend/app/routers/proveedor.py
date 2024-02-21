@@ -4,12 +4,12 @@ from ..routers.auth import api,descodificarToken
 from ..models.models import User, Proveedor, db
 from datetime import datetime
 
-suppl= Blueprint("supplier",__name__)
+prove= Blueprint("prove",__name__)
 
-supplier = api.namespace("supplier", description="Rutas para proveedor")
+prov = api.namespace("prove", description="Rutas para proveedor")
 
 #arranco a escribir rutas para obtener info del proovedor
-@supplier.route("/get")
+@prov.route("/get")
 class GetDataSupplier(Resource):
     def get(self):
         #solicitud de Token
@@ -32,11 +32,11 @@ class GetDataSupplier(Resource):
                         'phone': data.pro_str_phone,
                         'direction': data.pro_str_direction,
                         'profile_image': data.pro_str_profile_img,
-                        'register_date': data.pro_date_register_date,
+                        'register_date': data.pro_date_registration_date,
                         'suspension_date': data.pro_date_suspension_date,
                     }
-                    suppliter_list.append(suppliter_list)
-                return jsonify({'users':suppliter_list})
+                    suppliter_list.append(suppliter_data)
+                return jsonify(suppliter_data)
             else:
                 print(f"id {id} de usuario no encontrado en la base")
                 return jsonify({"menssage":"No se encontro un proovedor asociado al usuario"})
@@ -44,37 +44,34 @@ class GetDataSupplier(Resource):
             print("Error",db)
             return jsonify({"menssage":"error al conectarse con la DB"})
         
-@supplier.route("put")
+@prov.route("/put")
 class PostSuppliter(Resource):
 
     def put(self):
         #solicitud de Token
         auth = request.headers.get('Authorization')
+
+        data = request.get_json()
+        firstname = data.get("firstname")
+        lastname = data.get("lastname")
+        phone = data.get("phone")
+        direction = data.get("direction")
+
         if not auth:
             return jsonify({"menssage": "Token no proporcionado"})
         
         datostoken = descodificarToken(auth)
         id = datostoken.get('id')
         #tengo dudas con que id usar para la consulta 
-        data = request.get_json()
-        user_id = data.get("iduser")
-        firstname = data.get("firstname")
-        lastname = data.get("lastname")
-        phone = data.get("phone")
-        direction = data.get("direction")
-        profile_image = data.get("profile_image")
-        date_suspension = data.get("date_suspension")
 
         try:
-            supplier = Proveedor.query.filter_by(pro_int_user_id=user_id).first()
+            supplier = Proveedor.query.filter_by(pro_int_user_id=id).first()
 
             if supplier:
                 supplier.pro_str_first_name = firstname
-                supplier.pro_str_lastname = lastname
+                supplier.pro_str_last_name = lastname
                 supplier.pro_str_phone = phone
                 supplier.pro_str_direction = direction
-                supplier.pro_str_profile_img = profile_image
-                supplier.pro_date_suspension_date = date_suspension
                 db.session.commit()
                 return jsonify({"message": "Proveedor actualizado correctamente"})
             else:
@@ -82,6 +79,4 @@ class PostSuppliter(Resource):
         except Exception as e:
             print("Error:", e)
             return jsonify({"message": "Error al actualizar el proveedor"})
-
-
 

@@ -20,7 +20,7 @@ class ClientsAll(Resource):
     @admin.doc(params={'page': 'Número de página', 'per_page': 'Número de elementos por página'})
     def get(self):
         """
-        Retorna una lista paginada de clientes y usuarios.
+        Retorna una lista paginada de clientes .
         Ejemplo de uso, http://127.0.0.1:42723/admin/clients?page=1
         """
         auth = request.headers.get('Authorization')
@@ -81,7 +81,7 @@ class ClientsAll(Resource):
     @admin.doc(params={'page': 'Número de página', 'per_page': 'Número de elementos por página'})
     def get(self):
         """
-        Retorna una lista paginada de clientes y usuarios.
+        Retorna una lista paginada de proveedores.
         Ejemplo de uso, http://127.0.0.1:42723/admin/proves?page=1
         """
         auth = request.headers.get('Authorization')
@@ -115,19 +115,19 @@ class ClientsAll(Resource):
             
             # Convertir los resultados a un formato JSON
             results = []
-            for user, client in users_and_proveedor:
+            for user, prov in users_and_proveedor:
                 result_item = {
                     'user_id': user.use_int_id,
                     'email': user.use_str_email,
                     'type_profile': user.use_str_type_profile,
-                    'client_id': client.cli_int_id,
-                    'first_name': client.cli_str_first_name,
-                    'last_name': client.cli_str_last_name,
-                    'phone': client.cli_str_phone,
-                    'direction': client.cli_str_direction,
-                    'profile_img': client.cli_str_profile_img,
-                    'register_date': client.cli_date_register_date.strftime('%Y-%m-%d'),
-                    'suspension_date': client.cli_date_suspension_date.strftime('%Y-%m-%d') if client.cli_date_suspension_date else None
+                    'client_id': prov.pro_int_id,
+                    'first_name': prov.pro_str_first_name,
+                    'last_name': prov.pro_str_last_name,
+                    'phone': prov.pro_str_phone,
+                    'direction': prov.pro_str_direction,
+                    'profile_img': prov.pro_str_profile_img,
+                    'register_date': prov.pro_date_register_date.strftime('%Y-%m-%d'),
+                    'suspension_date': prov.pro_date_suspension_date.strftime('%Y-%m-%d') if client.cli_date_suspension_date else None
                 }
                 results.append(result_item)
             
