@@ -59,7 +59,7 @@
     - [ ] mostrar lista de turnos disponibles del proveedor
     - [ ] agregar botón detalle a cada turno en la lista
     - [ ] agregar botón tomar_turno a cada turno
-    - [ ] agregar funcionalidad a botón detalle para que muestre en un popoup los detalles del turno
+    - [ ] agregar funcionalidad a botón detalle para que muestre en un popoup los detalles del turno (considerar como un extra)
     - [ ] agregar funcionalidad al botón tomar_turno para mostrar un mensaje. Está seguro de tomar este turno
     - [ ] agregar funcionalidad para que al aceptar el turno se añada a los turnos del cliente y cambie su estado de disponible a tomado.
     
