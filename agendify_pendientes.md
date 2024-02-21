@@ -1,12 +1,12 @@
 ### Administración
 - panel administrador principal 
   - [x] Mostrar lista de todos los usuarios
-  - [ ] Mostrar lista de todos los clientes
-  - [ ] Mostrar lista de todos los proveedores
+  - [x] Mostrar lista de todos los clientes
+  - [x] Mostrar lista de todos los proveedores
   - [x] Crear paginacion para lista de todos
   - [x] Crear botones para seleccionar que lista se muestra(todos, clientes, proveedores)
-  - [ ] crear paginacion para lista de clientes
-  - [ ] crear paginacion para lista de proveedores 
+  - [x] crear paginacion para lista de clientes
+  - [x] crear paginacion para lista de proveedores 
   - [x] agregar botón borrar en cada elemento de la lista
   - [ ] agregar funcionabilidad a botón borrar para borrar elemento de la lista
   - [x] agregar botón actualizar a cada elemento de la lista
