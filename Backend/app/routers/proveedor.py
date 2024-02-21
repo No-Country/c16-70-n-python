@@ -1,7 +1,7 @@
 from flask_restx import Api, Resource
 from flask import Blueprint, jsonify, request
 from ..routers.auth import api,descodificarToken
-from ..models.models import User, Proveedor, db
+from ..models.models import User, Proveedor, Ubication ,db
 from datetime import datetime
 
 prove= Blueprint("prove",__name__)
@@ -98,9 +98,105 @@ class UpgradeProveedorTurn(Resource):
 # borrar turno orlando Orlando
 # crear servicio == categoria orlando
 # obtener categorias   
-# obtener ubicacion    fernando 
 # crear Ubicacion      fernando
+@prov.route("/ubic")
+class post_ubic(Resource):
+    def post(self):
+        auth = request.headers.get('Authorization')
+
+        data = request.get_json()
+        ubication = data.get("ubication")
+        direction = data.get("direction")
+
+        if not auth:
+            return jsonify({"menssage": "Token no proporcionado"})
+        
+        datostoken = descodificarToken(auth)
+        id = datostoken.get('id')
+
+        try:
+            proveedor = Proveedor.query.filter_by(pro_int_user_id=id).first()
+            if proveedor:
+                new_ubication = Ubication(ubi_int_proveedor_id=proveedor.pro_int_id, ubi_str_ubication=ubication, ubi_str_direction=direction)
+                db.session.add(new_ubication)
+                db.session.commit()
+            else:
+                return jsonify({"menssage":"No existe el usuario en la tabla proveedor"})
+
+        except Exception as db:
+            print("Error",db)
+            return jsonify({"menssage":"error al conectarse con la DB"})
+
+
+
+# obtener ubicacion    fernando 
+@prov.route("/ubic")
+class get_ubic(Resource):
+    def get(self):
+        auth = request.headers.get('Authorization')
+
+        if not auth:
+            return jsonify({"menssage": "Token no proporcionado"})
+        
+        datostoken = descodificarToken(auth)
+        id = datostoken.get('id')
+
+        try:
+            proveedor = Proveedor.query.filter_by(pro_int_user_id=id).first()
+            if proveedor:
+                id_proveedor = proveedor.pro_int_id
+            else:
+                return jsonify({"menssage":"el usuario no existe en la tabla proveedor"})
+            ubicacion_data = Ubication.query.filter_by(ubi_int_proveedor_id=id_proveedor).all()
+            if ubicacion_data:
+                ubicaciones = []
+                for data in ubicacion_data:
+                    ubicacion_data = {
+                        'id_ubicacion': data.ubi_int_id,
+                        'ubicacion': data.ubi_str_ubication,
+                        'direction': data.ubi_str_direction,
+                    }
+                    ubicaciones.append(ubicacion_data)
+                return jsonify(ubicaciones)
+            else:
+                return jsonify({"menssage":"el proveedor no tiene ubicaciones disponibles"})
+        except Exception as db:
+            print("Error",db)
+            return jsonify({"menssage":"error al conectarse con la DB"})
+
+
 # actualizar ubicacion fernando
+@prov.route("/ubic")
+class put_ubic(Resource):
+    def put(self):
+        auth = request.headers.get('Authorization')
+
+        data = request.get_json()
+        id_ubicacion = data.get("id_ubicacion")
+        ubicacion = data.get("ubicacion")
+        direction = data.get("direction")
+        if not auth:
+            return jsonify({"menssage": "Token no proporcionado"})
+        
+        datostoken = descodificarToken(auth)
+        id_user = datostoken.get('id')
+        proveedor = Proveedor.query.filter_by(pro_int_user_id=id_user).first()
+        id_proveedor = proveedor.pro_int_id
+
+        try:
+            ubicacion_q = Ubication.query.filter_by(ubi_int_id=id_ubicacion).first()
+            if ubicacion_q.ubi_int_proveedor_id == id_proveedor:
+                ubicacion_q.ubi_str_ubication = ubicacion
+                ubicacion_q.ubi_str_direction = direction
+                db.session.commit()
+                return jsonify({"message": "Ubicacion actualizada correctamente"})
+            else:
+                return jsonify({"message": "Ubicacion no encontrada"})
+
+        except Exception as db:
+            print("Error",db)
+            return jsonify({"menssage":"error al conectarse con la DB"})
+
 # delete ubicacion     orlando
 
 
