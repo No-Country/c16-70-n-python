@@ -91,13 +91,16 @@ class UpgradeProveedorTurn(Resource):
     def post(self):
         pass
 
-# Obtener los turnos por id  
-# actualizar infor del turno
-# borrar turno 
-# crear servicio == categoria
-# obtener categorias
-# crear Ubicacion
-# actualizar ubicacion
-# delete ubicacion
+
+
+# Obtener los turnos por id   Orlando
+# actualizar infor del turno Orlando
+# borrar turno orlando Orlando
+# crear servicio == categoria orlando
+# obtener categorias   
+# obtener ubicacion    fernando 
+# crear Ubicacion      fernando
+# actualizar ubicacion fernando
+# delete ubicacion     orlando
 
 
