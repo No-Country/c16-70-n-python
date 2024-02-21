@@ -29,7 +29,12 @@ def create_app():
 
     # SQlite --> Para desarrollo Descomenta esta linea y comenta la configuracion para MySQl
     app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///" + db_path
+    app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {
+    'pool_size': 20,
+    'pool_timeout': 30, 
+    }
     # MySQL ---> Cuando ya esta Desplegado
+
 
     #app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://{os.getenv('MYSQL_USER')}:{os.getenv('MYSQL_PASSWORD')}@{os.getenv('MYSQL_HOST')}/{os.getenv('MYSQL_DB')}"
     #app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False

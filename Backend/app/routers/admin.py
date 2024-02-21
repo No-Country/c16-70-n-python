@@ -1,12 +1,12 @@
 from flask import Blueprint, request, jsonify, current_app
-from ..models.models import User, db, Cliente, Proveedor
+from ..models.models import User, db, Cliente, Proveedor, Turn, ScoreProveedor, Ubication
 from flask_restx import Api, Resource
 from ..utils.segurity import descodificarPassword, codificarPassword, codificarToken, descodificarToken
 import os
 from datetime import datetime
 from ..routers.auth import api
 
-fecha_registro = datetime.now()
+fecha_suspension = datetime.now()
 
 admi = Blueprint("admin", __name__)
 
@@ -38,7 +38,7 @@ class ClientsAll(Resource):
             
             # Parámetros de paginación
             page = request.args.get('page', 1, type=int)
-            per_page = request.args.get('per_page', 10, type=int)  # Cambiado a 5 por página
+            per_page = request.args.get('per_page', 10, type=int)  # Cambiado a 10 por página
 
             exitsAdmin = User.query.filter_by(use_int_id=id, use_str_type_profile=role).first()
 
@@ -138,4 +138,163 @@ class ClientsAll(Resource):
 
 
 
-#  rutaspendiendes,para  actulizar lasuspnsion de los usuarios
+#  rutaspendiendes,para  actulizar la suspnsion de los usuarios
+
+@admin.route("/client/<int:id>")
+class ClientID(Resource):
+    def put(self, id):
+        """
+        Suspender La cuenta del cliente url
+        """
+        auth = request.headers.get('Authorization')
+        
+        if not auth:
+            return jsonify({'message': "Token no proporcionado"})
+    
+        datosToken = descodificarToken(auth)
+        token_id = datosToken.get('id')
+        role = datosToken.get('role')
+
+        try:
+
+            if role != 'admin':
+                return jsonify({'message': 'Solo los administradores pueden acceder a este recurso'})
+            
+            client = Cliente.query.filter_by(cli_int_id=id).first()
+            if not client:
+                return jsonify({'message': 'Cliente no encontrado'})
+            
+            client.cli_date_suspension_date = fecha_suspension
+
+            db.session.commit()
+            
+            return jsonify({'message': 'Cliente suspendido'})
+        
+        except Exception as e:
+            return jsonify({'message': str(e)})
+
+#Delete Cliente 
+    def delete(self, id):
+        """
+        Eliminar la cuenta del cliente y sus datos relacionados.
+        """
+        auth = request.headers.get('Authorization')
+        
+        if not auth:
+            return jsonify({'message': "Token no proporcionado"})
+    
+        datosToken = descodificarToken(auth)
+        token_id = datosToken.get('id')
+        role = datosToken.get('role')
+
+        try:
+            if role != 'admin':
+                return jsonify({'message': 'Solo los administradores pueden acceder a este recurso'})
+            
+            client = Cliente.query.filter_by(cli_int_id=id).first()
+            if client:
+                db.session.delete(client)
+            else:
+                return jsonify({'message': 'Cliente no encontrado'})
+            
+            #tabla de turnos
+            turns = Turn.query.filter_by(turn_int_client_id=id).all()
+            for turn in turns:
+                db.session.delete(turn)
+            
+            # tabla de user
+            user = User.query.filter_by(use_int_id=id).first()
+            if user:
+                db.session.delete(user)
+            
+            db.session.delete(client)
+            db.session.commit()
+            
+            return jsonify({'message': 'Cliente y sus datos relacionados eliminados correctamente'})
+        
+        except Exception as e:
+            return jsonify({'message': str(e)})
+
+
+
+@admin.route("/prov/<int:id>")
+class ProvvID(Resource):
+    def put(self, id):
+        """ 
+        Suspender la Cuenta de un Proveedor por ID
+        """
+        auth = request.headers.get('Authorization')
+        
+        if not auth:
+            return jsonify({'message': "Token no proporcionado"})
+    
+        datosToken = descodificarToken(auth)
+        token_id = datosToken.get('id')
+        role = datosToken.get('role')
+
+        try:
+
+            if role != 'admin':
+                return jsonify({'message': 'Solo los administradores pueden acceder a este recurso'})
+            
+            prov = Proveedor.query.filter_by(pro_int_user_id=id).first()
+            if not prov:
+                return jsonify({'message': 'Proveedor no encontrado'})
+            
+            prov.pro_date_suspension_date = fecha_suspension
+            
+            db.session.commit()
+            
+            return jsonify({'message': 'Proveedor suspendido'})
+        
+        except Exception as e:
+            return jsonify({'message': str(e)})
+        
+
+#Eliminar Proveedor
+    def delete(self, id):
+        """ 
+        Eliminar la cuenta de un proveedor y sus datos relacionados.
+        """
+        auth = request.headers.get('Authorization')
+        
+        if not auth:
+            return jsonify({'message': "Token no proporcionado"})
+    
+        datosToken = descodificarToken(auth)
+        token_id = datosToken.get('id')
+        role = datosToken.get('role')
+
+        try:
+            if role != 'admin':
+                return jsonify({'message': 'Solo los administradores pueden acceder a este recurso'})
+
+            prove = Proveedor.query.filter_by(pro_int_user_id =id).first()
+            if prove:
+                db.session.delete(prove)
+            else:
+                return jsonify({'message': 'Proveedor No Encontrado'})
+
+            turns  = Turn.query.filter_by(turn_int_proveedor_id=id).all()
+            for turn in turns:
+                db.session.delete(turn)
+
+            scores  = ScoreProveedor.query.filter_by(scr_int_proveedor_id=id).all()
+            for score in scores:
+                db.session.delete(score)
+
+            ubications  = Ubication.query.filter_by(ubi_int_proveedor_id=id).all()
+            for ubication in ubications:
+                db.session.delete(ubication)
+
+            # Eliminar el usuario asociado al proveedor
+            user = User.query.filter_by(use_int_id=id).first()
+            if user:
+                db.session.delete(user)
+
+            db.session.commit()
+            
+            return jsonify({'message': 'Datos del Proveedor fueron eliminadas'})
+        
+        except Exception as e:
+            return jsonify({'message': str(e)})
