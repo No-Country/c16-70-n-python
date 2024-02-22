@@ -1,13 +1,117 @@
-# from flask_restx import Api, Resource
-# from flask import Blueprint, jsonify, request
-# from ..routers.auth import api,descodificarToken
+from flask_restx import Api, Resource
+from flask import Blueprint, jsonify, request
+from .auth import api
 # from ..models.models import User, Cliente, db
+from ..utils.segurity import descodificarToken
 
-# clien = Blueprint("client", __name__)
+users = Blueprint("user", __name__)
+user = api.namespace("user", description="Rutas User")
 
-# client = api.namespace("client", description="Rutas para cliente")
+#MARCOS
+# EndPoint Para que el usuario pueda ver su datos
+@user.route('/get')
+class DatosGeT(Resource):
+    def get(self):
+        pass
+
+#FERNANDO
+# EndPoint para que el usuario pueda editar su Dato
+@user.route('/put')
+class DatosPut(Resource):
+    def put(self):
+        # Solicitud de Token
+        auth = request.headers.get('Authorization')
+        if not auth:
+            return jsonify({"message": "Token no proporcionado"})
+        
+        datosToken = descodificarToken(auth)
+        id = datosToken.get('id')
+        pass
 
 
+#MARCOS
+# Actualizar su imagen
+@user.route('/img')
+class ImgPut(Resource):
+    def put(self):
+        auth = request.headers.get('Authorization')
+        if not auth:
+            return jsonify({"message": "Token no proporcionado"})
+        
+        datosToken = descodificarToken(auth)
+        id = datosToken.get('id')
+        pass
+
+
+#FERNANDO
+#Listado de Turnos Disponibles
+@user.route('/turno')
+class TurnoGet(Resource):
+    def get(self):
+        auth = request.headers.get('Authorization')
+        if not auth:
+            return jsonify({"message": "Token no proporcionado"})
+        
+        datosToken = descodificarToken(auth)
+        id = datosToken.get('id')
+        pass
+
+#MARCOS
+#Listado de Turnos del Paciente
+@user.route('/turnos')
+class TurnoGet(Resource):
+    def get(self):
+        auth = request.headers.get('Authorization')
+        if not auth:
+            return jsonify({"message": "Token no proporcionado"})
+        
+        datosToken = descodificarToken(auth)
+        id = datosToken.get('id')
+        pass
+
+
+#FERNANDO
+#Listado de Turnos Finalizados del Paciente
+@user.route('/turnos/end')
+class TurnoGet(Resource):
+    def get(self):
+        auth = request.headers.get('Authorization')
+        if not auth:
+            return jsonify({"message": "Token no proporcionado"})
+        
+        datosToken = descodificarToken(auth)
+        id = datosToken.get('id')
+        pass
+
+#MARCOS // FERNANDO
+@user.route('/turno/<int:id>')
+class TurnosCliente(Resource):
+    #MARCOS
+    # ver el turno por id de url
+    def get(self):
+        auth = request.headers.get('Authorization')
+        if not auth:
+            return jsonify({"message": "Token no proporcionado"})
+        
+        datosToken = descodificarToken(auth)
+        id = datosToken.get('id')
+        pass
+
+    # FERNANDO
+    # actualziar turno por url <int:id>
+    # solo para abandonar el turno es decir retirar su id unico
+    def put(self):
+        auth = request.headers.get('Authorization')
+        if not auth:
+            return jsonify({"message": "Token no proporcionado"})
+        
+        datosToken = descodificarToken(auth)
+        id = datosToken.get('id')
+        pass
+
+
+
+#################End Point Viejos ##############
 # # Ruta para obtener información del cliente
 # @client.route("/get")
 # class GetDataClient(Resource):

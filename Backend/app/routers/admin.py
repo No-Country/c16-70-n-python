@@ -1,20 +1,74 @@
-# from flask import Blueprint, request, jsonify, current_app
-# from ..models.models import User, db, Cliente, Proveedor, Turn, ScoreProveedor, Ubication
-# from flask_restx import Api, Resource
-# from ..utils.segurity import descodificarPassword, codificarPassword, codificarToken, descodificarToken
+from flask import Blueprint, request, jsonify, current_app
+from flask_restx import Api, Resource
+#from ..utils.segurity import descodificarPassword, codificarPassword, codificarToken, descodificarToken
 # import os
-# from datetime import datetime
-# from ..routers.auth import api
+from datetime import datetime
+from ..routers.auth import api
 
-# fecha_suspension = datetime.now()
+fecha_suspension = datetime.now()
 
-# admi = Blueprint("admin", __name__)
+admi = Blueprint("admin", __name__)
 
-# #api = Api(dmin, version="1.0", title="Agendify", description="Agendify API REST")
+admin = api.namespace("admin", description="Rutas administrativas")
 
-# admin = api.namespace("admin", description="Rutas administrativas")
+#Mostrar lista de Pacientes
+@admin.route("/pacientes")
+class PacientesAll(Resource):
+    def get(self):
+        pass
 
 
+#Detalles de un cliente, Actualizar y Borrar
+@admin.route("/paciente/<int:id>")
+class PacientesAll(Resource):
+    def get(self):
+        pass
+
+    def put(self):
+        pass
+
+    def delete(self):
+        pass
+
+#Lista de Turnos 
+@admin.route("/turnos")
+class Turnos(Resource):
+    def get(self):
+        pass
+
+#crear turno
+@admin.route("/turnos")
+class TurnoCrear(Resource):
+    def post(self):
+        pass
+
+
+
+# Obtener Detalles de un turno , actualizarlo y Borrarlo
+@admin.route("/turnos/<int:id>")
+class TurnoCrear(Resource):
+    def get(self):
+        pass
+
+    def put(self):
+        pass
+
+    def delete(self):
+        pass
+
+#End Point Servicio
+@admin.route("/servicios")
+class Servicios(Resource):
+    def get(self):
+        pass
+
+    # Crear Servicio
+    def post(self):
+        pass
+
+
+
+####################   Codigo Viejo #####################
 # @admin.route("/clies")
 # class ClientsAll(Resource):
 #     @admin.doc(params={'page': 'Número de página', 'per_page': 'Número de elementos por página'})
