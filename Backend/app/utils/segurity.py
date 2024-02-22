@@ -1,7 +1,7 @@
 from werkzeug.security import check_password_hash, generate_password_hash
 import jwt
 import os
-from flask import jsonify
+from flask import jsonify, request
 import re
 from datetime import datetime,timedelta
 
@@ -30,7 +30,16 @@ def codificarToken(data):
     }
     return jwt.encode(playload, key, algorithm='HS256')
 
-
+# Verificacion de Token
+def verify_token():
+    # Solicitud de Token
+        auth = request.headers.get('Authorization')
+        if not auth:
+            return jsonify({"message": "Token no proporcionado"})
+        
+        datosToken = descodificarToken(auth)
+        return datosToken
+    
 ###
 def descodificarToken(token):
     token_parts = token.split()

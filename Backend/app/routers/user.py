@@ -2,7 +2,7 @@ from flask_restx import Resource
 from flask import Blueprint, jsonify, request
 from .auth import api
 from ..models.models import User, db
-from ..utils.segurity import descodificarToken
+from ..utils.segurity import descodificarToken, verify_token
 
 users = Blueprint("user", __name__)
 user = api.namespace("user", description="Rutas User")
@@ -13,13 +13,8 @@ user = api.namespace("user", description="Rutas User")
 @user.route('/get')
 class GetDataUser(Resource):
     def get(self):
-        # Solicitud de Token
-        auth = request.headers.get('Authorization')
-        if not auth:
-            return jsonify({"message": "Token no proporcionado"})
-        
-        datosToken = descodificarToken(auth)
-        id = datosToken.get('id')
+        verify_token()
+        id = verify_token().get('id')
         
         try:
             # Ejecuta la consulta para obtener el usuario
@@ -46,19 +41,23 @@ class GetDataUser(Resource):
             print("Error:", db)
             return jsonify({"message": "Error al realizar la operación"})
 
+# [X] MARCOS
+# Para que el usuario vea sus datos
+@user.route('/get/<int:use_int_id>')
+class GetUserDataById(Resource):
+    def get(self):
+        verify_token()
+        id = verify_token().get('id')
+        
+        pass
 
 #FERNANDO
 # EndPoint para que el usuario pueda editar sus Datos
 @user.route('/put')
 class PutDatosUser(Resource):
     def put(self):
-        # Solicitud de Token
-        auth = request.headers.get('Authorization')
-        if not auth:
-            return jsonify({"message": "Token no proporcionado"})
-        
-        datosToken = descodificarToken(auth)
-        id = datosToken.get('id')
+        verify_token()
+        id = verify_token().get('id')
         pass
 
 ###################################################################################################
@@ -71,15 +70,10 @@ class PutDatosUser(Resource):
 class PutImgUser(Resource):
     def put(self):
         #Solicitud de Token por el headers
-        auth = request.headers.get('Authorization')
+        verify_token()
         img = request.files['img']
-
-        if not auth:
-            return jsonify({"message": "Token no proporcionado"})
-
-        datosToken = descodificarToken(auth)
-        id = datosToken.get('id')
-        role = datosToken.get('role')
+        id = verify_token().get('id')
+        role = verify_token().get('role')
 
         try:
             # Verificar el rol del usuario
@@ -115,12 +109,8 @@ class PutImgUser(Resource):
 @user.route('/turno')
 class GetTurnUser(Resource):
     def get(self):
-        auth = request.headers.get('Authorization')
-        if not auth:
-            return jsonify({"message": "Token no proporcionado"})
-        
-        datosToken = descodificarToken(auth)
-        id = datosToken.get('id')
+        verify_token()
+        id = verify_token().get('id')
         pass
 
 
@@ -133,12 +123,8 @@ class GetTurnUser(Resource):
 @user.route('/turnos')
 class GetTurnUser(Resource):
     def get(self):
-        auth = request.headers.get('Authorization')
-        if not auth:
-            return jsonify({"message": "Token no proporcionado"})
-        
-        datosToken = descodificarToken(auth)
-        id = datosToken.get('id')
+        verify_token()
+        id = verify_token().get('id')
         pass
 
 
@@ -151,12 +137,8 @@ class GetTurnUser(Resource):
 @user.route('/turnos/end')
 class GetTurnoUser(Resource):
     def get(self):
-        auth = request.headers.get('Authorization')
-        if not auth:
-            return jsonify({"message": "Token no proporcionado"})
-        
-        datosToken = descodificarToken(auth)
-        id = datosToken.get('id')
+        verify_token()
+        id = verify_token().get('id')
         pass
 
 ###################################################################################################
@@ -169,12 +151,8 @@ class ProcessTurnsUser(Resource):
     #MARCOS
     # ver el turno por id de url
     def get(self, id):
-        auth = request.headers.get('Authorization')
-        if not auth:
-            return jsonify({"message": "Token no proporcionado"})
-        
-        datosToken = descodificarToken(auth)
-        id = datosToken.get('id')
+        verify_token()
+        id = verify_token().get('id')
         
         pass
 
@@ -187,12 +165,9 @@ class ProcessTurnsUser(Resource):
     # actualziar turno por url <int:id>
     # solo para abandonar el turno es decir retirar su id unico
     def put(self):
-        auth = request.headers.get('Authorization')
-        if not auth:
-            return jsonify({"message": "Token no proporcionado"})
+        verify_token()
+        id = verify_token().get('id')
         
-        datosToken = descodificarToken(auth)
-        id = datosToken.get('id')
         pass
 
 
