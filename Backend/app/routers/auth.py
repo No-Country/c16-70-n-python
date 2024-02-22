@@ -1,11 +1,11 @@
 from flask import Blueprint, request, jsonify, current_app
-from ..models.models import User, db, Cliente, Proveedor
+from ..models.models import User, db
 from flask_restx import Api, Resource
 from ..utils.segurity import descodificarPassword, codificarPassword, codificarToken, descodificarToken
-import os
-from datetime import datetime
+# import os
+# from datetime import datetime
 
-fecha_registro = datetime.now()
+# fecha_registro = datetime.now()
 
 auth = Blueprint("auth", __name__)
 
@@ -20,113 +20,108 @@ class Users(Resource):
         data = request.get_json()
         email = data.get("email")
         password = data.get("password")
-        role = data.get("role")
-        nombre = data.get("nombre")
-        apellido = data.get("apellido")
-        telefono = data.get("telefono")
-        direccion = data.get("direccion")
         
         try:
             exitsEmail = User.query.filter_by(use_str_email=email).first()
-
+            
             if exitsEmail:
                 return jsonify({"message": "El correo electrónico ya está en uso. Por favor, utilice otro."})
             
             passwordH = codificarPassword(password)
             new_user = User(use_str_email=email, use_str_password=passwordH, use_str_type_profile=role)
-            db.session.add(new_user)
-            db.session.commit()
-            id_user = new_user.use_int_id
-            print ('esta es la nueva id del usuario', id_user)
+#             db.session.add(new_user)
+#             db.session.commit()
+#             id_user = new_user.use_int_id
+#             print ('esta es la nueva id del usuario', id_user)
             
-            if role == 'clie':
-                new_cliente = Cliente(cli_int_user_id=id_user, cli_str_first_name=nombre, cli_str_last_name=apellido, 
-                                    cli_str_phone=telefono, cli_str_direction=direccion, cli_date_register_date=fecha_registro)
-                db.session.add(new_cliente)
-                db.session.commit()
+#             if role == 'clie':
+#                 new_cliente = Cliente(cli_int_user_id=id_user, cli_str_first_name=nombre, cli_str_last_name=apellido, 
+#                                     cli_str_phone=telefono, cli_str_direction=direccion, cli_date_register_date=fecha_registro)
+#                 db.session.add(new_cliente)
+#                 db.session.commit()
 
-            elif role == 'prov':
-                new_proveedor = Proveedor(pro_int_user_id=id_user, pro_str_first_name=nombre, pro_str_last_name=apellido,
-                                        pro_str_phone=telefono, pro_str_direction=direccion, pro_date_registration_date =fecha_registro)
-                db.session.add(new_proveedor)
-                db.session.commit()
+#             elif role == 'prov':
+#                 new_proveedor = Proveedor(pro_int_user_id=id_user, pro_str_first_name=nombre, pro_str_last_name=apellido,
+#                                         pro_str_phone=telefono, pro_str_direction=direccion, pro_date_registration_date =fecha_registro)
+#                 db.session.add(new_proveedor)
+#                 db.session.commit()
                 
-            else:
-                return jsonify({"message": "El rol proporcionado es incorrecto"})
+#             else:
+#                 return jsonify({"message": "El rol proporcionado es incorrecto"})
 
-            return jsonify({"message": "El usuario fue creado exitosamente"})
+#             return jsonify({"message": "El usuario fue creado exitosamente"})
 
-        except Exception as e:
-            print("Error:", e)
-            return jsonify({"message": "Error al conectarse con la base de datos"})
+#         except Exception as e:
+#             print("Error:", e)
+#             return jsonify({"message": "Error al conectarse con la base de datos"})
 
-####Login
-@autho.route("/login")
-class Login(Resource):
-    def post(self):
-        data = request.get_json()
-        email = data.get("email")
-        password = data.get("password")
+# ####Login
+# @autho.route("/login")
+# class Login(Resource):
+#     def post(self):
+#         data = request.get_json()
+#         email = data.get("email")
+#         password = data.get("password")
 
-        try:
-            exitsEmail = User.query.filter_by(use_str_email=email).first()
+#         try:
+#             exitsEmail = User.query.filter_by(use_str_email=email).first()
 
-            if exitsEmail:
-                passwordDB = exitsEmail.use_str_password
-                compararPassword = descodificarPassword(password=password, passwordDB=passwordDB)
+#             if exitsEmail:
+#                 passwordDB = exitsEmail.use_str_password
+#                 compararPassword = descodificarPassword(password=password, passwordDB=passwordDB)
 
-                if compararPassword:
-                    id = exitsEmail.use_int_id
-                    role = exitsEmail.use_str_type_profile
+#                 if compararPassword:
+#                     id = exitsEmail.use_int_id
+#                     role = exitsEmail.use_str_type_profile
 
-                    print(role)
+#                     print(role)
 
-                    token = codificarToken({'id': id, 'role': role})
-                    print(token)
-                    return jsonify({'token': token})
-                else:
-                    return jsonify({'message': 'La contraseña ingresada no coincide'})
-            else:
-                return jsonify({'message': 'El email ingresado no está registrado'})
+#                     token = codificarToken({'id': id, 'role': role})
+#                     print(token)
+#                     return jsonify({'token': token})
+#                 else:
+#                     return jsonify({'message': 'La contraseña ingresada no coincide'})
+#             else:
+#                 return jsonify({'message': 'El email ingresado no está registrado'})
 
-        except Exception as e:
-            print("Error:", e)
-            return jsonify({"message": "Error al conectarse con la BD"})
+#         except Exception as e:
+#             print("Error:", e)
+#             return jsonify({"message": "Error al conectarse con la BD"})
         
 
-#route de ejemplo
-@autho.route("/rol")
-class Token(Resource):
-    def post(self):
-        auth = request.headers.get('Authorization')
-        if not auth:
-            return jsonify({"message": "Token no proporcionado"})
+# #route de ejemplo
+# @autho.route("/rol")
+# class Token(Resource):
+#     def post(self):
+#         auth = request.headers.get('Authorization')
+#         if not auth:
+#             return jsonify({"message": "Token no proporcionado"})
 
-        datosToken = descodificarToken(auth)
-        id = datosToken.get('id')
-        role = datosToken.get('role')
+#         datosToken = descodificarToken(auth)
+#         id = datosToken.get('id')
+#         role = datosToken.get('role')
 
-        try:
-            # Ejecuta la consulta para obtener el usuario
-            user = User.query.filter_by(use_int_id=id, use_str_type_profile=role).first()
+#         try:
+#             # Ejecuta la consulta para obtener el usuario
+#             user = User.query.filter_by(use_int_id=id, use_str_type_profile=role).first()
 
-            if user:
-                if user.use_str_type_profile == "clie":
-                    print('El rol es de cliente')
-                    return jsonify({'role': user.use_str_type_profile})
-                elif user.use_str_type_profile == "prov":
-                    print('El usuario tiene un rol de Proveedor')
-                    return jsonify({'role': user.use_str_type_profile})
-                else:
-                    print('El usuario tiene un rol desconocido:', user.use_str_type_profile)
-                    return jsonify({'role': user.use_str_type_profile})
-            else:
-                print('Usuario no encontrado')
-                return jsonify({"message": "Usuario no encontrado"})
+#             if user:
+#                 if user.use_str_type_profile == "clie":
+#                     print('El rol es de cliente')
+#                     return jsonify({'role': user.use_str_type_profile})
+#                 elif user.use_str_type_profile == "prov":
+#                     print('El usuario tiene un rol de Proveedor')
+#                     return jsonify({'role': user.use_str_type_profile})
+#                 else:
+#                     print('El usuario tiene un rol desconocido:', user.use_str_type_profile)
+#                     return jsonify({'role': user.use_str_type_profile})
+#             else:
+#                 print('Usuario no encontrado')
+#                 return jsonify({"message": "Usuario no encontrado"})
 
-        except Exception as e:
-            print("Error:", e)
-            return jsonify({"message": "Error al conectarse con la BD"})
+#         except Exception as e:
+#             print("Error:", e)
+#             return jsonify({"message": "Error al conectarse con la BD"})
 
 
 # EndPoint para Actualizar la Imagen

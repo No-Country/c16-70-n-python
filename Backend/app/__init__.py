@@ -5,10 +5,10 @@ from flask import Flask, Blueprint
 from .models.models import db
 
 # importacion de la rutas
-from .routers.auth import auth
-from .routers.cliente import clien
-from .routers.admin import admi
-from .routers.proveedor import prove
+# from .routers.auth import auth
+# from .routers.cliente import clien
+# from .routers.admin import admi
+# from .routers.proveedor import prove
 # para leer variables de entorno
 import os
 from dotenv import load_dotenv
@@ -44,10 +44,10 @@ def create_app():
     # Registrar los blueprints
     # es una forma pararegistrar que rutas deseas crear asi se evita de crear muchas rutas en un solo archivo
 
-    app.register_blueprint(auth)
-    app.register_blueprint(clien)
-    app.register_blueprint(admi)
-    app.register_blueprint(prove)
+    # app.register_blueprint(auth)
+    # app.register_blueprint(clien)
+    # app.register_blueprint(admi)
+    # app.register_blueprint(prove)
 
     return app
 
