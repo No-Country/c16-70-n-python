@@ -3,9 +3,9 @@ from ..models.models import User, db
 from flask_restx import Api, Resource
 from ..utils.segurity import descodificarPassword, codificarPassword, codificarToken, descodificarToken
 # import os
-# from datetime import datetime
+from datetime import datetime
 
-# fecha_registro = datetime.now()
+fecha_registro = datetime.now()
 
 auth = Blueprint("auth", __name__)
 
@@ -14,82 +14,66 @@ api = Api(auth, version="1.0", title="Agendify", description="Agendify API REST"
 autho = api.namespace("auth", description="Rutas para Autotificacion")
 
 
+
 @autho.route("/register")
 class Users(Resource):
     def post(self):
         data = request.get_json()
         email = data.get("email")
         password = data.get("password")
-        
+
         try:
             exitsEmail = User.query.filter_by(use_str_email=email).first()
-            
+            # esta funcion es para cree un admin mientras estamos en produccion sino existe
+            User.ensure_admin_exists()
             if exitsEmail:
                 return jsonify({"message": "El correo electrónico ya está en uso. Por favor, utilice otro."})
             
             passwordH = codificarPassword(password)
-            new_user = User(use_str_email=email, use_str_password=passwordH)
-#             db.session.add(new_user)
-#             db.session.commit()
-#             id_user = new_user.use_int_id
-#             print ('esta es la nueva id del usuario', id_user)
+            new_user = User(use_str_email=email, use_str_password=passwordH, use_date_register_date=fecha_registro)
+            db.session.add(new_user)
+            db.session.commit()
+
+            return jsonify({"message": "El usuario fue creado exitosamente"})
+
+        except Exception as e:
+            print("Error:", e)
+            return jsonify({"message": "Error al conectarse con la BD"})
+
+# Login
+@autho.route("/login")
+class Login(Resource):
+    def post(self):
+        data = request.get_json()
+        email = data.get("email")
+        password = data.get("password")
+
+        try:
+            exitsEmail = User.query.filter_by(use_str_email=email).first()
             
-#             if role == 'clie':
-#                 new_cliente = Cliente(cli_int_user_id=id_user, cli_str_first_name=nombre, cli_str_last_name=apellido, 
-#                                     cli_str_phone=telefono, cli_str_direction=direccion, cli_date_register_date=fecha_registro)
-#                 db.session.add(new_cliente)
-#                 db.session.commit()
-
-#             elif role == 'prov':
-#                 new_proveedor = Proveedor(pro_int_user_id=id_user, pro_str_first_name=nombre, pro_str_last_name=apellido,
-#                                         pro_str_phone=telefono, pro_str_direction=direccion, pro_date_registration_date =fecha_registro)
-#                 db.session.add(new_proveedor)
-#                 db.session.commit()
+            if exitsEmail:
+                passwordDB = exitsEmail.use_str_password
+                compararPassword = descodificarPassword(password=password, passwordDB=passwordDB)
                 
-#             else:
-#                 return jsonify({"message": "El rol proporcionado es incorrecto"})
+            if compararPassword:
+                id = exitsEmail.use_str_email
+                role = exitsEmail.use_str_role
+                    
+                print(role)
+                    
+                token = codificarToken({'id': id, 'role': role})
+                    
+                print(token)
+                return jsonify({'token': token})
+            
+            else:
+                return jsonify({'message': 'Datos incorrectos'})
 
-#             return jsonify({"message": "El usuario fue creado exitosamente"})
+        except Exception as e:
+            print("Error:", e)
+            return jsonify(e)
 
-#         except Exception as e:
-#             print("Error:", e)
-#             return jsonify({"message": "Error al conectarse con la base de datos"})
-
-# ####Login
-# @autho.route("/login")
-# class Login(Resource):
-#     def post(self):
-#         data = request.get_json()
-#         email = data.get("email")
-#         password = data.get("password")
-
-#         try:
-#             exitsEmail = User.query.filter_by(use_str_email=email).first()
-
-#             if exitsEmail:
-#                 passwordDB = exitsEmail.use_str_password
-#                 compararPassword = descodificarPassword(password=password, passwordDB=passwordDB)
-
-#                 if compararPassword:
-#                     id = exitsEmail.use_int_id
-#                     role = exitsEmail.use_str_type_profile
-
-#                     print(role)
-
-#                     token = codificarToken({'id': id, 'role': role})
-#                     print(token)
-#                     return jsonify({'token': token})
-#                 else:
-#                     return jsonify({'message': 'La contraseña ingresada no coincide'})
-#             else:
-#                 return jsonify({'message': 'El email ingresado no está registrado'})
-
-#         except Exception as e:
-#             print("Error:", e)
-#             return jsonify({"message": "Error al conectarse con la BD"})
-        
-
-# #route de ejemplo
+#route de ejemplo
 # @autho.route("/rol")
 # class Token(Resource):
 #     def post(self):

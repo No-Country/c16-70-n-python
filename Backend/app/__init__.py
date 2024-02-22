@@ -3,9 +3,7 @@ from flask import Flask, Blueprint
 
 # importacion de la instancia db de SQLalchemy
 from .models.models import db
-
-# importacion de la rutas
-# from .routers.auth import auth
+from .routers.auth import auth
 # from .routers.cliente import clien
 # from .routers.admin import admi
 # from .routers.proveedor import prove
@@ -21,18 +19,16 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 db_path = os.path.join(basedir, "..", "producionDB.db")
 
 
-
 def create_app():
     app = Flask(__name__)
-
-    # Configura la base de datos
-
+    
     # SQlite --> Para desarrollo Descomenta esta linea y comenta la configuracion para MySQl
     app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///" + db_path
     app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {
     'pool_size': 20,
     'pool_timeout': 30, 
     }
+
     # MySQL ---> Cuando ya esta Desplegado
 
 
@@ -41,10 +37,8 @@ def create_app():
 
     db.init_app(app)
 
-    # Registrar los blueprints
-    # es una forma pararegistrar que rutas deseas crear asi se evita de crear muchas rutas en un solo archivo
 
-    # app.register_blueprint(auth)
+    app.register_blueprint(auth)
     # app.register_blueprint(clien)
     # app.register_blueprint(admi)
     # app.register_blueprint(prove)

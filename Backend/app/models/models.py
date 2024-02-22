@@ -2,10 +2,9 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 import os
 from flask import Blueprint, request, jsonify, current_app
+from ..utils.segurity import codificarPassword
 
 db = SQLAlchemy()
-
-fecha_registro = datetime.now()
 
 # ejemplo 
 # Doc: https://flask-sqlalchemy.palletsprojects.com/en/2.x/models simple-example
@@ -18,12 +17,13 @@ class User(db.Model):
     use_int_id = db.Column(db.Integer, primary_key=True, unique=True)
     use_str_email = db.Column(db.String(120), unique=True)
     use_str_password = db.Column(db.String(128), nullable=False)
-    use_str_first_name = db.Column(db.String(100),nullable=True)
-    use_str_last_name = db.Column(db.String(100), nullable=True)
-    use_str_phone = db.Column(db.String(15), nullable=True)
-    use_str_profile_img = db.Column(db.String(200), nullable=True)
+    use_str_first_name = db.Column(db.String(100),nullable=True, default= '')
+    use_str_last_name = db.Column(db.String(100), nullable=True, default= '')
+    use_str_phone = db.Column(db.String(15), nullable=True, default= '')
+    use_str_profile_img = db.Column(db.String(200), nullable=True, default= '')
     use_date_register_date = db.Column(db.DateTime)
-    use_date_suspension_date = db.Column(db.Date, nullable=True)
+    use_date_suspension = db.Column(db.Boolean, default=False)
+    use_date_suspension_date = db.Column(db.DateTime, nullable=True)
     use_str_role = db.Column(db.String(50), default="Paciente") 
 
     def __repr__(self):
@@ -67,9 +67,10 @@ class User(db.Model):
         admin = cls.query.filter_by(use_str_role='Admin').first()
         if not admin:
             # Si no existe un administrador, crea uno automáticamente
+            password = codificarPassword('admin')
             admin = cls(
                 use_str_email='admin@admin.com',
-                use_str_password='admin',
+                use_str_password=password,
                 use_str_role='Admin'
             )
             db.session.add(admin)
