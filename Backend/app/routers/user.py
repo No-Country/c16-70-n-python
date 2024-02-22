@@ -1,33 +1,56 @@
-from flask_restx import Api, Resource
+from flask_restx import Resource
 from flask import Blueprint, jsonify, request
 from .auth import api
-# from ..models.models import User, Cliente, db
+from ..models.models import User, db
 from ..utils.segurity import descodificarToken
 
 users = Blueprint("user", __name__)
 user = api.namespace("user", description="Rutas User")
 
-###################################################################################################
-###################################################################################################
-###################################################################################################
-###################################################################################################
-#MARCOS
-# EndPoint Para que el usuario pueda ver su datos
+
+# [X] MARCOS
+# Listado de usuarios
 @user.route('/get')
-class DatosGeT(Resource):
+class GetDataUser(Resource):
     def get(self):
-        pass
+        # Solicitud de Token
+        auth = request.headers.get('Authorization')
+        if not auth:
+            return jsonify({"message": "Token no proporcionado"})
+        
+        datosToken = descodificarToken(auth)
+        id = datosToken.get('id')
+        
+        try:
+            # Ejecuta la consulta para obtener el usuario
+            user = User.query.filter_by(use_int_id=id).first()
+            
+            # Traemos la data del cliente
+            user_data = User.query.all()
+            user_list = []
+            for data in user_data:
+                users_data = {
+                    'user_id': data.use_int_id,
+                    'email': data.use_str_email,
+                    'firstname': data.use_str_first_name,
+                    'lastname': data.use_str_last_name,
+                    'phone': data.use_str_phone,
+                    'profile_image': data.use_str_profile_img,
+                    'register_date': data.use_date_register_date,
+                    'suspension_date': data.use_date_suspension_date,
+                    'status': data.use_date_suspension,
+                }
+                user_list.append(users_data)
+            return jsonify({'users': user_list})
+        except Exception as db:
+            print("Error:", db)
+            return jsonify({"message": "Error al realizar la operación"})
 
-
-###################################################################################################
-###################################################################################################
-###################################################################################################
-###################################################################################################
 
 #FERNANDO
 # EndPoint para que el usuario pueda editar sus Datos
 @user.route('/put')
-class DatosPut(Resource):
+class PutDatosUser(Resource):
     def put(self):
         # Solicitud de Token
         auth = request.headers.get('Authorization')
@@ -42,27 +65,55 @@ class DatosPut(Resource):
 ###################################################################################################
 ###################################################################################################
 ###################################################################################################
-#MARCOS
+# [] MARCOS
 # Actualizar su imagen
 @user.route('/img')
-class ImgPut(Resource):
+class PutImgUser(Resource):
     def put(self):
+        #Solicitud de Token por el headers
         auth = request.headers.get('Authorization')
+        img = request.files['img']
+
         if not auth:
             return jsonify({"message": "Token no proporcionado"})
-        
+
         datosToken = descodificarToken(auth)
         id = datosToken.get('id')
-        pass
+        role = datosToken.get('role')
 
-###################################################################################################
-###################################################################################################
-###################################################################################################
-###################################################################################################
+        try:
+            # Verificar el rol del usuario
+            if role == 'Admin' or role == 'Paciente':
+                user = None
+                
+                if role == 'Admin':
+                    user = User.query.filter_by(use_int_id=id).first()
+                    
+                    if not user:
+                        return jsonify({"message": "Admin no encontrado"})
+                    # Guardar la imagen para el cliente
+                    user.use_str_profile_img(img)
+                    
+                    if not user:
+                        return jsonify({"message": "Paciente no encontrado"})
+                    # Guardar la imagen para el proveedor
+                    user.use_str_profile_img(img)
+
+                return jsonify({"message": "Imagen de perfil actualizada correctamente"})
+            
+            else:
+                return jsonify({"message": "Rol de usuario desconocido"})
+
+        except Exception as e:
+            print("Error:", e)
+            return jsonify({"message": "Error al conectarse con la BD"})
+
+
+
 #FERNANDO
 #Listado de Turnos Disponibles
 @user.route('/turno')
-class TurnoGet(Resource):
+class GetTurnUser(Resource):
     def get(self):
         auth = request.headers.get('Authorization')
         if not auth:
@@ -77,10 +128,10 @@ class TurnoGet(Resource):
 ###################################################################################################
 ###################################################################################################
 ###################################################################################################
-#MARCOS
+# [] MARCOS
 #Listado de Turnos del Paciente
 @user.route('/turnos')
-class TurnoGet(Resource):
+class GetTurnUser(Resource):
     def get(self):
         auth = request.headers.get('Authorization')
         if not auth:
@@ -98,7 +149,7 @@ class TurnoGet(Resource):
 #FERNANDO
 #Listado de Turnos Finalizados del Paciente
 @user.route('/turnos/end')
-class TurnoGet(Resource):
+class GetTurnoUser(Resource):
     def get(self):
         auth = request.headers.get('Authorization')
         if not auth:
@@ -112,9 +163,9 @@ class TurnoGet(Resource):
 ###################################################################################################
 ###################################################################################################
 ###################################################################################################
-#MARCOS // FERNANDO
-@user.route('/turno/<int:id>')
-class TurnosCliente(Resource):
+# [] MARCOS // FERNANDO
+@user.route('/turno/<int:use_int_id>')
+class ProcessTurnsUser(Resource):
     #MARCOS
     # ver el turno por id de url
     def get(self, id):
@@ -124,6 +175,7 @@ class TurnosCliente(Resource):
         
         datosToken = descodificarToken(auth)
         id = datosToken.get('id')
+        
         pass
 
 
