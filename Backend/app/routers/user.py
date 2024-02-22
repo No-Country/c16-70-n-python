@@ -2,7 +2,7 @@ from flask_restx import Resource
 from flask import Blueprint, jsonify, request
 from .auth import api
 from ..models.models import User, db
-from ..utils.segurity import descodificarToken, verify_token
+from ..utils.segurity import verify_token
 
 users = Blueprint("user", __name__)
 user = api.namespace("user", description="Rutas User")
@@ -11,7 +11,7 @@ user = api.namespace("user", description="Rutas User")
 # [X] MARCOS
 # Listado de usuarios
 @user.route('/get')
-class GetDataUser(Resource):
+class GetUsersData(Resource):
     def get(self):
         verify_token()
         id = verify_token().get('id')
@@ -43,13 +43,30 @@ class GetDataUser(Resource):
 
 # [X] MARCOS
 # Para que el usuario vea sus datos
-@user.route('/get/<int:use_int_id>')
+@user.route('/getData')
 class GetUserDataById(Resource):
     def get(self):
         verify_token()
         id = verify_token().get('id')
         
-        pass
+        try:
+            user = User.query.get(id)
+            if user is None:
+                return jsonify({'error': 'Usuario no encontrado'}), 404
+            user_data = {
+                    'user_id': user.use_int_id,
+                    'email': user.use_str_email,
+                    'firstname': user.use_str_first_name,
+                    'lastname': user.use_str_last_name,
+                    'phone': user.use_str_phone,
+                    'profile_image': user.use_str_profile_img,
+                    'register_date': user.use_date_register_date,
+                    'suspension_date': user.use_date_suspension_date,
+                    'status': user.use_date_suspension,
+                }
+            return jsonify(user_data)
+        except Exception as d:
+            return jsonify({'message': 'Error en la operacion'})
 
 #FERNANDO
 # EndPoint para que el usuario pueda editar sus Datos
