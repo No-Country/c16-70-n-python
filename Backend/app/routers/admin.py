@@ -62,7 +62,7 @@ class PacientesAll(Resource):
                     'phone': user.use_str_phone,
                     'profile_img': user.use_str_profile_img,
                     'register_date': user.use_date_register_date.strftime('%Y-%m-%d %H:%M:%S'),
-                    'suspension': user.use_date_suspension,
+                    'suspension': user.use_bol_suspension,
                     'suspension_date': user.use_date_suspension_date.strftime('%Y-%m-%d %H:%M:%S') if user.use_date_suspension_date else None,
                     'role': user.use_str_role
                 }
@@ -111,7 +111,7 @@ class PacientesAll(Resource):
                 'phone': paciente.use_str_phone,
                 'img': paciente.use_str_profile_img,
                 'data_reister': paciente.use_date_register_date,
-                'suspension': paciente.use_date_suspension,
+                'suspension': paciente.use_bol_suspension,
                 'data_suspension': paciente.use_date_suspension_date,
                 'role': paciente.use_str_role
             })
@@ -153,7 +153,7 @@ class PacientesAll(Resource):
                 return jsonify({'message': 'Paciente no encontrado'})
 
             if suspender in ['True', 'False']:
-                paciente.use_date_suspension = suspender == 'True'
+                paciente.use_bol_suspension = suspender == 'True'
                 paciente.use_date_suspension_date = datetime.now() if suspender == 'True' else None
 
                 db.session.commit()

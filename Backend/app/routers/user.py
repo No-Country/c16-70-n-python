@@ -28,8 +28,8 @@ class GetUserDataById(Resource):
                     'phone': user.use_str_phone,
                     'profile_image': user.use_str_profile_img,
                     'register_date': user.use_date_register_date,
+                    'status': user.use_bol_suspension,
                     'suspension_date': user.use_date_suspension_date,
-                    'status': user.use_date_suspension,
                 }
             return jsonify(user_data)
         except Exception as d:

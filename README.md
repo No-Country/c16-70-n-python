@@ -20,10 +20,6 @@ Para este proyecto el equipo decidio utilizar las siguientes tecnologias:
   </a>
 </p>
 
-# API REST FALSA
-
-Flask
-
 python3 -m venv .venv
 . .venv/bin/activate
 
@@ -33,5 +29,3 @@ pip freeze > requirements.txt
 
 comando para instalar todos los requeriments.txt
 pip install -r requirements.txt
-
-Leer el archivo ```__init__.py``` que esta dentro de la carpeta app
