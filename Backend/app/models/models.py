@@ -9,7 +9,6 @@ fecha_registro = datetime.now()
 
 
 # ejemplo 
-
 # Doc: https://flask-sqlalchemy.palletsprojects.com/en/2.x/models simple-example
 
 
@@ -18,12 +17,12 @@ class User(db.Model):
     use_int_id = db.Column(db.Integer, primary_key=True, unique=True)
     use_str_email = db.Column(db.String(120), unique=True)
     use_str_password = db.Column(db.String(128), nullable=False)
-    use_str_type_profile = db.Column(db.String(5), nullable=False)
 
     def __repr__(self):
         return '<User %r>' % self.use_str_email
-    
-class Proveedor(db.Model):
+
+# No va
+class Admin(db.Model):
     __tablename__ = "proveedor"
     pro_int_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     pro_int_user_id = db.Column(db.Integer, db.ForeignKey("user.use_int_id"))
@@ -66,14 +65,15 @@ class Proveedor(db.Model):
             self.pro_str_profile_img = None
             db.session.commit()
 
-class Cliente(db.Model):
+# Cambiarlo por pacientes
+class Pacientes(db.Model):
     __tablename__ = "cliente"
     cli_int_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     cli_int_user_id = db.Column(db.Integer, db.ForeignKey("user.use_int_id"))
     cli_str_first_name = db.Column(db.String(100),nullable=True)
     cli_str_last_name = db.Column(db.String(100), nullable=True)
     cli_str_phone = db.Column(db.String(15), nullable=True)
-    cli_str_direction = db.Column(db.String(100), nullable=True)
+    cli_str_direction = db.Column(db.String(100), nullable=True) # No va
     cli_str_profile_img = db.Column(db.String(200), nullable=True)
     cli_date_register_date = db.Column(db.Date)
     cli_date_suspension_date = db.Column(db.Date, nullable=True)
@@ -103,33 +103,11 @@ class Cliente(db.Model):
             self.cli_str_profile_img = None
             db.session.commit()
 
-class ScoreProveedor(db.Model):
-    __tablename__ = "score_proveedor"
-    scr_int_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    scr_int_proveedor_id = db.Column(db.Integer, db.ForeignKey("proveedor.pro_int_id"))
-    scr_int_cliente_id = db.Column(db.Integer, db.ForeignKey("cliente.cli_int_id"))
-    scr_int_score = db.Column(db.Integer)
-    scr_str_comment = db.Column(db.String(255))
-
-    # Definición de la relación con Proveedor
-    proveedor = db.relationship("Proveedor", backref="score_proveedor")
-
-    # Definición de la relación con Cliente
-    cliente = db.relationship("Cliente", backref="score_proveedor")
-
-
-class Categories(db.Model):
+# Cambiarlo por servicio
+class Services(db.Model):
     __tablename__ = "categories"
     cat_int_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     cat_str_category_name = db.Column(db.String(100))
-
-
-class Ubication(db.Model):
-    __tablename__ = "ubication"
-    ubi_int_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    ubi_int_proveedor_id = db.Column(db.Integer, db.ForeignKey("proveedor.pro_int_id"))
-    ubi_str_ubication = db.Column(db.String(100))  # Added length
-    ubi_str_direction = db.Column(db.String(200))  # Added length
 
 
 class Turn(db.Model):
