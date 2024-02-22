@@ -36,7 +36,7 @@ async function obtenerDatosAPI(page, limit) {
 function cleanUserCards() {
   const container = document.getElementById('table-container');
   let child = container.lastElementChild;
-  while (child && child !== document.getElementById('table-person-template')) {
+  while (child !== document.getElementById('table-person-template')) {
     container.removeChild(child);
     child = container.lastElementChild;
   }
