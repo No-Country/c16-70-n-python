@@ -9,41 +9,8 @@ user = api.namespace("user", description="Rutas User")
 
 
 # [X] MARCOS
-# Listado de usuarios
-@user.route('/get')
-class GetUsersData(Resource):
-    def get(self):
-        verify_token()
-        id = verify_token().get('id')
-        
-        try:
-            # Ejecuta la consulta para obtener el usuario
-            user = User.query.filter_by(use_int_id=id).first()
-            
-            # Traemos la data del cliente
-            user_data = User.query.all()
-            user_list = []
-            for data in user_data:
-                users_data = {
-                    'user_id': data.use_int_id,
-                    'email': data.use_str_email,
-                    'firstname': data.use_str_first_name,
-                    'lastname': data.use_str_last_name,
-                    'phone': data.use_str_phone,
-                    'profile_image': data.use_str_profile_img,
-                    'register_date': data.use_date_register_date,
-                    'suspension_date': data.use_date_suspension_date,
-                    'status': data.use_date_suspension,
-                }
-                user_list.append(users_data)
-            return jsonify({'users': user_list})
-        except Exception as db:
-            print("Error:", db)
-            return jsonify({"message": "Error al realizar la operación"})
-
-# [X] MARCOS
 # Para que el usuario vea sus datos
-@user.route('/getData')
+@user.route('/get')
 class GetUserDataById(Resource):
     def get(self):
         verify_token()
@@ -136,7 +103,7 @@ class GetTurnUser(Resource):
 ###################################################################################################
 ###################################################################################################
 # [] MARCOS
-#Listado de Turnos del Paciente
+# Listado de Turnos del Paciente
 @user.route('/turnos')
 class GetTurnUser(Resource):
     def get(self):
