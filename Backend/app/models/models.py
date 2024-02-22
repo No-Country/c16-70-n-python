@@ -67,7 +67,8 @@ class User(db.Model):
         admin = cls.query.filter_by(use_str_role='Admin').first()
         if not admin:
             # Si no existe un administrador, crea uno automáticamente
-            password = codificarPassword('admin')
+            passwordAdmin = 'admin'
+            password = codificarPassword(passwordAdmin)
             admin = cls(
                 use_str_email='admin@admin.com',
                 use_str_password=password,
