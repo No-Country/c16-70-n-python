@@ -22,7 +22,7 @@ def descodificarPassword(password, passwordDB):
 
 def codificarToken(data):
     now = datetime.utcnow()
-    expiration = now + timedelta(hours=5)
+    expiration = now + timedelta(hours=1)
     playload = {
         'id' : data.get('id'),
         'role': data.get('role'),
@@ -35,19 +35,19 @@ def codificarToken(data):
 def descodificarToken(token):
     token_parts = token.split()
     if len(token_parts) != 2 or token_parts[0].lower() != 'bearer':
-        return jsonify({'message': 'El Token es Invalido'}), 401
+        return jsonify({'message': 'El Token es Invalido'})
     
     token = token_parts[1]
     try:
         payload = jwt.decode(token, key, algorithms=['HS256'])
         # Verificar si el token ha expirado
         if 'exp' in payload and datetime.utcnow() > datetime.utcfromtimestamp(payload['exp']):
-            return {'message': 'Token expirado'}, 401
+            return {'message': 'Token expirado'}
         return payload
     except jwt.ExpiredSignatureError:
-        return {'message': 'Token expirado'}, 401
+        return {'message': 'Token expirado'}
     except Exception as e:
-        return {'message': 'Error en el servidor', 'error': str(e)}, 500
+        return {'message': 'Error en el servidor', 'error': str(e)}
 
 #
 def secure_filename(filename):

@@ -97,8 +97,7 @@ class Turn(db.Model):
     turn_time_start_turn = db.Column(db.Time)
     turn_time_finish_turn = db.Column(db.Time)
     turn_bol_assigned = db.Column(db.Boolean, default=False)
-    
-    
+
     service = db.relationship("Services", backref="turns")
 
     #metodo para que tambien se vea la categoria del Turno 
