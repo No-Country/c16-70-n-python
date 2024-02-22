@@ -4,7 +4,7 @@ from ..utils.segurity import descodificarPassword, codificarPassword, codificarT
 import os
 from datetime import datetime
 from ..routers.auth import api
-from ..models.models import User, db, Turn
+from ..models.models import User, db, Turn, Services
 
 fecha_suspension = datetime.now()
 
@@ -21,8 +21,8 @@ admin = api.namespace("admin", description="Rutas administrativas")
 class PacientesAll(Resource):
     def get(self):
         """ 
-        Obtener Lisado de Paciente 
-        Ejemplo: http://127.0.0.1:40709/admin//pacientes?page=1
+        Obtener Listado de Paciente 
+        Ejemplo: http://127.0.0.1:40709/admin/pacientes?page=1
 
         """
         auth = request.headers.get('Authorization')
@@ -197,7 +197,7 @@ class PacientesAll(Resource):
             db.session.delete(paciente)
             db.session.commit()
         
-            return jsonify({'message': 'Cliente eliminado correctamente'})
+            return jsonify({'message': 'Datos del Paciente eliminados correctamente'})
     
         except Exception as e:
             return jsonify({'message': str(e)}), 500
@@ -210,7 +210,57 @@ class PacientesAll(Resource):
 @admin.route("/turnos")
 class Turnos(Resource):
     def get(self):
-        pass
+        """ 
+        Obtener Listado de Turnos
+        Ejemplo: http://127.0.0.1:40709/admin/turnos?page=1
+
+        """
+        auth = request.headers.get('Authorization')
+
+        if not auth:
+            return jsonify({'message': "Token no proporcionado"})
+
+
+        datosToken = descodificarToken(auth)
+        id = datosToken.get('id')
+        role = datosToken.get('role')
+
+
+        try:
+            if role != 'Admin':
+                return jsonify({'message': 'No Estas Autorizado'})
+        
+            # Paginacion
+            page = request.args.get('page', 1, type=int)
+            per_page = request.args.get('per_page', 10, type=int)
+
+            exitsAdmin = User.query.filter_by(use_int_id=id, use_str_role=role).first()
+
+            if exitsAdmin is None:
+                return jsonify({'message':'No estás autorizado'})
+
+            turnos = Turn.query.paginate(page=page, per_page=per_page, error_out=False)
+            #
+
+            lista_turno = []
+            for turno in turnos.items:
+                formatted_turno = {
+                    'id': turno.turn_int_id,
+                    'service_id': turno.service_id,
+                    'user_id': turno.turn_int_user_id,
+                    'name': turno.turn_str_name_turn,
+                    'description': turno.turn_str_description,
+                    'creation_date': turno.turn_date_creation_date,
+                    'date_assignment': turno.turn_date_date_assignment.strftime('%Y-%m-%d %H:%M:%S'),
+                    'start_turn': turno.turn_time_start_turn,
+                    'finish_turn': turno.turn_time_finish_turn('%Y-%m-%d %H:%M:%S'),
+                    'bol_assigned': turno.turn_bol_assigned
+                }
+                lista_turno.append(formatted_turno)
+
+            return jsonify(lista_turno)
+        except Exception as e:
+            return jsonify({'message': str(e)})
 ###################################################################################################
 ###################################################################################################
 ###################################################################################################
@@ -219,7 +269,46 @@ class Turnos(Resource):
 @admin.route("/turnos")
 class TurnoCrear(Resource):
     def post(self):
-        pass
+        """
+        Crear un nuevo turno
+        """
+        auth = request.headers.get('Authorization')
+        data = request.get_json()
+        
+        service_id = data.get("service_id")
+        user_id = data.get("user_id")
+        name = data.get("name")
+        description = data.get("description")
+        start_time = data.get("start_time")
+        end_time = data.get("end_time")
+
+        if not auth:
+            return jsonify({'message': "Token no proporcionado"}), 401
+
+        try:
+
+            if not all([service_id, user_id, start_time, end_time]):
+                return jsonify({'message': "Datos incompletos"})
+
+            new_turn = Turn(
+                service_id=service_id,
+                turn_int_user_id=user_id,
+                turn_str_name_turn=name,
+                turn_str_description=description,
+                turn_time_start_turn=start_time,
+                turn_time_finish_turn=end_time,
+                turn_date_creation_date=datetime.now(),
+                turn_date_date_assignment=datetime.now(),
+                turn_bol_assigned=False
+            )
+
+            db.session.add(new_turn)
+            db.session.commit()
+
+            return jsonify({'message': 'Turno creado correctamente'})
+
+        except Exception as e:
+            return jsonify({'message': str(e)})
 
 
 ###################################################################################################
@@ -229,20 +318,117 @@ class TurnoCrear(Resource):
 # Obtener Detalles de un turno , actualizarlo y Borrarlo
 @admin.route("/turnos/<int:id>")
 class TurnoCrear(Resource):
-    def get(self):
-        pass
+    def get(self, id):
+        """
+        Obtener detalles de un turno por su ID
+        """
+        auth = request.headers.get('Authorization')
+
+        if not auth:
+            return jsonify({'message': "Token no proporcionado"}), 401
+
+        datosToken = descodificarToken(auth)
+        token_id = datosToken.get('id')
+        role = datosToken.get('role')
+
+        try:
+            if role != 'Admin':
+                return jsonify({'message': 'No Estas Autorizado'}), 403
+        
+            turno = Turn.query.get(id)
+            if not turno:
+                return jsonify({'message': 'Turno no encontrado'}), 404
+
+            # Aquí puedes formatear la información del turno como desees
+            return jsonify({
+                'id': turno.turn_int_id,
+                'service_id': turno.service_id,
+                'user_id': turno.turn_int_user_id,
+                'name': turno.turn_str_name_turn,
+                'description': turno.turn_str_description,
+                'start_time': str(turno.turn_time_start_turn),
+                'end_time': str(turno.turn_time_finish_turn),
+                'assigned': turno.turn_bol_assigned
+            }), 200
+
+        except Exception as e:
+            return jsonify({'message': str(e)}), 500
 ###################################################################################################
 ###################################################################################################
 ###################################################################################################
 ###################################################################################################
-    def put(self):
-        pass
+    def put(self, id):
+        """
+        Actualizar un turno existente por su ID
+        """
+        auth = request.headers.get('Authorization')
+
+        if not auth:
+            return jsonify({'message': "Token no proporcionado"}), 401
+
+        datosToken = descodificarToken(auth)
+        token_id = datosToken.get('id')
+        role = datosToken.get('role')
+
+        try:
+            if role != 'Admin':
+                return jsonify({'message': 'No Estas Autorizado'}), 403
+
+            # Aquí puedes obtener los datos actualizados del turno desde la solicitud JSON
+            data = request.get_json()
+
+            # Buscar el turno en la base de datos
+            turno = Turn.query.get(id)
+            if not turno:
+                return jsonify({'message': 'Turno no encontrado'}), 404
+
+            # Actualizar los campos del turno con los datos proporcionados
+            # Por ejemplo:
+            turno.turn_str_name_turn = data.get('name', turno.turn_str_name_turn)
+            turno.turn_str_description = data.get('description', turno.turn_str_description)
+            # Actualiza los demás campos según sea necesario
+
+            # Guardar los cambios en la base de datos
+            db.session.commit()
+
+            return jsonify({'message': 'Turno actualizado correctamente'}), 200
+
+        except Exception as e:
+            return jsonify({'message': str(e)}), 500
 ###################################################################################################
 ###################################################################################################
 ###################################################################################################
 ###################################################################################################
-    def delete(self):
-        pass
+    def delete(self, id):
+        """
+        Eliminar un turno por su ID
+        """
+        auth = request.headers.get('Authorization')
+
+        if not auth:
+            return jsonify({'message': "Token no proporcionado"}), 401
+
+        datosToken = descodificarToken(auth)
+        token_id = datosToken.get('id')
+        role = datosToken.get('role')
+
+        try:
+            if role != 'Admin':
+                return jsonify({'message': 'No Estas Autorizado'}), 403
+
+            # Buscar el turno en la base de datos
+            turno = Turn.query.get(id)
+            if not turno:
+                return jsonify({'message': 'Turno no encontrado'}), 404
+
+            # Eliminar el turno de la base de datos
+            db.session.delete(turno)
+            db.session.commit()
+
+            return jsonify({'message': 'Turno eliminado correctamente'}), 200
+
+        except Exception as e:
+            return jsonify({'message': str(e)}), 500
 ###################################################################################################
 ###################################################################################################
 ###################################################################################################
@@ -251,12 +437,90 @@ class TurnoCrear(Resource):
 @admin.route("/servicios")
 class Servicios(Resource):
     def get(self):
-        pass
+        """ 
+        Obtener Listado de Servicios
+        Ejemplo: http://127.0.0.1:40709/admin/servicios?page=1
+
+        """
+        auth = request.headers.get('Authorization')
+
+        if not auth:
+            return jsonify({'message': "Token no proporcionado"})
+
+
+        datosToken = descodificarToken(auth)
+        id = datosToken.get('id')
+        role = datosToken.get('role')
+
+
+        try:
+            if role != 'Admin':
+                return jsonify({'message': 'No Estas Autorizado'})
+        
+            # Paginacion
+            page = request.args.get('page', 1, type=int)
+            per_page = request.args.get('per_page', 10, type=int)
+
+            exitsAdmin = User.query.filter_by(use_int_id=id, use_str_role=role).first()
+
+            if exitsAdmin is None:
+                return jsonify({'message':'No estás autorizado'})
+
+            servicios = Servicios.query.paginate(page=page, per_page=per_page, error_out=False)
+            #
+
+            lista_servicio = []
+            for servicio in servicios.items:
+                formatted_turno = {
+                    'id': servicio.ser_int_id,
+                    'name': servicio.ser_str_category_name
+                }
+                lista_servicio.append(formatted_turno)
+
+            return jsonify(lista_servicio)
+        except Exception as e:
+            return jsonify({'message': str(e)})
 ###################################################################################################
 ###################################################################################################
 ###################################################################################################
 ###################################################################################################
     # Crear Servicio
     def post(self):
-        pass
+        """ 
+        Crear Servicio
+        """
+        auth = request.headers.get('Authorization')
+        data = request.get_json()
+        name = data.get("name")
+
+        if not auth:
+            return jsonify({'message': "Token no proporcionado"})
+
+
+        datosToken = descodificarToken(auth)
+        id = datosToken.get('id')
+        role = datosToken.get('role')
+
+
+        try:
+            if role != 'Admin':
+                return jsonify({'message': 'No Estas Autorizado'})
+        
+            exitsAdmin = User.query.filter_by(use_int_id=id, use_str_role=role).first()
+
+            if exitsAdmin is None:
+                return jsonify({'message':'No estás autorizado'})
+
+            existing_service = Services.query.filter_by(ser_str_category_name=name).first()
+            if existing_service:
+                return jsonify({'message': 'Ya existe un servicio con este nombre'})
+
+
+            new_servicio = Services(ser_str_category_name=name)
+            db.session.add(new_servicio)
+            db.session.commit()
+
+            return jsonify({'message':'El Servicio Fue Creado'})
+        except Exception as e:
+            return jsonify({'message': str(e)})
 

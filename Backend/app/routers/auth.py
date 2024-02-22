@@ -18,6 +18,9 @@ autho = api.namespace("auth", description="Rutas para Autotificacion")
 @autho.route("/register")
 class Users(Resource):
     def post(self):
+        """
+        Registrar Usuario
+        """
         data = request.get_json()
         email = data.get("email")
         password = data.get("password")
@@ -44,6 +47,9 @@ class Users(Resource):
 @autho.route("/login")
 class Login(Resource):
     def post(self):
+        """
+        Login de Usuario
+        """
         data = request.get_json()
         email = data.get("email")
         password = data.get("password")
@@ -77,6 +83,9 @@ class Login(Resource):
 @autho.route("/rol")
 class Token(Resource):
     def post(self):
+        """
+        Muestra El Tipo de Rol Que Posee El Usuario
+        """
         auth = request.headers.get('Authorization')
         if not auth:
             return jsonify({"message": "Token no proporcionado"})

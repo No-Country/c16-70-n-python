@@ -89,7 +89,7 @@ class Turn(db.Model):
     __tablename__ = "turn"
     turn_int_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     service_id = db.Column(db.Integer, db.ForeignKey("services.ser_int_id"))
-    turn_int_client_id = db.Column(db.Integer, db.ForeignKey("user.use_int_id"))
+    turn_int_user_id = db.Column(db.Integer, db.ForeignKey("user.use_int_id"))
     turn_str_name_turn = db.Column(db.String(100))
     turn_str_description = db.Column(db.String(200))
     turn_date_creation_date = db.Column(db.Date)
