@@ -92,3 +92,9 @@ class UpgrdadeImgClient(Resource):
         except Exception as e:
             print("Error:", e)
             return jsonify({"message": "Error al conectarse con la BD"})
+
+
+# Obtener turnos
+# actualziar ,el campo de turno.
+# obtener categorias
+# ver Ubicacion 

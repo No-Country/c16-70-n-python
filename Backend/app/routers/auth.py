@@ -11,7 +11,7 @@ auth = Blueprint("auth", __name__)
 
 api = Api(auth, version="1.0", title="Agendify", description="Agendify API REST")
 
-autho = api.namespace("", description="Rutas para Autotificacion")
+autho = api.namespace("auth", description="Rutas para Autotificacion")
 
 
 @autho.route("/register")
@@ -134,80 +134,80 @@ class Token(Resource):
 
 #NOTA:  las rutas para lasimagenes puede ser movidas a su archivo correspondiente, queda por revisar bien la ruta delete de img
         
-@autho.route("/user/img")
-class Img(Resource):
-    def put(self):
-        #Solicitud de Token por el headers
-        auth = request.headers.get('Authorization')
-        img = request.files['img']
+# @autho.route("/user/img")
+# class Img(Resource):
+#     def put(self):
+#         #Solicitud de Token por el headers
+#         auth = request.headers.get('Authorization')
+#         img = request.files['img']
 
-        if not auth:
-            return jsonify({"message": "Token no proporcionado"})
+#         if not auth:
+#             return jsonify({"message": "Token no proporcionado"})
 
-        datosToken = descodificarToken(auth)
-        id = datosToken.get('id')
-        role = datosToken.get('role')
+#         datosToken = descodificarToken(auth)
+#         id = datosToken.get('id')
+#         role = datosToken.get('role')
 
-        try:
-            # Verificar el rol del usuario
-            if role == 'clie' or role == 'prov':
-                user = None
-                if role == 'clie':
-                    user = Cliente.query.filter_by(cli_int_user_id=id).first()
-                    if not user:
-                        return jsonify({"message": "Cliente no encontrado"})
-                    # Guardar la imagen para el cliente
-                    user.save_cli_str_profile_img(img)
-                elif role == 'prov':
-                    user = Proveedor.query.filter_by(pro_int_user_id=id).first()
-                    if not user:
-                        return jsonify({"message": "Proveedor no encontrado"})
-                    # Guardar la imagen para el proveedor
-                    user.save_pro_str_profile_img(img)
+#         try:
+#             # Verificar el rol del usuario
+#             if role == 'clie' or role == 'prov':
+#                 user = None
+#                 if role == 'clie':
+#                     user = Cliente.query.filter_by(cli_int_user_id=id).first()
+#                     if not user:
+#                         return jsonify({"message": "Cliente no encontrado"})
+#                     # Guardar la imagen para el cliente
+#                     user.save_cli_str_profile_img(img)
+#                 elif role == 'prov':
+#                     user = Proveedor.query.filter_by(pro_int_user_id=id).first()
+#                     if not user:
+#                         return jsonify({"message": "Proveedor no encontrado"})
+#                     # Guardar la imagen para el proveedor
+#                     user.save_pro_str_profile_img(img)
 
-                return jsonify({"message": "Imagen de perfil actualizada correctamente"})
-            else:
-                return jsonify({"message": "Rol de usuario desconocido"})
+#                 return jsonify({"message": "Imagen de perfil actualizada correctamente"})
+#             else:
+#                 return jsonify({"message": "Rol de usuario desconocido"})
 
-        except Exception as e:
-            print("Error:", e)
-            return jsonify({"message": "Error al conectarse con la BD"})
+#         except Exception as e:
+#             print("Error:", e)
+#             return jsonify({"message": "Error al conectarse con la BD"})
 
 
-#Borrar la Iamgen 
+# #Borrar la Iamgen 
         
-    def delete(self):
-        # Solicitud de Token por el headers
-        auth = request.headers.get('Authorization')
+#     def delete(self):
+#         # Solicitud de Token por el headers
+#         auth = request.headers.get('Authorization')
 
-        if not auth:
-            return jsonify({"message": "Token no proporcionado"})
+#         if not auth:
+#             return jsonify({"message": "Token no proporcionado"})
 
-        datosToken = descodificarToken(auth)
-        id = datosToken.get('id')
-        role = datosToken.get('role')
+#         datosToken = descodificarToken(auth)
+#         id = datosToken.get('id')
+#         role = datosToken.get('role')
 
-        try:
-            # Verificar el rol del usuario
-            if role == 'clie' or role == 'prov':
-                user = None
-                if role == 'clie':
-                    user = Cliente.query.filter_by(cli_int_user_id=id).first()
-                    if not user:
-                        return jsonify({"message": "Cliente no encontrado"})
-                    # Eliminar la imagen del cliente
-                    user.delete_profile_img()
-                elif role == 'prov':
-                    user = Proveedor.query.filter_by(pro_int_user_id=id).first()
-                    if not user:
-                        return jsonify({"message": "Proveedor no encontrado"})
-                    # Eliminar la imagen del proveedor
-                    user.delete_profile_img()
+#         try:
+#             # Verificar el rol del usuario
+#             if role == 'clie' or role == 'prov':
+#                 user = None
+#                 if role == 'clie':
+#                     user = Cliente.query.filter_by(cli_int_user_id=id).first()
+#                     if not user:
+#                         return jsonify({"message": "Cliente no encontrado"})
+#                     # Eliminar la imagen del cliente
+#                     user.delete_profile_img()
+#                 elif role == 'prov':
+#                     user = Proveedor.query.filter_by(pro_int_user_id=id).first()
+#                     if not user:
+#                         return jsonify({"message": "Proveedor no encontrado"})
+#                     # Eliminar la imagen del proveedor
+#                     user.delete_profile_img()
 
-                return jsonify({"message": "Imagen de perfil eliminada correctamente"})
-            else:
-                return jsonify({"message": "Rol de usuario desconocido"})
+#                 return jsonify({"message": "Imagen de perfil eliminada correctamente"})
+#             else:
+#                 return jsonify({"message": "Rol de usuario desconocido"})
 
-        except Exception as e:
-            print("Error:", e)
-            return jsonify({"message": "Error al conectarse con la BD"})
+#         except Exception as e:
+#             print("Error:", e)
+#             return jsonify({"message": "Error al conectarse con la BD"})
