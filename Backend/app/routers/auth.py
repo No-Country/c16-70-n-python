@@ -28,7 +28,7 @@ class Users(Resource):
                 return jsonify({"message": "El correo electrónico ya está en uso. Por favor, utilice otro."})
             
             passwordH = codificarPassword(password)
-            new_user = User(use_str_email=email, use_str_password=passwordH, use_str_type_profile=role)
+            new_user = User(use_str_email=email, use_str_password=passwordH)
 #             db.session.add(new_user)
 #             db.session.commit()
 #             id_user = new_user.use_int_id
