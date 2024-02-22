@@ -42,7 +42,7 @@ class User(db.Model):
     # 2-) Metodo para guardar la imagen de perfil se mejoro el nombre de la imagen y carpeta
     def save_use_str_profile_img(self, picture):
         if picture:
-            picture_filename = f"user_{self.use_int_user_id}_img.jpg"
+            picture_filename = f"user_{self.use_int_id}_img.jpg"
             picture_path = os.path.join(current_app.root_path, 'static/imgs', picture_filename)
 
             os.makedirs(os.path.dirname(picture_path), exist_ok=True)
