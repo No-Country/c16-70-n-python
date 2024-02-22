@@ -95,22 +95,15 @@ class PutImgUser(Resource):
         try:
             # Verificar el rol del usuario
             if role == 'Admin' or role == 'Paciente':
-                user = None
-                
-                if role == 'Admin':
-                    user = User.query.filter_by(use_int_id=id).first()
+                    
+                    user = User.query.filter_by(use_int_id=id, use_str_role=role).first()
                     
                     if not user:
-                        return jsonify({"message": "Admin no encontrado"})
+                        return jsonify({"message": "Usuario no encontrado"})
                     # Guardar la imagen para el cliente
-                    user.use_str_profile_img(img)
-                    
-                    if not user:
-                        return jsonify({"message": "Paciente no encontrado"})
-                    # Guardar la imagen para el proveedor
-                    user.use_str_profile_img(img)
+                    user.save_use_str_profile_img(img)
 
-                return jsonify({"message": "Imagen de perfil actualizada correctamente"})
+                    return jsonify({"message": "Imagen de perfil actualizada correctamente"})
             
             else:
                 return jsonify({"message": "Rol de usuario desconocido"})
