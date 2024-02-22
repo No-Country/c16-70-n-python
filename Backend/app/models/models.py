@@ -22,7 +22,7 @@ class User(db.Model):
     use_str_phone = db.Column(db.String(15), nullable=True, default= '')
     use_str_profile_img = db.Column(db.String(200), nullable=True, default= 'profile_pictures/user.jpg')
     use_date_register_date = db.Column(db.DateTime)
-    use_date_suspension = db.Column(db.Boolean, default=False)
+    use_bol_suspension = db.Column(db.Boolean, default=False)
     use_date_suspension_date = db.Column(db.DateTime, nullable=True)
     use_str_role = db.Column(db.String(50), default="Paciente") 
 
