@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/admin-panel.css">
+    <link rel="stylesheet" href="../CSS/cliente-panel.css">
+    <title>Agendify</title>
+</head>
+<body>
+    <main>
+       <header>
+        <div><img src="" alt=""></div>
+        <p>Agendify Administracion</p>
+       </header>
+       <div class="title">
+        <h2>
+            <p>Gestión de turnos</p>
+        </h2>
+        <!-- for future implementation -->
+        <!-- <div class="search">
+            <input type="text" placeholder="Buscar">
+            <button>Buscar</button>
+        </div> -->
+    </div>
+       <nav>
+        <div class="nav-selection">
+            <p class = "nav-selection--active">Todos</p>
+            <p class="nav-selection--inactive">Activos</p>
+            <p class = "nav-selection--inactive">Terminados</p>
+        </div>
+       </nav>
+
+    <div id="table-container">
+        <div id="table-person-template" class="table-person-container">
+            <div class="table-person">
+                <div class="user turn">
+                    <img src="../img/calendar-svgrepo-com.svg" alt="perfil">
+                    <div class="user-info">
+                        <strong>Nombre de turno</strong>
+                    </div>
+                </div>
+                
+                <div class="status">
+                    <p>Activo</p>
+                </div>
+                <div class="date-incription">
+                    <p>10/10/2020</p>
+                    <small>Inicio</small>
+                </div>
+                <div class="date-incription">
+                    <p>10/10/2020</p>
+                    <small>Final</small>
+                </div>
+                <div class="action">
+                    <a href="#">
+                        <div class="edit">
+                            <img src="../img/arrow-right-svgrepo-com.svg" alt="">
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="pagination-container" id="pagination-container">
+        <div class="pagination-prev hidden" id="pagination-prev">
+            <a href="#"><img src="../img/arrow-left-svgrepo-com.svg" alt=""></a>
+        </div>
+        <div class="pagination-next" id="pagination-next">
+            <a href="#"><img src="../img/arrow-right-svgrepo-com.svg" alt=""></a>
+        </div>
+    </div> -->
+
+
+
+
+    </main>
+    
+    <script type="module" src="../scripts/main.js"></script>
+    <script type="module" src="../scripts/saveIdUser.js"></script>
+</body>
+</html>

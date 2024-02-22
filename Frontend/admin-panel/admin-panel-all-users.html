@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/admin-panel.css">
+    <title>Agendify</title>
+</head>
+<body>
+    <main>
+       <header>
+        <div><img src="" alt=""></div>
+        <p>Agendify Administracion</p>
+       </header>
+       <div class="title">
+        <h2>
+            <p>Administracion de usuarios</p>
+        </h2>
+        <!-- for future implementation -->
+        <!-- <div class="search">
+            <input type="text" placeholder="Buscar">
+            <button>Buscar</button>
+        </div> -->
+    </div>
+       <nav>
+        <div class="nav-selection">
+            <p class = "nav-selection--active">Todos</p>
+            <p class="nav-selection--inactive">Clientes</p>
+            <p class = "nav-selection--inactive">Proveedores</p>
+        </div>
+       </nav>
+
+    <div id="table-container">
+        <template id="table-person-template" class="table-person-container">
+            <div class="table-person">
+                <div class="user">
+                    <img src="../img/profile_8.jpg" alt="perfil">
+                    <div class="user-info">
+                        <strong>Elisabeth R. Thompson</strong>
+                        <small>ElisabethRThompson@teleworm.us</small>
+                    </div>
+                </div>
+                <div class="role">
+                    <p>User</p>
+                </div>
+                <div class="count-type">
+                    <p>Free</p>
+                </div>
+                <div class="status">
+                    <p>Activo</p>
+                </div>
+                <div class="date-incription">
+                    <p>10/10/2020</p>
+                    <small>inscripcion</small>
+                </div>
+                <div class="action">
+                    <a href="admin-panel-detail-user.html">
+                        <div class="edit">
+                            <img src="../img/pen-new-square-svgrepo-com.svg" alt="">
+                        </div>
+                    </a>
+                    <a href="">
+                        <div class="delete">
+                            <img src="../img/backspace-svgrepo-com copy.svg" alt="">
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </template>
+    </div>
+    <div class="pagination-container" id="pagination-container">
+        <div class="pagination-prev hidden" id="pagination-prev">
+            <a href="#"><img src="../img/arrow-left-svgrepo-com.svg" alt=""></a>
+        </div>
+        <div class="pagination-next" id="pagination-next">
+            <a href="#"><img src="../img/arrow-right-svgrepo-com.svg" alt=""></a>
+        </div>
+    </div>
+
+
+
+
+    </main>
+    
+    <script type="module" src="../scripts/main.js"></script>
+    <script type="module" src="../scripts/saveIdUser.js"></script>
+</body>
+</html>
