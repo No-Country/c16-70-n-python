@@ -251,6 +251,7 @@ class GetTurnoUser(Resource):
 @user.route('/turno/<int:use_int_id>')
 class ProcessTurnsUser(Resource):
     #MARCOS
+    #nombre del turno. Se me ocurre colocar el nombre del usuario más la fecha y la hora. Ejemplo PEPE_23_02_24_09:00.
     # ver el turno por id de url
     def get(self, id):
         verify_token()
@@ -271,6 +272,12 @@ class ProcessTurnsUser(Resource):
         id = verify_token().get('id')
         
         pass
+
+
+
+
+
+
 
 
 ###################################################################################################
