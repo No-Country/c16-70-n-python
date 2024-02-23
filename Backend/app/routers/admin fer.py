@@ -593,7 +593,3 @@ class Turnos(Resource):
             print("Error:", e)
             return jsonify({"message": "Error en el servidor"})
 
-
-        except Exception as e:
-            print("Error:", e)
-            return jsonify({"message": "Error En el Servidor"})
