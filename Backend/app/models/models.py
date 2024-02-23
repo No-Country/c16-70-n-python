@@ -20,7 +20,7 @@ class User(db.Model):
     use_str_first_name = db.Column(db.String(100),nullable=True, default= '')
     use_str_last_name = db.Column(db.String(100), nullable=True, default= '')
     use_str_phone = db.Column(db.String(15), nullable=True, default= '')
-    use_str_profile_img = db.Column(db.String(200), nullable=True, default= 'profile_pictures/user.jpg')
+    use_str_profile_img = db.Column(db.String(200), nullable=True, default= 'profile_pictures/logo.png')
     use_date_register_date = db.Column(db.DateTime)
     use_bol_suspension = db.Column(db.Boolean, default=False)
     use_date_suspension_date = db.Column(db.DateTime, nullable=True)
@@ -87,17 +87,17 @@ class Services(db.Model):
 # Tabla Turn
 class Turn(db.Model):
     __tablename__ = "turn"
-    turn_int_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    service_id = db.Column(db.Integer, db.ForeignKey("services.ser_int_id"))
-    turn_int_user_id = db.Column(db.Integer, db.ForeignKey("user.use_int_id"))
-    turn_str_name_turn = db.Column(db.String(100))
-    turn_str_description = db.Column(db.String(200))
-    turn_date_creation_date = db.Column(db.Date)
-    turn_date_date_assignment = db.Column(db.Date)
-    turn_time_start_turn = db.Column(db.Time)
-    turn_time_finish_turn = db.Column(db.Time)
-    turn_bol_assigned = db.Column(db.Boolean, default=False)
-
+    turn_int_id = db.Column(db.Integer, primary_key=True, autoincrement=True) # queda
+    service_id = db.Column(db.Integer, db.ForeignKey("services.ser_int_id")) # queda
+    turn_int_user_id = db.Column(db.Integer, db.ForeignKey("user.use_int_id")) #queda
+    turn_str_name_turn = db.Column(db.String(100)) # dia 
+    turn_str_description = db.Column(db.String(200)) # No va 
+    turn_date_creation_date = db.Column(db.Date) # Paciente, solo love el Cliente
+    turn_date_date_assignment = db.Column(db.Date) # No va, 
+    turn_time_start_turn = db.Column(db.Time)  # ver Cliente, Admin. Hora que inicia 
+    turn_time_finish_turn = db.Column(db.Time)  # ver Admin , ver Cliente pasarlo como a boleano .
+    turn_bol_assigned = db.Column(db.Boolean, default=False) # Si asignado .   # se debe crear una columna mas tipo boolean para finalizar el turno
+    
     service = db.relationship("Services", backref="turns")
 
     #metodo para que tambien se vea la categoria del Turno 

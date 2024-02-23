@@ -14,9 +14,28 @@ api = Api(auth, version="1.0", title="Agendify", description="Agendify API REST"
 autho = api.namespace("auth", description="Rutas para Autotificacion")
 
 
-
+###################################################################################################
+###################################################################################################
+###################################################################################################
+###################################################################################################
+#
+#@auth.doc(description="")
+#@auth.doc(params={
+#})
 @autho.route("/register")
 class Users(Resource):
+    @autho.doc(
+        description="Registrar un nuevo usuario.",
+        params={
+            'email': 'El correo electrónico del usuario a registrar.',
+            'password': 'La contraseña del usuario a registrar.'
+        },
+        responses={
+            200: 'Éxito. El usuario fue creado exitosamente.',
+            400: 'Error de solicitud. El correo electrónico ya está en uso o los datos de entrada son inválidos.',
+            500: 'Error del servidor. No se pudo completar la solicitud debido a un problema en el servidor.'
+        }
+    )
     def post(self):
         """
         Registrar Usuario
@@ -42,10 +61,25 @@ class Users(Resource):
         except Exception as e:
             print("Error:", e)
             return jsonify({"message": "Error al conectarse con la BD"})
-
+###################################################################################################
+###################################################################################################
+###################################################################################################
+###################################################################################################
 # Login
 @autho.route("/login")
 class Login(Resource):
+    @autho.doc(
+        description="Iniciar sesión de usuario.",
+        params={
+            'email': 'El correo electrónico del usuario para iniciar sesión.',
+            'password': 'La contraseña del usuario para iniciar sesión.'
+        },
+        responses={
+            200: 'Éxito. La autenticación fue exitosa y se ha generado un token de acceso.',
+            400: 'Error de solicitud. El correo electrónico o la contraseña proporcionados son incorrectos.',
+            500: 'Error del servidor. No se pudo completar la solicitud debido a un problema en el servidor.'
+        }
+    )
     def post(self):
         """
         Login de Usuario
@@ -78,10 +112,24 @@ class Login(Resource):
         except Exception as e:
             print("Error:", e)
             return jsonify({"message": "Error en el Servidor"})
-
+###################################################################################################
+###################################################################################################
+###################################################################################################
+###################################################################################################
 #route de ejemplo
 @autho.route("/rol")
 class Token(Resource):
+    @autho.doc(
+        description="Muestra el tipo de rol que posee el usuario.",
+        params={
+            'Authorization': {'description': 'El token de acceso del usuario.', 'type': 'string', 'required': True}
+        },
+        responses={
+            200: 'Éxito. Se devuelve el tipo de rol del usuario.',
+            401: 'Error de autenticación. El token de acceso no se proporcionó correctamente o no es válido.',
+            500: 'Error del servidor. No se pudo completar la solicitud debido a un problema en el servidor.'
+        }
+    )
     def post(self):
         """
         Muestra El Tipo de Rol Que Posee El Usuario
@@ -106,85 +154,3 @@ class Token(Resource):
             return jsonify({"message": "Error En el Servidor"})
 
 
-# EndPoint para Actualizar la Imagen
-# se pueden mover para las rutas respectivas
-
-#NOTA:  las rutas para lasimagenes puede ser movidas a su archivo correspondiente, queda por revisar bien la ruta delete de img
-        
-# @autho.route("/user/img")
-# class Img(Resource):
-#     def put(self):
-#         #Solicitud de Token por el headers
-#         auth = request.headers.get('Authorization')
-#         img = request.files['img']
-
-#         if not auth:
-#             return jsonify({"message": "Token no proporcionado"})
-
-#         datosToken = descodificarToken(auth)
-#         id = datosToken.get('id')
-#         role = datosToken.get('role')
-
-#         try:
-#             # Verificar el rol del usuario
-#             if role == 'clie' or role == 'prov':
-#                 user = None
-#                 if role == 'clie':
-#                     user = Cliente.query.filter_by(cli_int_user_id=id).first()
-#                     if not user:
-#                         return jsonify({"message": "Cliente no encontrado"})
-#                     # Guardar la imagen para el cliente
-#                     user.save_cli_str_profile_img(img)
-#                 elif role == 'prov':
-#                     user = Proveedor.query.filter_by(pro_int_user_id=id).first()
-#                     if not user:
-#                         return jsonify({"message": "Proveedor no encontrado"})
-#                     # Guardar la imagen para el proveedor
-#                     user.save_pro_str_profile_img(img)
-
-#                 return jsonify({"message": "Imagen de perfil actualizada correctamente"})
-#             else:
-#                 return jsonify({"message": "Rol de usuario desconocido"})
-
-#         except Exception as e:
-#             print("Error:", e)
-#             return jsonify({"message": "Error al conectarse con la BD"})
-
-
-# #Borrar la Iamgen 
-        
-#     def delete(self):
-#         # Solicitud de Token por el headers
-#         auth = request.headers.get('Authorization')
-
-#         if not auth:
-#             return jsonify({"message": "Token no proporcionado"})
-
-#         datosToken = descodificarToken(auth)
-#         id = datosToken.get('id')
-#         role = datosToken.get('role')
-
-#         try:
-#             # Verificar el rol del usuario
-#             if role == 'clie' or role == 'prov':
-#                 user = None
-#                 if role == 'clie':
-#                     user = Cliente.query.filter_by(cli_int_user_id=id).first()
-#                     if not user:
-#                         return jsonify({"message": "Cliente no encontrado"})
-#                     # Eliminar la imagen del cliente
-#                     user.delete_profile_img()
-#                 elif role == 'prov':
-#                     user = Proveedor.query.filter_by(pro_int_user_id=id).first()
-#                     if not user:
-#                         return jsonify({"message": "Proveedor no encontrado"})
-#                     # Eliminar la imagen del proveedor
-#                     user.delete_profile_img()
-
-#                 return jsonify({"message": "Imagen de perfil eliminada correctamente"})
-#             else:
-#                 return jsonify({"message": "Rol de usuario desconocido"})
-
-#         except Exception as e:
-#             print("Error:", e)
-#             return jsonify({"message": "Error al conectarse con la BD"})

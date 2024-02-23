@@ -19,10 +19,11 @@ admin = api.namespace("admin", description="Rutas administrativas")
 #Mostrar lista de Pacientes
 @admin.route("/pacientes")
 class PacientesAll(Resource):
+
     def get(self):
         """ 
         Obtener Listado de Paciente 
-        Ejemplo: http://127.0.0.1:40709/admin/pacientes?page=1
+        Ejemplo: http://127.0.0.1/admin/pacientes?page=1
 
         """
         auth = request.headers.get('Authorization')
@@ -62,7 +63,7 @@ class PacientesAll(Resource):
                     'phone': user.use_str_phone,
                     'profile_img': user.use_str_profile_img,
                     'register_date': user.use_date_register_date.strftime('%Y-%m-%d %H:%M:%S'),
-                    'suspension': user.use_date_suspension,
+                    'suspension': user.use_bol_suspension,
                     'suspension_date': user.use_date_suspension_date.strftime('%Y-%m-%d %H:%M:%S') if user.use_date_suspension_date else None,
                     'role': user.use_str_role
                 }
@@ -78,10 +79,17 @@ class PacientesAll(Resource):
 ###################################################################################################
 #Detalles de un cliente, Actualizar y Borrar
 @admin.route("/paciente/<int:id>")
+@admin.doc(
+        description="Para ruta Dinamicas .",
+        params={
+            'Authorization': {'description': 'El token de acceso del usuario.', 'type': 'string', 'required': True}
+        }
+    )
 class PacientesAll(Resource):
     def get(self, id):
         """ 
         Ver Detalles del Paciente de Forma Individual
+        ejempo : http://127.0.0.1/admin/paciente/1
         """
         auth = request.headers.get('Authorization')
         
@@ -111,7 +119,7 @@ class PacientesAll(Resource):
                 'phone': paciente.use_str_phone,
                 'img': paciente.use_str_profile_img,
                 'data_reister': paciente.use_date_register_date,
-                'suspension': paciente.use_date_suspension,
+                'suspension': paciente.use_bol_suspension,
                 'data_suspension': paciente.use_date_suspension_date,
                 'role': paciente.use_str_role
             })
@@ -122,9 +130,19 @@ class PacientesAll(Resource):
 ###################################################################################################
 ###################################################################################################
 ###################################################################################################
+@admin.route("/paciente/<int:id>")
+@admin.doc(
+        description="Para ruta Dinamicas",
+        params={
+            'Authorization': {'description': 'El token de acceso del usuario.', 'type': 'string', 'required': True},
+            'Suspender': {'description':'se debe enviar True o False'}
+        }
+    )
+class PacientesAll(Resource):
     def put(self, id):
         """ 
-        Suspender Paciente
+        Suspender : 'True' o 'False'
+        ejempo : http://127.0.0.1/admin/paciente/1
         """
         auth = request.headers.get('Authorization')
         data = request.get_json()
@@ -153,7 +171,7 @@ class PacientesAll(Resource):
                 return jsonify({'message': 'Paciente no encontrado'})
 
             if suspender in ['True', 'False']:
-                paciente.use_date_suspension = suspender == 'True'
+                paciente.use_bol_suspension = suspender == 'True'
                 paciente.use_date_suspension_date = datetime.now() if suspender == 'True' else None
 
                 db.session.commit()
