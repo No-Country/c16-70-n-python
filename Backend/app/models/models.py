@@ -105,3 +105,11 @@ class Turn(db.Model):
         return {
             'category_name': self.service.ser_str_category_name,
         }
+    
+
+class Generador_turn(db.Model):
+    gnt_str_dia = db.Column(db.String(100)) # lunes/martes/miercoles/jueves
+    gnt_str_horainicio = db.Column(db.String(100)) # hora inicio de dispo
+    gnt_str_horafin = db.Column(db.String(100)) # hora fin de dispo
+    gnt_str_duracionturn = db.Column(db.String(100)) # duracion de turnos
+
