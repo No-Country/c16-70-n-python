@@ -80,13 +80,6 @@
     
 ### Endpoints de la API
 
-- `/api/clientes`
-  - GET: Obtener lista de clientes
-
-- `/api/clientes/<id>`
-  - GET: Obtener detalles de un cliente
-  - PUT: Actualizar información de un cliente
-  - DELETE: Eliminar un cliente
 
 - `/api/turnos`
   - GET: Obtener lista de turnos
