@@ -108,8 +108,8 @@ class Turn(db.Model):
     
 
 class Generador_turn(db.Model):
-    gnt_str_dia = db.Column(db.String(100)) # lunes/martes/miercoles/jueves
-    gnt_str_horainicio = db.Column(db.String(100)) # hora inicio de dispo
-    gnt_str_horafin = db.Column(db.String(100)) # hora fin de dispo
-    gnt_str_duracionturn = db.Column(db.String(100)) # duracion de turnos
+    gnt_int_dia = db.Column(db.Integer, primary_key=True) # lunes/martes/miercoles/jueves
+    gnt_time_horainicio = db.Column(db.Time) # hora inicio de dispo
+    gnt_str_horafin = db.Column(db.Time) # hora fin de dispo
+    gnt_str_duracionturn = db.Column(db.Integer) # duracion de turnos en minutos
 
