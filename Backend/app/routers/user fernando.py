@@ -1,8 +1,9 @@
 from flask_restx import Resource
 from flask import Blueprint, jsonify, request
 from .auth import api
-from ..models.models import User, db
+from ..models.models import User, db , Turn
 from ..utils.segurity import verify_token
+from datetime import datetime
 
 users = Blueprint("user", __name__)
 user = api.namespace("user", description="Rutas User")
@@ -168,7 +169,29 @@ class GetTurnUser(Resource):
     def get(self):
         verify_token()
         id = verify_token().get('id')
-        pass
+        hoy = datetime.date.today()
+        if id:
+            select_turn = Turn.query.filter_by(turn_bol_assigned=False).filter(Turn.turn_date_date_assignment > hoy).all()
+
+            try:
+                if select_turn:    
+                    turn_list = []
+                    for data in turn_list:
+                        turn_data = {
+                            'idturn' : data.turn_int_id,
+                            'idservice':data.service_id,
+                            'nameturn':data.turn_str_name_turn,
+                            'descriptionturn': data.turn_str_description,
+                            'creationdate': data.turn_date_creation_date,
+                            'assigmentturn':data.turn_date_date_assignment,
+                            'turn_start':data.turn_time_start_turn,
+                            'turn_finish':data.turn_time_finish_turn
+                            }
+                    turn_list.append(turn_data)
+                return jsonify(turn_list)
+            except Exception as db:
+                print("Error",db)
+                return jsonify({"menssage":"error al conectarse con la DB"})
 
 
 ###################################################################################################
@@ -196,7 +219,29 @@ class GetTurnoUser(Resource):
     def get(self):
         verify_token()
         id = verify_token().get('id')
-        pass
+        hoy = datetime.date.today()
+        if id:
+            select_turn = Turn.query.filter_by(turn_int_user_id=id).filter(Turn.turn_date_date_assignment < hoy).all()
+
+            try:
+                if select_turn:    
+                    turn_list = []
+                    for data in turn_list:
+                        turn_data = {
+                            'idturn' : data.turn_int_id,
+                            'idservice':data.service_id,
+                            'nameturn':data.turn_str_name_turn,
+                            'descriptionturn': data.turn_str_description,
+                            'creationdate': data.turn_date_creation_date,
+                            'assigmentturn':data.turn_date_date_assignment,
+                            'turn_start':data.turn_time_start_turn,
+                            'turn_finish':data.turn_time_finish_turn
+                            }
+                    turn_list.append(turn_data)
+                return jsonify(turn_list)
+            except Exception as db:
+                print("Error",db)
+                return jsonify({"menssage":"error al conectarse con la DB"})
 
 ###################################################################################################
 ###################################################################################################
