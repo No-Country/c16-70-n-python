@@ -19,10 +19,11 @@ admin = api.namespace("admin", description="Rutas administrativas")
 #Mostrar lista de Pacientes
 @admin.route("/pacientes")
 class PacientesAll(Resource):
+
     def get(self):
         """ 
         Obtener Listado de Paciente 
-        Ejemplo: http://127.0.0.1:40709/admin/pacientes?page=1
+        Ejemplo: http://127.0.0.1/admin/pacientes?page=1
 
         """
         auth = request.headers.get('Authorization')
@@ -78,10 +79,17 @@ class PacientesAll(Resource):
 ###################################################################################################
 #Detalles de un cliente, Actualizar y Borrar
 @admin.route("/paciente/<int:id>")
+@admin.doc(
+        description="Para ruta Dinamicas .",
+        params={
+            'Authorization': {'description': 'El token de acceso del usuario.', 'type': 'string', 'required': True}
+        }
+    )
 class PacientesAll(Resource):
     def get(self, id):
         """ 
         Ver Detalles del Paciente de Forma Individual
+        ejempo : http://127.0.0.1/admin/paciente/1
         """
         auth = request.headers.get('Authorization')
         
@@ -122,9 +130,19 @@ class PacientesAll(Resource):
 ###################################################################################################
 ###################################################################################################
 ###################################################################################################
+@admin.route("/paciente/<int:id>")
+@admin.doc(
+        description="Para ruta Dinamicas",
+        params={
+            'Authorization': {'description': 'El token de acceso del usuario.', 'type': 'string', 'required': True},
+            'Suspender': {'description':'se debe enviar True o False'}
+        }
+    )
+class PacientesAll(Resource):
     def put(self, id):
         """ 
-        Suspender Paciente
+        Suspender : 'True' o 'False'
+        ejempo : http://127.0.0.1/admin/paciente/1
         """
         auth = request.headers.get('Authorization')
         data = request.get_json()

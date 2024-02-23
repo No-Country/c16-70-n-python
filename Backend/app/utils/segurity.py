@@ -22,7 +22,7 @@ def descodificarPassword(password, passwordDB):
 
 def codificarToken(data):
     now = datetime.utcnow()
-    expiration = now + timedelta(hours=1)
+    expiration = now + timedelta(hours=10)
     playload = {
         'id' : data.get('id'),
         'role': data.get('role'),
