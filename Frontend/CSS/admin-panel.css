@@ -19,7 +19,7 @@
 }
 
 *{
-    
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
 
@@ -38,7 +38,7 @@ main{
     flex-direction: column;
     justify-content: left;
     min-width: 500px;
-    max-width: 1080px;
+    max-width: 1150px;
     margin-left: auto;
     margin-right: auto;
     margin-top: 30px;
@@ -49,6 +49,7 @@ main{
     padding-left: 20px;
     padding-right: 20px;
     padding-bottom: 20px;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
 
 
 }
