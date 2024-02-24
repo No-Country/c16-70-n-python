@@ -93,7 +93,7 @@ class Turn(db.Model):
     turn_str_name_turn = db.Column(db.String(100)) # dia 
     turn_str_description = db.Column(db.String(200)) # No va 
     turn_date_creation_date = db.Column(db.Date) # Paciente, solo love el Cliente
-    turn_date_date_assignment = db.Column(db.Date) # No va, 
+    turn_date_date_assignment = db.Column(db.Date) # es la fecha del turno, 
     turn_time_start_turn = db.Column(db.Time)  # ver Cliente, Admin. Hora que inicia 
     turn_time_finish_turn = db.Column(db.Time)  # ver Admin , ver Cliente pasarlo como a boleano .
     turn_bol_assigned = db.Column(db.Boolean, default=False) # Si asignado .   # se debe crear una columna mas tipo boolean para finalizar el turno
