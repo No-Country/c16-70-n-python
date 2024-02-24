@@ -1,8 +1,9 @@
 from flask_restx import Resource
 from flask import Blueprint, jsonify, request
 from .auth import api
-from ..models.models import User, db
+from ..models.models import User, db, Turn
 from ..utils.segurity import verify_token
+from datetime import datetime 
 
 users = Blueprint("user", __name__)
 user = api.namespace("user", description="Rutas User")
@@ -13,9 +14,42 @@ user = api.namespace("user", description="Rutas User")
 @user.route('/get')
 class GetUserDataById(Resource):
     def get(self):
+        """
+        Obtiene los datos de un usuario específico por su ID.
+
+        Parámetros:
+        -----------
+        No recibe parámetros directamente de la solicitud.
+
+        Retorna:
+        --------
+        jsonify:
+            Un JSON que contiene los siguientes datos del usuario si se encuentra:
+            - user_id: int
+                El ID del usuario.
+            - email: str
+                El correo electrónico del usuario.
+            - firstname: str
+                El primer nombre del usuario.
+            - lastname: str
+                El apellido del usuario.
+            - phone: str
+                El número de teléfono del usuario.
+            - profile_image: str
+                La URL de la imagen de perfil del usuario.
+            - register_date: str
+                La fecha de registro del usuario (en formato 'YYYY-MM-DD').
+            - suspension_date: str
+                La fecha de suspensión del usuario (en formato 'YYYY-MM-DD').
+            - status: bool
+                El estado de suspensión del usuario (True si está suspendido, False si no lo está).
+            
+            Un mensaje de error si el usuario no se encuentra o si ocurre algún problema durante la operación.
+
+        """
         verify_token()
         id = verify_token().get('id')
-        
+
         try:
             user = User.query.get(id)
             if user is None:
@@ -40,9 +74,60 @@ class GetUserDataById(Resource):
 @user.route('/put')
 class PutDatosUser(Resource):
     def put(self):
+        """
+        Actualiza los datos de un usuario en la base de datos.
+
+        Parámetros:
+        -----------
+        No recibe parámetros directamente de la solicitud.
+        Los datos para actualizar se envían en formato JSON en el cuerpo de la solicitud. Se espera que el JSON contenga los siguientes campos:
+
+        - email: str
+            El nuevo correo electrónico del usuario.
+        - firstname: str
+            El nuevo nombre (o primer nombre) del usuario.
+        - lastname: str
+            El nuevo apellido (o apellido) del usuario.
+        - phone: str
+            El nuevo número de teléfono del usuario.
+        - suspension_date: str
+            La nueva fecha de suspensión del usuario (en formato de fecha, por ejemplo, 'YYYY-MM-DD'). Puede estar vacía si el usuario no está suspendido.
+
+        Retorna:
+        --------
+        jsonify:
+            Un mensaje de éxito si la actualización fue exitosa.
+            Un mensaje de error si ocurrió algún problema durante la actualización.
+
+        """
+        #solicito el token
         verify_token()
         id = verify_token().get('id')
-        pass
+
+        try:
+            user = User.query.get(id)
+            if user:
+                data = request.get_json()
+                user.use_str_email = data.get('email')
+                user.use_str_first_name = data.get('firstname')
+                user.use_str_last_name = data.get('lastname')
+                user.use_str_phone = data.get('phone')
+
+                suspension_date = data.get('suspension_date')
+                if suspension_date:
+                    user.use_date_suspension_date = suspension_date
+                    user.use_bol_suspension = True
+                else:
+                    user.use_date_suspension_date = None
+                    user.use_bol_suspension = False
+
+                db.session.commit()
+                return jsonify({"message": "Usuario actualizado correctamente"})
+            else:
+                return jsonify({'error': 'Usuario no encontrado'}), 404
+        except Exception as e:
+            print("Error:", e)
+            return jsonify({"message": "Error al actualizar el usuario"})
 
 ###################################################################################################
 ###################################################################################################
@@ -85,11 +170,33 @@ class PutImgUser(Resource):
 #Listado de Turnos Disponibles
 @user.route('/turno')
 class GetTurnUser(Resource):
+    "no esta funcionando"
     def get(self):
         verify_token()
         id = verify_token().get('id')
-        pass
+        hoy = datetime.date.today()
+        if id:
+            select_turn = Turn.query.filter_by(turn_bol_assigned=False).filter(Turn.turn_date_date_assignment > hoy).all()
 
+            try:
+                if select_turn:    
+                    turn_list = []
+                    for data in select_turn:
+                        turn_data = {
+                            'idturn' : data.turn_int_id,
+                            'idservice':data.service_id,
+                            'nameturn':data.turn_str_name_turn,
+                            'descriptionturn': data.turn_str_description,
+                            'creationdate': data.turn_date_creation_date,
+                            'assigmentturn':data.turn_date_date_assignment,
+                            'turn_start':data.turn_time_start_turn,
+                            'turn_finish':data.turn_time_finish_turn
+                            }
+                    turn_list.append(turn_data)
+                return jsonify(turn_list)
+            except Exception as db:
+                print("Error",db)
+                return jsonify({"menssage":"error al conectarse con la DB"})  
 
 ###################################################################################################
 ###################################################################################################
