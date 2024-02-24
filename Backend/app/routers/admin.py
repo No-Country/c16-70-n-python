@@ -2,7 +2,7 @@ from flask import Blueprint, request, jsonify, current_app
 from flask_restx import Api, Resource
 from ..utils.segurity import descodificarPassword, codificarPassword, codificarToken, descodificarToken
 import os
-from datetime import datetime
+from datetime import datetime , timedelta
 from ..routers.auth import api
 from ..models.models import User, db, Turn, Services
 
@@ -288,8 +288,79 @@ class Turnos(Resource):
 class TurnoCrear(Resource):
     def post(self):
         """
-        Crear un nuevo turno
+        Maneja las solicitudes POST para crear un nuevo turno.
+
+        Solicitud:
+        - Cabeceras:
+            - Authorization: Token para la autenticación.
+        - Carga útil JSON:
+            - fecha (str): Fecha en formato 'AAAA-MM-DD'.
+            - inicio (str): Hora de inicio en formato 'HH:MM'.
+            - fin (str): Hora de finalización en formato 'HH:MM'.
+            - duracion (int): Duración de cada turno en minutos.
+
+        Retorna:
+        - Respuesta JSON:
+            - message: Indica el resultado de la operación.
+
+        Descripción:
+        Este punto final crea nuevos turnos basados en los datos proporcionados en la carga útil JSON. Requiere 
+        autenticación a través de la cabecera 'Authorization'. Extrae el ID de usuario del token obtenido del encabezado 
+        de autorización. Procesa la carga útil JSON para extraer la fecha, hora de inicio, hora de finalización y duración 
+        de cada turno. Luego, intenta crear nuevas entradas de turno en la base de datos. Si ya existen turnos para la 
+        fecha proporcionada, devuelve un mensaje indicando que ya existen entradas para esa fecha. De lo contrario, crea 
+        nuevas entradas de turno con los parámetros especificados y guarda los cambios en la base de datos.
         """
+        auth = request.headers.get('Authorization')
+        if not auth:
+            return jsonify({"message": "Token no proporcionado"})
+
+        datostoken = descodificarToken(auth)
+        id = datostoken.get('id')
+
+        data = request.get_json()
+        fecha_j = data.get('fecha')
+        fecha = datetime.strptime(fecha_j, '%Y-%m-%d').date()
+        inicio_j = data.get('inicio')
+        inicio = datetime.strptime(inicio_j, '%H:%M').time()
+        fin_j = data.get('fin')
+        fin = datetime.strptime(fin_j, '%H:%M').time()
+        duracion = int(data.get('duracion'))
+
+        try:
+            hoy = datetime.now().date()
+
+            consulta = Turn.query.filter_by(turn_date_date_assignment=fecha).first()
+
+            if consulta:
+                return jsonify({'message': 'Ya hay datos en la tabla para esta fecha'})
+            else:
+                hora_inicio_turnos = inicio
+                while hora_inicio_turnos < fin:
+                    hora_fin_turno = datetime.combine(datetime.min, hora_inicio_turnos) + timedelta(minutes=duracion)
+                    hora_fin_turno = hora_fin_turno.time()
+
+                    new_turn = Turn(
+                        turn_int_user_id=id,
+                        turn_date_creation_date=hoy,
+                        turn_date_date_assignment=fecha,
+                        turn_time_start_turn=hora_inicio_turnos,
+                        turn_time_finish_turn=hora_fin_turno,
+                        turn_bol_assigned=False
+                    )
+
+                    hora_inicio_turnos = hora_fin_turno
+                    db.session.add(new_turn)
+
+                db.session.commit()
+                return jsonify({'message': 'Turnos habilitados exitosamente'})
+
+        except Exception as e:
+            print("Error:", e)
+            return jsonify({"message": "Error en el servidor"})
+        """
+        Crear un nuevo turno
+        
         auth = request.headers.get('Authorization')
         data = request.get_json()
         
@@ -327,7 +398,7 @@ class TurnoCrear(Resource):
 
         except Exception as e:
             return jsonify({'message': str(e)})
-
+"""
 
 ###################################################################################################
 ###################################################################################################
