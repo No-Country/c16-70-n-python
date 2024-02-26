@@ -213,6 +213,7 @@ class TurnosGet(Resource):
                         turn_data = {
                             'idturn' : data.turn_int_id,
                             'idservice':data.service_id,
+                            'id_user_assig':data.turn_int_user_id,
                             'nameturn':data.turn_str_name_turn,
                             'descriptionturn': data.turn_str_description,
                             'creationdate': data.turn_date_creation_date.strftime('%Y-%m-%d'),
@@ -314,19 +315,39 @@ class ProcessTurnsUser(Resource):
         
         pass
 
+@user.route('/turno/asignar/<int:turn_int_id>')
+class AssignerTurnsUser(Resource):
+    # Asignar un turno a un usuario
+    def put(self, turn_int_id):
+        # Verificar el token de autenticación
+        user_id = verify_token().get('id')
+
+        # Verificar si el usuario existe
+        if user_id is None:
+            return jsonify({'error': 'Usuario no encontrado'}), 404
+        # Intentar asignar el turno al usuario
+        id_turno=turn_int_id
+        try:
+            print(turn_int_id)
+            turno = Turn.query.filter_by(turn_int_id=id_turno).first()
+            if turno is None:
+                return jsonify({'error': 'Turno no encontrado'})
+
+            turno.turn_int_user_id = int(user_id)
+            print(turno)
+            print(turno.turn_int_user_id)
+            db.session.commit()
+            return jsonify({'message': 'Turno asignado correctamente'})
+
+        except Exception as e:
+            db.session.rollback()
+            return jsonify({'error': 'Error al asignar el turno', 'details': str(e)})
 
 ###################################################################################################
 ###################################################################################################
 ###################################################################################################
 ###################################################################################################
-    # FERNANDO
-    # actualziar turno por url <int:id>
-    # solo para abandonar el turno es decir retirar su id unico
-    def put(self):
-        verify_token()
-        id = verify_token().get('id')
-        
-        pass
+
 
 
 ###################################################################################################

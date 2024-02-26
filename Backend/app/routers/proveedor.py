@@ -200,3 +200,29 @@
 # delete ubicacion     orlando
 
 
+
+
+@user.route('/turno/asignar/<int:turn_int_id>')
+class AssignerTurnsUser(Resource):
+    # Asignar un turno a un usuario
+    def put(self, turn_int_id):
+        # Verificar el token de autenticación
+        user_id = verify_token().get('id')
+
+        # Verificar si el usuario existe
+        if user_id is None:
+            return jsonify({'error': 'Usuario no encontrado'}), 404
+
+        # Intentar asignar el turno al usuario
+        try:
+            turno = Turn.query.filter_by(turn_int_id=turn_int_id).first()
+            if turno is None:
+                return jsonify({'error': 'Turno no encontrado'}), 404
+
+            turno.turn_int_user_id = user_id
+            db.session.commit()
+            return jsonify({'message': 'Turno asignado correctamente'}), 200
+
+        except Exception as e:
+            db.session.rollback()
+            return jsonify({'error': 'Error al asignar el turno', 'details': str(e)}), 500

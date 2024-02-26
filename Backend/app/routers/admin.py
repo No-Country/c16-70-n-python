@@ -265,7 +265,7 @@ class Turnos(Resource):
                 formatted_turno = {
                     'id': turno.turn_int_id,
                     'service_id': turno.service_id,
-                    'user_id': turno.turn_int_user_id,
+                    #'user_id': turno.turn_int_user_id,
                     'name': turno.turn_str_name_turn,
                     'description': turno.turn_str_description,
                     'creation_date': turno.turn_date_creation_date,
