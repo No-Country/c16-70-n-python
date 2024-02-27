@@ -3,6 +3,7 @@ const paginationNext = document.getElementById('pagination-next');
 
 let currentPage = 1;
 const limitPerPage = 10;
+const apiUrl = `http://localhost:5000/admin/pacientes`;
 
 paginationPrev.addEventListener('click', () => {
   if (currentPage > 1) {
@@ -21,7 +22,7 @@ paginationNext.addEventListener('click', () => {
 });
 
 async function obtenerDatosAPI(page, limit) {
-  const apiUrl = `http://localhost:3000/users?_page=${page}&_per_page=${limit}`;
+  const apiUrl = apiUrl + `?_page=${page}`;
   
 
   try {

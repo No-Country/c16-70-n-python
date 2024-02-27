@@ -15,7 +15,9 @@ function obtenerYMostrarToken() {
       redirect: 'follow'
   };
 
-  fetch("http://127.0.0.1:5000/rol", requestOptions)
+  const response = fetch("http://127.0.0.1:5000/rol", requestOptions);
+  console.log(response);
+  response
       .then(response => response.json())
       .then(data => {
           console.log(data);
@@ -24,7 +26,7 @@ function obtenerYMostrarToken() {
           } else if (data.role === "prov") {
               window.location.href = "/Frontend/ruta-para-proveedores";
             } else if (data.role === "admin") {
-              window.location.href = "/Frontend/admin-panel";
+              window.location.href = "/Frontend/admin-panel/admin-panel-all-users.html";
           } else {
               console.log("Rol desconocido");
               

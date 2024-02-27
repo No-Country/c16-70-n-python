@@ -13,7 +13,7 @@ function cleanUserCards() {
     const paginationPrev = document.getElementById('pagination-prev');
     const paginationNext = document.getElementById('pagination-next');
     
-    data.data.forEach(user => {
+    data.forEach(user => {
       const userCard = document.importNode(template, true);
       if (user.profileImgUrl == undefined) {
           userCard.querySelector('.user img').src = 'images/profile_8.jpg';

@@ -9,7 +9,7 @@ const login = (email, password) => {
     redirect: "follow",
   };
 
-  fetch("http://127.0.0.1:5000/login", requestOptions)
+  fetch("http://127.0.0.1:5000//auth/login", requestOptions)
     .then((response) => {
       if (!response.ok) {
         throw new Error(
