@@ -31,21 +31,21 @@
                     
                 </div>
                 <h2 class="fw-bold text-center pt-5 mb-5">Bienvenido a Agendify</h2>
-                <form action="#">
+                <form id="loginForm">
                     <div class="mb-4">
                         <label for="email" class="form-label">Correo electronico</label>
-                        <input type="email" class="form-control" name="email" id="email" required><br>
+                        <input type="email" class="form-control" name="email" id="email" required placeholder="Ingresa tu correo"><br>
                     </div>
                     <div class="mb-4">
                         <label for="password" class="form-label">Contraseña</label>
-                        <input type="password" class="form-control" name="password" id="password" required> <br>
+                        <input type="password" class="form-control" name="password" id="password" required placeholder="Ingresa tu contraseña"> <br>
                     </div>
                     <div class="d-grid">
                         <button type="submit" class="btn btn-primary"  style="background-color:rgb(34, 33, 48)">Iniciar Sesion</button><br>
                     </div>
 
                     <div class="my-3 pt-5">
-                        <span>No tienes cuenta? <a href="../register/index2.html">Registrate</a></span> <br>
+                        <span>No tienes cuenta? <a href="../register/register.html">Registrate</a></span> <br>
                         <span><a href="#">Recuperar password</a></span>
                     </div>
 
@@ -58,6 +58,6 @@
 
 
     <!-- Scripts -->
-    <script src="./login.js"></script>
+    <script type="module" src="./login.js"></script>
 </body>
 </html>

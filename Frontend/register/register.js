@@ -16,7 +16,7 @@ const register = (userData) => {
       // Mostrar mensaje en un alert
       alert(data.message);
       // Redireccionar al usuario al login
-      window.location.href = "/Frontend/login/index.html";
+      window.location.href = "/Frontend/login/login.html";
 
     })
     .catch(error => {
@@ -37,20 +37,16 @@ document
     const apellido = document.getElementById("apellido").value.trim();
     const email = document.getElementById("email").value.trim();
     const telefono = document.getElementById("telefono").value.trim();
-    const direccion = document.getElementById("direccion").value.trim();
     const password = document.getElementById("password").value;
     const password2 = document.getElementById("password2").value;
-    const role = document.getElementById("role").value;
 
     if (
       !nombre ||
       !apellido ||
       !email ||
       !telefono ||
-      !direccion ||
       !password ||
-      !password2 ||
-      !role
+      !password2
     ) {
       alert("Por favor, complete todos los campos.");
       return;
@@ -70,11 +66,9 @@ document
     const userData = {
       email,
       password,
-      role,
       nombre,
       apellido,
       telefono,
-      direccion
     };
     register(userData);
   });
