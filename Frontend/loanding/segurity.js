@@ -1,41 +1,37 @@
-function obtenerYMostrarToken() {
-  const token = sessionStorage.getItem("token");
-
-  if (!token) {
-      window.location.href = "/Frontend/Home%20Page/Index.html";
-      return;
+import { apiUrl } from "../js/config.js";
+async function obtenerYMostrarToken() {
+    const token = sessionStorage.getItem("token");
+  
+    if (!token) {
+        window.location.href = "/frontend/";
+        return;
+    }
+  
+    var myHeaders = new Headers();
+    myHeaders.append("Authorization", "Bearer " + token);
+  
+    var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        redirect: 'follow'
+    };
+  
+    await fetch(apiUrl + "/auth/rol", requestOptions)
+        .then(response => response.json())
+        .then(data => {
+            if (data.role === "cliente") {
+                window.location.href = "/frontend/ruta-para-clientes";
+            } else if (data.role == "Admin") {
+                window.location.href = "/frontend/admin-panel/admin-panel-all-users.html";
+            } else {
+                console.log("Rol desconocido");
+  
+                window.location.href = "/frontend/";
+            }
+        })
+        .catch(error => console.log('error', error));
   }
-
-  var myHeaders = new Headers();
-  myHeaders.append("Authorization", "Bearer " + token);
-
-  var requestOptions = {
-      method: 'POST',
-      headers: myHeaders,
-      redirect: 'follow'
+  
+  window.onload = () => {
+    obtenerYMostrarToken();
   };
-
-  const response = fetch("http://127.0.0.1:5000/rol", requestOptions);
-  console.log(response);
-  response
-      .then(response => response.json())
-      .then(data => {
-          console.log(data);
-          if (data.role === "clie") {
-              window.location.href = "/Frontend/ruta-para-clientes";
-          } else if (data.role === "prov") {
-              window.location.href = "/Frontend/ruta-para-proveedores";
-            } else if (data.role === "admin") {
-              window.location.href = "/Frontend/admin-panel/admin-panel-all-users.html";
-          } else {
-              console.log("Rol desconocido");
-              
-              window.location.href = "/Frontend/Home%20Page/Index.html";
-          }
-      })
-      .catch(error => console.log('error', error));
-}
-
-window.onload = () => {
-  obtenerYMostrarToken();
-};

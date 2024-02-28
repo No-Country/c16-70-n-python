@@ -1,3 +1,4 @@
+import { apiUrl } from "../js/config.js";
 const register = (userData) => {
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
@@ -9,7 +10,7 @@ const register = (userData) => {
     redirect: 'follow'
   };
 
-  fetch(`http://127.0.0.1:5000//auth/register`, requestOptions)
+  fetch(apiUrl + "/auth/register", requestOptions)
     .then(response => response.json())
     .then(data => {
       // Mostrar mensaje en un alert

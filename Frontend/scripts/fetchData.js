@@ -17,7 +17,7 @@ export default async function obtenerDatosAPI(page, limit, role="") {
   
   try {
       // const token = sessionStorage.getItem("token"); 
-      const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6IkFkbWluIiwiZXhwIjoxNzA4OTU2NzAzfQ.U_ziqSAes0kgqQyl96Jc3ClOmp6wPDPBFc0Vwsps7fY"
+      const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6IkFkbWluIiwiZXhwIjoxNzA5MTIwMTc0fQ.o2bhIQYzdrhXYvJ1grTGy6BzQrN844Jo6tdO1Xh-SDw"
       console.log("aqui token",token);// Obtener el token del almacenamiento local
       const headers = {
           'Authorization': `Bearer ${token}` // Formatear el token como "Bearer token"
