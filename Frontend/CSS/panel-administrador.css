@@ -32,6 +32,12 @@
     
 }
 
+.container-nav{
+    background-color: var(--primary-color);
+}
+
+
+
 .logo img{
     width: 135px;
     height: 60px;
@@ -39,8 +45,21 @@
 }
 
 .dropdown{
-    margin-right: 100px;
+    margin-right: 110px;
 }
+
+.dropdown button{
+    background-color: var(--primary-color);
+    border:white 1px solid;
+    width: 80px;
+    height: 50px;
+}
+
+.dropdown button:hover{
+    background-color: var(--secondary-color);
+    color: var(--bagraun-color);
+}
+
 
 .dropdown img{
     width: 40px;
@@ -48,6 +67,9 @@
     border-radius: 50%;
 }
 
+.d-flex-custom {
+    height: 91vh; /* Define la altura que desees */
+}
 
 
 .text-section{
@@ -58,23 +80,7 @@
 .container-table{
 display: flex;
 justify-content: center;
-}
 
-.table{
-    border-collapse:collapse;
-    margin: 25px 0;
-    font-size: 17px;
-    max-width: 1000px;
-    border-radius: 5px 5px 0 0;
 }
-
-table thead th, th{
-    border: 1px solid var(--primary-color);
-}
-
-table tbody td, th{
-    border: 1px solid var(--primary-color);
-}
-
 
 
