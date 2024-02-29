@@ -1,4 +1,4 @@
-import { apiUrl } from "../js/config.js";
+import { apiUrlServer } from "../js/config.js";
 async function obtenerYMostrarToken() {
     const token = sessionStorage.getItem("token");
   
@@ -16,11 +16,11 @@ async function obtenerYMostrarToken() {
         redirect: 'follow'
     };
   
-    await fetch(apiUrl + "/auth/rol", requestOptions)
+    await fetch(apiUrlServer + "/auth/rol", requestOptions)
         .then(response => response.json())
         .then(data => {
             if (data.role === "cliente") {
-                window.location.href = "/frontend/ruta-para-clientes";
+                window.location.href = "/frontend/";
             } else if (data.role == "Admin") {
                 window.location.href = "/frontend/admin-panel/admin-panel-all-users.html";
             } else {

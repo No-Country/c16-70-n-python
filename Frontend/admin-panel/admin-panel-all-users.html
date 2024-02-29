@@ -40,7 +40,7 @@
         <div><img src="" alt=""></div>
         <p>Odontologica Dentrify</p>
        </header>
-       <div class="title">
+    <div class="title">
         <h2>
             <p>Administracion de usuarios</p>
         </h2>
@@ -50,13 +50,26 @@
             <button>Buscar</button>
         </div> -->
     </div>
-       <nav>
-        <div class="nav-selection">
-            <p class = "nav-selection--active">Todos</p>
-            <p class="nav-selection--inactive">Activos</p>
-            <p class = "nav-selection--inactive">Suspendidos</p>
-        </div>
+    <div class="navegation">
+        <nav>
+            <div class="nav-selection">
+                <p class = "nav-selection--active">Todos</p>
+                <p class="nav-selection--inactive">Activos</p>
+                <p class = "nav-selection--inactive">Suspendidos</p>
+            </div>
+        </nav>
+        <nav>
+            <div class="nav-selection">
+                <button>
+                    <a href="../admin-panel/admin-panel-gestion-turnos.html">Turnos</a>
+                </button>
+                <button>
+                    <a href="../admin-panel/admin-panel-creacion-turnos.html">Crear Turnos</a>
+                </button>
+            </div>
        </nav>
+    </div>
+      
 
     <div id="table-container">
         <template id="table-person-template" class="table-person-container">
@@ -82,14 +95,14 @@
                     <small>inscripcion</small>
                 </div>
                 <div class="action">
-                    <a href="admin-panel-detail-user.html">
+                    <a href="/Frontend/admin-panel/admin-panel-detail-user.html" class="url-edit">
                         <div class="edit">
                             <img src="../img/pen-new-square-svgrepo-com.svg" alt="">
                         </div>
                     </a>
-                    <a href="">
+                    <a href="" class="url-delete">
                         <div class="delete">
-                            <img src="../img/backspace-svgrepo-com copy.svg" alt="">
+                            <img src="../img/backspace-svgrepo-com.svg" alt="">
                         </div>
                     </a>
                 </div>
@@ -97,11 +110,11 @@
         </template>
     </div>
     <div class="pagination-container" id="pagination-container">
-        <div class="pagination-prev hidden" id="pagination-prev">
-            <a href="#"><img src="../img/arrow-left-svgrepo-com.svg" alt=""></a>
+        <div class="pagination-prev" id="pagination-prev">
+            <a href="#"><img src="../img/arrow-left-svgrepo-com.svg" alt="left"></a>
         </div>
         <div class="pagination-next" id="pagination-next">
-            <a href="#"><img src="../img/arrow-right-svgrepo-com.svg" alt=""></a>
+            <a href="#"><img src="../img/arrow-right-svgrepo-com.svg" alt="right"></a>
         </div>
     </div>
 

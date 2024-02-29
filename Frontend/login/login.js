@@ -1,7 +1,6 @@
-import { apiUrl } from "../js/config.js";
+import { apiUrlServer } from "../js/config.js";
 
 const login = (email, password) => {
-  console.log("aqui",apiUrl);
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
 
@@ -12,8 +11,9 @@ const login = (email, password) => {
     redirect: "follow",
   };
 
-  fetch(apiUrl + "/auth/login", requestOptions)
+  fetch(apiUrlServer + "/auth/login", requestOptions)
     .then((response) => {
+      console.log("aqui", response)
       if (!response.ok) {
         throw new Error(
           "Error al iniciar sesión. Por favor, verifique sus credenciales."

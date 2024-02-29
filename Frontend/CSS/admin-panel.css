@@ -25,6 +25,12 @@
 
 }
 
+a{
+    text-decoration: none;
+    color: var(--white-color-black);
+
+}
+
 body{
     padding-left: 30px;
     padding-right: 30px;
@@ -124,6 +130,7 @@ button{
     padding: 5px;
     border-radius: 5px;
     cursor: pointer;
+    margin-left: 20px;
 
 }
 
@@ -296,11 +303,12 @@ button:active{
 }
 
 .delete:hover img {
-    content: url('images/backspace-svgrepo-com\ copy.svg');
+    content: url('../img/backspace-svgrepo-com_copy.svg');
+    scale: 1.2;
 }
 
 .delete:active img {
-    content: url('images/backspace-svgrepo-com\ copy.svg');
+    content: url('../img/backspace-svgrepo-com_copy.svg');
     scale: 0.9;
 }
 
@@ -335,6 +343,48 @@ button:active{
 .hidden{
     display: none;
 }
+
+.navegation{
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;}
+
+
+#form-create-turno{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 350px;
+}
+
+#form-create-turno label{
+    font-weight: 700;
+}
+
+#form-create-turno input{
+    margin-bottom: 10px;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#form-create-turno button[type="submit"]{
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#form-create-turno button[type="submit"]:hover{
+    background-color: #0069d9;
+}
+
 
 @media screen and (max-width: 970px) {
     .role{

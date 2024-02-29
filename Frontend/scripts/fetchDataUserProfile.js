@@ -1,7 +1,7 @@
 import { apiUrlServer } from "../js/config.js";
 
-export default async function obtenerDatosAPI(page, role="") {
-  const apiUrl = apiUrlServer + `/admin/pacientes?role=${role}&_page=${page}`;
+export default async function obtenerDatosAPIUserProfile(id) {
+  const apiUrl = apiUrlServer + `/admin/paciente/${id}`;
   console.log("aqui", apiUrl);
   
   try {
@@ -14,6 +14,7 @@ export default async function obtenerDatosAPI(page, role="") {
       const response = await fetch(apiUrl, {
           headers: headers // Agregar los encabezados a la solicitud fetch
       });
+      console.log("aqui", response)
 
       if (!response.ok) {
           throw new Error('Error en la solicitud');
@@ -27,4 +28,3 @@ export default async function obtenerDatosAPI(page, role="") {
       return null; // Manejo de errores
   }
 }
-

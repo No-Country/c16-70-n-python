@@ -18,7 +18,7 @@ export default function switchActiveInactive() {
         }
         if (target.textContent === 'Proveedores') {
           stateRole.role = "proveedor";
-          obtenerDatosAPI(1, 10, "proveedor").then(data =>{renderUserCards(data)});
+          obtenerDatosAPI(1, "proveedor").then(data =>{renderUserCards(data)});
         }
         if (target.textContent === 'Todos') {
           stateRole.role = "";

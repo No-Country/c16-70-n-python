@@ -4,18 +4,17 @@ import switchActiveInactive from './botonSelectionList.js';
 import {paginationPrevie} from './paginationList.js';
 import {paginationNexti} from './paginationList.js';
 
-let currentPage = 1;
-const limitPerPage = 10;
 
 function main() {
-  obtenerDatosAPI(currentPage, limitPerPage)
-    .then(datos => {
-      renderUserCards(datos);
-    })
-    .catch(error => console.error('Error:', error));
+  obtenerDatosAPI()
+  .then(datos => {
+    renderUserCards(datos);
+  })
+  .catch(error => console.error('Error:', error));
 }
 
-paginationPrevie(currentPage, limitPerPage);
-paginationNexti(currentPage, limitPerPage);
+// paginationPrevie(currentPage);
+// paginationNexti(currentPage);
 switchActiveInactive();
+
 main()

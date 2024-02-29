@@ -9,7 +9,7 @@
 </head>
 <body>
 
-    <nav class="navbar navbar-principal">
+    <!-- <nav class="navbar navbar-principal">
         <div class="container">
 
         
@@ -31,23 +31,24 @@
             <a href="../Home Page/Index.html">Cerrar sesion</a>  
         </div>
     </div>
-    </nav>
+    </nav> -->
 
     <main>
        <header>
-        <div><img src="" alt=""></div>
-        <p>Agendify Administracion</p>
+            <div><img src="" alt=""></div>
+            <p>Agendify Administracion</p>
        </header>
        <div class="title">
-        <h2>
-            <p>Perfil de usuarios</p>
-        </h2>
-    </div>
-       <div id="table-container">
-        <div id="table-person-template" class="table-person-container"><!-- template--->
-            <div class="table-person">
-                <div class="user">
-                    <img src="../img/profile_8.jpg" alt="perfil">
+            <h2>
+                <p>Perfil de usuarios</p>
+            </h2>
+       </div>
+        <div id="table-container">
+            <template id="table-person-template" class="table-person-container"><!-- template--->
+                <div class="table-person">
+                    <div class="user">
+                        <img src="../img/profile_8.jpg" alt="perfil">
+                    </div>
                 </div>
                 <div class="user-info">
                     <div class="personal-info">
@@ -66,19 +67,11 @@
                             <strong>Telefono</strong>
                             <p>Telef. 123456789</p>
                         </div>
-                        <div class="direction-user">
-                            <strong>Direccion</strong>
-                            <p>Calle 123, colonia colonia, estado, municipio</p>
-                        </div>
                     </div>
                     <div class="status-info">
                         <div class="role">
                             <strong>Rol</strong>
                             <p>User</p>
-                        </div>
-                        <div class="count-type">
-                            <strong>Cuenta</strong>
-                            <p>Free</p>
                         </div>
                         <div class="status">
                             <strong>Estado</strong>
@@ -88,16 +81,21 @@
                             <strong>Inscripcion</strong>
                             <p>10/10/2020</p>
                         </div>
-                        <div class="date-incription">
+                        <div class="date-suspension">
                             <strong>Suspension</strong>
                             <p>10/10/2021</p>
                         </div>
                     </div>
 
-                    <button>Suspender</button>
-            </div>
-        </div> <!-- template fin--->
-    </div>
+                    <button id="btn-suspender">Suspender</button>
+                    <button>
+                        <a href="../admin-panel/admin-panel-edit-user.html">Actualizar</a>
+                    </button>
+                    <button>Eliminar</button>
+                </div>
+            </template>
+         <!-- template fin--->
+         </div>
     
 
 
@@ -105,6 +103,6 @@
 
     </main>
     
-    <!-- <script type="module" src="scripts/main.js"></script> -->
+    <script type="module" src="../scripts/mainUserProfile.js"></script>
 </body>
 </html>
