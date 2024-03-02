@@ -1,4 +1,5 @@
-import { updateSuspensionRecord } from "./suspenderUser.js";
+import { suspenderUsuario } from "./susperderActivarUser.js";
+import { activarUsuario } from "./susperderActivarUser.js";
 function cleanUserCards() {
     const container = document.getElementById('table-container');
     let child = container.lastElementChild;
@@ -35,9 +36,17 @@ function cleanUserCards() {
       container.appendChild(userCard);
 
       const susperder = document.getElementById("btn-suspender");
-      susperder.addEventListener("click", () => {
+      susperder.addEventListener("click", async(e) => {
         console.log("suspender");
-        updateSuspensionRecord(data.id);
+        await suspenderUsuario();
+        location.reload();
       })
-    
+
+      const activar = document.getElementById("btn-activar");
+      activar.addEventListener("click", async(e) => {
+        console.log("suspender");
+        await activarUsuario();
+        location.reload();
+      })
+      
   }
