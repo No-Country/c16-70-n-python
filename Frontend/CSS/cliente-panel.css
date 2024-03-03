@@ -66,9 +66,13 @@
 
 }
 
+.card-services{
+    justify-content: space-between;
+  }
+
 .card-turn-container{
     display: flex;
-    gap: 10px;
+    gap: 15px;
     flex-wrap: wrap;
 }
 .card-turn p{

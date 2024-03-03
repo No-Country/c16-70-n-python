@@ -145,6 +145,11 @@ button:active{
     
 }
 
+.btn-service{
+    margin-left: 0px;
+    margin-bottom: 15px;
+}
+
 .search{
     display: flex;
     justify-content: left;
@@ -286,6 +291,11 @@ button:active{
     justify-content: left;
     align-items: center;
 }
+
+.action-services{
+    justify-content: space-between;
+    
+  }
 
 .edit img{
     width: 30px;

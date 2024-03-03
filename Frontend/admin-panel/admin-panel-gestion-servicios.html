@@ -18,105 +18,35 @@
         <h2>
             <p>Gestion de servicios</p>
         </h2>
-        <!-- for future implementation -->
-        <!-- <div class="search">
-            <input type="text" placeholder="Buscar">
-            <button>Buscar</button>
-        </div> -->
     </div>
        <nav>
-        <button>
+        <button class="btn-service">
             <a href="../admin-panel/admin-panel-crear-servicios.html">Nuevo Servicio</a>
         </button>
-        <!-- <div class="nav-selection">
-            <p class = "nav-selection--active">Todos</p>
-            <p class="nav-selection--inactive">Activos</p>
-            <p class = "nav-selection--inactive">Completados</p>
-            <p class = "nav-selection--inactive">Cancelados</p>
-        </div> -->
+       
        </nav>
 
-    <div id="table-container">
-        <div id="table-person-template" class="card-turn-container"> <!-- template start--->
-            <div class="card-turn">
-                <!-- <div class="card-turn-img --active">
-                    <img src="../img/notification-unread-lines-svgrepo-com.svg" alt="">
-                </div> -->
-                <div  class="card-turn-info">
-                    <h3>Servio 1</h3>
-                    <p>Empaste dental</p>
-                    <!-- <small>20/10/2020 9:00</small> -->
+       <div id="table-container" class="card-turn-container">
+        <template id="table-person-template" > 
+            <div class="card-turn card-services ">
+                <div  class="card-turn-info" >
+                    <!-- <h3>Servicio</h3> -->
+                    <strong contenteditable="false">nombre servicio</strong>
+                </div>
+                <div class="action action-services">
+                    <a href="#" class="url-edit">
+                        <div class="edit">
+                            <img src="../img/pen-new-square-svgrepo-com.svg" alt="">
+                        </div>
+                    </a>
+                    <a href="#" class="url-delete">
+                        <div class="delete">
+                            <img src="../img/backspace-svgrepo-com.svg" alt="">
+                        </div>
+                    </a>
                 </div>
             </div>
-            <div class="card-turn">
-                <!-- <div class="card-turn-img --complete">
-                    <img src="../img/task-square-svgrepo-com.svg" alt="">
-                </div> -->
-                <div  class="card-turn-info">
-                    <h3>servicio 2</h3>
-                    <p>Limpieza dental</p>
-                    <!-- <small>20/10/2020 9:00</small> -->
-                </div>
-            </div>
-            <div class="card-turn">
-                <!-- <div class="card-turn-img --cancel">
-                    <img src="../img/notification-lines-remove-svgrepo-com.svg" alt="">
-                </div> -->
-                <div  class="card-turn-info">
-                    <h3>Servicio 3</h3>
-                    <p>Extracción de las terceras molares</p>
-                    <!-- <small>20/10/2020 9:00</small> -->
-                </div>
-            </div>
-            <div class="card-turn">
-                <!-- <div class="card-turn-img --cancel">
-                    <img src="../img/notification-lines-remove-svgrepo-com.svg" alt="">
-                </div> -->
-                <div  class="card-turn-info">
-                    <h3>Servicio 4</h3>
-                    <p>Aplicación de sellantes</p>
-                    <!-- <small>20/10/2020 9:00</small> -->
-                </div>
-            </div>
-            <div class="card-turn">
-                <!-- <div class="card-turn-img --cancel">
-                    <img src="../img/notification-lines-remove-svgrepo-com.svg" alt="">
-                </div> -->
-                <div  class="card-turn-info">
-                    <h3>Servicio 5</h3>
-                    <p>Profilaxis</p>
-                    <!-- <small>20/10/2020 9:00</small> -->
-                </div>
-            </div>
-            <div class="card-turn">
-                <!-- <div class="card-turn-img --cancel">
-                    <img src="../img/notification-lines-remove-svgrepo-com.svg" alt="">
-                </div> -->
-                <div  class="card-turn-info">
-                    <h3>Servicio 6</h3>
-                    <p>Curaciones</p>
-                    <!-- <small>20/10/2020 9:00</small> -->
-                </div>
-            </div><div class="card-turn">
-                <!-- <div class="card-turn-img --cancel">
-                    <img src="../img/notification-lines-remove-svgrepo-com.svg" alt="">
-                </div> -->
-                <div  class="card-turn-info">
-                    <h3>Servicio 7</h3>
-                    <p>Radiografías de rayos X dentales</p>
-                    <!-- <small>20/10/2020 9:00</small> -->
-                </div>
-            </div><div class="card-turn">
-                <!-- <div class="card-turn-img --cancel">
-                    <img src="../img/notification-lines-remove-svgrepo-com.svg" alt="">
-                </div> -->
-                <div  class="card-turn-info">
-                    <h3>Servicio 8</h3>
-                    <p>Caries</p>
-                    <!-- <small>20/10/2020 9:00</small> -->
-                </div>
-            </div>
-        </div> <!-- template end-->
+        </template>
     </div>
     <div class="pagination-container" id="pagination-container">
         <div class="pagination-prev hidden" id="pagination-prev">
@@ -126,14 +56,7 @@
             <a href="#"><img src="../img/arrow-right-svgrepo-com.svg" alt=""></a>
         </div>
     </div>
-
-
-
-
     </main>
-    
-    <!-- <script type="module" src="../scripts/main.js"></script> -->
-    <!-- <script type="module" src="../scripts/saveIdUser.js"></script> -->
     <script type="module" src="../scripts/mainServices.js"></script>
 </body>
 </html>
