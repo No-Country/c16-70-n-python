@@ -244,7 +244,7 @@ class TurnosGet(Resource):
 class GetTurnoUser(Resource):
     def get(self):
         """
-        Obtiene los turnos finalizados de un usuario.
+        Obtiene los turnos pendientes de un usuario.
 
         Retorna:
         --------
