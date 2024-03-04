@@ -216,8 +216,10 @@ class TurnosGet(Resource):
                         
                         turn_data = {
                             'idturn': data.turn_int_id,
-                            'idservice': data.service_id,
-                            'service_description': service_description,
+                            'service_info': {
+                                'idservice': data.service_id,
+                                'service_description': service_description
+                            },
                             'id_user_assig': data.turn_int_user_id,
                             'nameturn': data.turn_str_name_turn,
                             'descriptionturn': data.turn_str_description,
