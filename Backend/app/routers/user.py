@@ -240,8 +240,65 @@ class TurnosGet(Resource):
 ###################################################################################################
 # [] MARCOS
 # Listado de Turnos del Paciente
+@user.route('/turnos/pendientes')
+class GetTurnoUser(Resource):
+    def get(self):
+        """
+        Obtiene los turnos finalizados de un usuario.
 
+        Retorna:
+        --------
+        jsonify:
+            Devuelve una lista de objetos JSON que representan los turnos finalizados de un usuario.
+            Cada objeto JSON contiene la información de un turno finalizado.
 
+            Los campos de cada objeto JSON incluyen:
+            - idturn: int
+                El ID único del turno.
+            - idservice: int
+                El ID del servicio al que pertenece el turno.
+            - nameturn: str
+                El nombre del turno.
+            - descriptionturn: str
+                La descripción del turno.
+            - creationdate: str
+                La fecha de creación del turno en formato 'YYYY-MM-DD'.
+            - assigmentturn: str
+                La fecha de asignación del turno en formato 'YYYY-MM-DD'.
+            - turn_start: str
+                La hora de inicio del turno en formato 'HH:MM:SS'.
+            - turn_finish: str
+                La hora de finalización del turno en formato 'HH:MM:SS'.
+
+            Si hay un error al conectarse con la base de datos, se devuelve un mensaje de error JSON.
+        """
+        verify_token()
+        id = verify_token().get('id')
+        hoy = date.today()
+        if id:
+            select_turn = Turn.query.filter_by(turn_int_user_id=id).filter(Turn.turn_date_date_assignment > hoy).all()
+            turn_list = []  
+
+            try:
+                if select_turn:    
+                    for data in select_turn:
+                        turn_data = {
+                            'idturn' : data.turn_int_id,
+                            'idservice':data.service_id,
+                            'nameturn':data.turn_str_name_turn,
+                            'descriptionturn': data.turn_str_description,
+                            'creationdate': data.turn_date_creation_date.strftime('%Y-%m-%d'),
+                            'assigmentturn': data.turn_date_date_assignment.strftime('%Y-%m-%d'),
+                            'turn_start': data.turn_time_start_turn.strftime('%H:%M:%S'),
+                            'turn_finish': data.turn_time_finish_turn.strftime('%H:%M:%S')
+                            }
+                        turn_list.append(turn_data)
+                    return jsonify(turn_list)
+                else:
+                    return jsonify({"message": "No hay turnos finalizados para este usuario"})
+            except Exception as db:
+                print("Error", db)
+                return jsonify({"message": "error al conectarse con la DB"})
 ###################################################################################################
 ###################################################################################################
 ###################################################################################################
