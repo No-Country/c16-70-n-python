@@ -347,7 +347,49 @@ class AssignerTurnsUser(Resource):
 ###################################################################################################
 ###################################################################################################
 ###################################################################################################
+#End Point Servicio
+@user.route("/servicios")
+class Servicios(Resource):
+    def get(self):
+        """ 
+        Obtener Listado de Servicios
+        Ejemplo: http://127.0.0.1:40709/admin/servicios?page=1
 
+        """
+        auth = request.headers.get('Authorization')
+
+        if not auth:
+            return jsonify({'message': "Token no proporcionado"})
+
+
+        verify_token()
+        id = verify_token().get('id')
+
+
+
+        try:
+            # Paginacion
+            page = request.args.get('page', 1, type=int)
+            per_page = request.args.get('per_page', 10, type=int)
+
+            servicios = Servicios.query.paginate(page=page, per_page=per_page, error_out=False)
+            #
+
+            lista_servicio = []
+            for servicio in servicios.items:
+                formatted_turno = {
+                    'id': servicio.ser_int_id,
+                    'name': servicio.ser_str_category_name
+                }
+                lista_servicio.append(formatted_turno)
+
+            return jsonify(lista_servicio)
+        except Exception as e:
+            return jsonify({'message': str(e)})
+###################################################################################################
+###################################################################################################
+###################################################################################################
+###################################################################################################
 
 
 ###################################################################################################
