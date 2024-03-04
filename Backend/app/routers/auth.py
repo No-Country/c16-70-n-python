@@ -43,6 +43,11 @@ class Users(Resource):
         data = request.get_json()
         email = data.get("email")
         password = data.get("password")
+        """ esto esta comentado para probar despues
+        first_name = data.get("first_name")
+        last_name = data.get("last_name")
+        phone = data.get("phone")
+        """
 
         try:
             exitsEmail = User.query.filter_by(use_str_email=email).first()
@@ -52,7 +57,13 @@ class Users(Resource):
                 return jsonify({"message": "El correo electrónico ya está en uso. Por favor, utilice otro."})
             
             passwordH = codificarPassword(password)
-            new_user = User(use_str_email=email, use_str_password=passwordH, use_date_register_date=fecha_registro)
+            new_user = User(use_str_email=email,
+                            use_str_password=passwordH, 
+                            use_date_register_date=fecha_registro,
+                            #use_str_first_name=first_name,
+                            #use_str_last_name=last_name,
+                            #use_str_phone=phone
+                            )
             db.session.add(new_user)
             db.session.commit()
 
