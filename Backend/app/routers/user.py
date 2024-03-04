@@ -210,17 +210,22 @@ class TurnosGet(Resource):
             try:
                 if select_turn:    
                     for data in select_turn:
+                        service_description = None
+                        if data.service:
+                            service_description = data.service.ser_str_category_name
+                        
                         turn_data = {
-                            'idturn' : data.turn_int_id,
-                            'idservice':data.service_id,
-                            'id_user_assig':data.turn_int_user_id,
-                            'nameturn':data.turn_str_name_turn,
+                            'idturn': data.turn_int_id,
+                            'idservice': data.service_id,
+                            'service_description': service_description,
+                            'id_user_assig': data.turn_int_user_id,
+                            'nameturn': data.turn_str_name_turn,
                             'descriptionturn': data.turn_str_description,
                             'creationdate': data.turn_date_creation_date.strftime('%Y-%m-%d'),
                             'assigmentturn': data.turn_date_date_assignment.strftime('%Y-%m-%d'),
                             'turn_start': data.turn_time_start_turn.strftime('%H:%M:%S'),
                             'turn_finish': data.turn_time_finish_turn.strftime('%H:%M:%S')
-                            }
+                        }
                         turn_list.append(turn_data)
                 return jsonify(turn_list)
             except Exception as db:
@@ -327,6 +332,7 @@ class AssignerTurnsUser(Resource):
             return jsonify({'error': 'Usuario no encontrado'}), 404
         # Intentar asignar el turno al usuario
         id_turno=turn_int_id
+        data = request.get_json()
         try:
             print(turn_int_id)
             turno = Turn.query.filter_by(turn_int_id=id_turno).first()
@@ -334,6 +340,7 @@ class AssignerTurnsUser(Resource):
                 return jsonify({'error': 'Turno no encontrado'})
 
             turno.turn_int_user_id = int(user_id)
+            turno.service_id = data.get('id_servicio')
             print(turno)
             print(turno.turn_int_user_id)
             db.session.commit()
