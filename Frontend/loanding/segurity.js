@@ -19,8 +19,8 @@ async function obtenerYMostrarToken() {
     await fetch(apiUrlServer + "/auth/rol", requestOptions)
         .then(response => response.json())
         .then(data => {
-            if (data.role === "cliente") {
-                window.location.href = "/frontend/";
+            if (data.role === "Paciente") {
+                window.location.href = "/frontend/cliente-panel/cliente-panel-principal.html";
             } else if (data.role == "Admin") {
                 window.location.href = "/frontend/admin-panel/admin-panel-all-users.html";
             } else {

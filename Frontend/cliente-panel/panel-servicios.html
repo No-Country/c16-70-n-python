@@ -3,58 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../CSS/panel-servicios.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="../CSS/admin-panel.css">
+    <link rel="stylesheet" href="../CSS/cliente-panel.css">
+    <title>Agendify</title>
 </head>
 <body>
-    <!---Inicio del header---->
-    <header class="container header">
-        <p class="text">Bienvenido al sistema de busqueda.</p>
-    </header>
+    <main>
+        
+       <header>
+        <div><img src="" alt=""></div>
+        <p>Odontologica Dentrify</p>
+       </header>
+       <div class="title">
+        <h2>
+            <p>Seleccion de servicios</p>
+        </h2>
+    </div>
+      
 
-    <header>
-        <section class="section">
-            <div class="container-section">
-
-                <div class="logo">
-                    <img src="../img/Logo.png" alt="">
+       <div id="table-container" class="card-turn-container">
+        <template id="table-person-template" > 
+            <div class="card-turn card-services ">
+                <div  class="card-turn-info" >
+                    <!-- <h3>Servicio</h3> -->
+                    <strong>nombre servicio</strong>
                 </div>
-
-                <div class="search">
-                    <input type="text" placeholder="Buscar">
-                    <button>Buscar</button>
-                </div>
-
-                <div class="user">
-                    <img src="../img/user.png" alt="">
-                    <p>Usuario</p>
-
+                <div class="action action-services">
+                    <a href="#" class="url-edit">
+                        <div class="edit">
+                            <img src="../img/pen-new-square-svgrepo-com.svg" alt="">
+                        </div>
+                    </a>
+                    <a href="#" class="url-delete">
+                        <div class="delete">
+                            <img src="../img/backspace-svgrepo-com.svg" alt="">
+                        </div>
+                    </a>
                 </div>
             </div>
-        </section>
-
-        <section class="section-2">
-            <nav class="navbar">
-                <div class="container-button">
-                    <button><span><img src="../img/hamburger-2-svgrepo-com.svg" alt=""></span> Todas las categorias</button>
-                </div>
-
-                <div class="links">
-                    <ul>
-                        <li><a href="">Inicio</a></li>
-                        <li><a href="">Servicios</a></li>
-                        <li><a href="">Contacto</a></li>
-                        <li><a href="">Acerca de</a></li>
-                    </ul>
-                </div>
-            </nav>
-        </section>
-    </header>
-    <!---Fin del header---->
-
-
-    <!---Inicio del main---->
-
-
+        </template>
+    </div>
+    <div class="pagination-container" id="pagination-container">
+        <div class="pagination-prev hidden" id="pagination-prev">
+            <a href="#"><img src="../img/arrow-left-svgrepo-com.svg" alt=""></a>
+        </div>
+        <div class="pagination-next" id="pagination-next">
+            <a href="#"><img src="../img/arrow-right-svgrepo-com.svg" alt=""></a>
+        </div>
+    </div>
+    </main>
+    <script type="module" src="../scripts/mainServices.js"></script>
 </body>
 </html>

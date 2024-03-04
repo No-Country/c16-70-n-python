@@ -1,4 +1,4 @@
-import deleteServices from "./deleteServices.js"
+import selectionServices from "./selectionService.js"
 import editCardService from "./editServices.js"
 function capitalizarPrimeraLetra(texto) {
   return texto.charAt(0).toUpperCase() + texto.slice(1); 
@@ -29,13 +29,12 @@ export  default function renderCardsService(data) {
       userCard.querySelector('.card-turn-info strong').textContent = capitalizarPrimeraLetra(services.name);
       userCard.querySelector('.card-turn-info strong').contentEditable = "false"
       userCard.querySelector('.edit').dataset.id = services.id;
-      userCard.querySelector('.delete').dataset.id = services.id;
+      userCard.querySelector('.selection').dataset.id = services.id;
       
       container.appendChild(userCard);
     });
     
-    deleteServices()
-    editCardService()
+    selectionServices()
     // paginationPrev.classList.toggle('hidden', currentPage = 1); // ! checar el control de la paginacion
     // paginationNext.classList.toggle('hidden', currentPage == 1);
 

@@ -1,31 +1,46 @@
-const editButton = document.querySelector(".edit")
-const editCard = document.querySelector(".card-turn-info p")
+import {updateService} from "./fechtServiceUpdate.js"
 
-function activarEdicion() {
-  editCard.contentEditable = 'true';
-}
+// actualizados hoy 030324-0234pm
 
-function desactivarEdicion() {
-  editcard.contentEditable = 'false';
-}
-
-export function editCardService() {
+export default function editCardService() {
   const editButton = document.querySelectorAll(".edit")
   const editCard = document.querySelectorAll(".card-turn-info strong")
   
-  editButton.forEach(button => {
+  function activarEdicion(index) {
+    console.log(editCard)
+    editCard[index].contentEditable = 'true';
+    editCard[index].focus()
+    
+  }
+  function desactivarEdicion(index) {
+    editCard[index].contentEditable = 'false';
+  }
+
+  let idCard
+  
+  editButton.forEach((button, index) => {
     button.addEventListener("click", () =>{
-      if(editCard.contentEditable === 'true') {
-        desactivarEdicion()
-      } else {
-        activarEdicion()
-      }
+      console.log("click en botón")
+      console.log(button)
+      idCard = index
+      console.log("id",idCard)
+      activarEdicion(idCard)
+      
+      
     })
   })
  
-
-  editableCard.addEventListener('blur', function() {
-    desactivarEdicion();
-  });
+  editCard.forEach(card => {
+    card.addEventListener('blur', async(e) => {
+      console.log("pierde foco")
+      desactivarEdicion(idCard)
+      let textService = card.textContent
+      console.log(textService)
+      await updateService(idCard,textService) // ! falta el enpoint para actualizar
+      console.log("servicio actualizado")
+      
+    })
+  })
+  
 
 }

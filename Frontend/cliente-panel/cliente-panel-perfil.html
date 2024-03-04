@@ -8,23 +8,48 @@
     <title>Agendify</title>
 </head>
 <body>
+
+    <!-- <nav class="navbar navbar-principal">
+        <div class="container">
+
+        
+        <div class="logo-container">
+            <img src="../img/Logo.png" alt="">
+        </div>
+        
+        <div class="Name-admin">
+            <p>Admin</p>
+
+        </div>
+        
+        <div class="link">
+            <a class="item" href="../Home Page/Index.html">Home</a>
+        </div>
+
+        <div class="cerrar-sesion">
+            
+            <a href="../Home Page/Index.html">Cerrar sesion</a>  
+        </div>
+    </div>
+    </nav> -->
+
     <main>
        <header>
-        <div><img src="" alt=""></div>
-        <p>Agendify</p>
+            <div><img src="" alt=""></div>
+            <p>Agendify Administracion</p>
        </header>
        <div class="title">
-        <h2>
-            <p>Perfil de usuario</p>
-        </h2>
-    </div>
-       <div id="table-container">
-        <div id="table-person-template" class="table-person-container"><!-- template--->
-            <div class="table-person">
-                <div class="user">
-                    <img src="../img/profile_8.jpg" alt="perfil">
+            <h2>
+                <p>Perfil de usuarios</p>
+            </h2>
+       </div>
+        <div id="table-container">
+            <div id="table-person-template" class="table-person-container"><!-- template--->
+                <div class="table-person">
+                    <div class="user">
+                        <img src="../admin-panel/images/profile_8.jpg" alt="perfil">
+                    </div>
                 </div>
-                <form action="" method="post">
                 <div class="user-info">
                     <div class="personal-info">
                         <div class="user-name">
@@ -42,40 +67,28 @@
                             <strong>Telefono</strong>
                             <p>Telef. 123456789</p>
                         </div>
-                        <div class="direction-user">
-                            <strong>Direccion</strong>
-                            <p>Calle 123, colonia colonia, estado, municipio</p>
-                        </div>
                     </div>
                     <div class="status-info">
-                        <div class="role">
-                            <strong>Rol</strong>
-                            <p>User</p>
-                        </div>
-                        <div class="count-type">
-                            <strong>Cuenta</strong>
-                            <p>Free</p>
-                        </div>
-                        <div class="status">
-                            <strong>Estado</strong>
-                            <p>Activo</p>
-                        </div>
+                        
+                        
                         <div class="date-incription">
                             <strong>Inscripcion</strong>
                             <p>10/10/2020</p>
                         </div>
-                        <div class="date-incription">
-                            <strong>Suspension</strong>
-                            <p>10/10/2021</p>
-                        </div>
+                        
                     </div>
+                    <div class="nav-selection">
 
-                    <button type="submit">Actualizar</button>
-                    <input type="file" name="image" id="image">
-                </form> 
+                        <button id="btn-suspender">Suspender cuenta</button>
+                        <button>
+                            <a href="../admin-panel/admin-panel-edit-user.html">Actualizar</a>
+                        </button>
+                    </div>
+                    <!-- <button>Eliminar</button> -->
+                </div>
             </div>
-        </div> <!-- template fin--->
-    </div>
+         <!-- template fin--->
+         </div>
     
 
 
@@ -83,6 +96,7 @@
 
     </main>
     
-    <!-- <script type="module" src="scripts/main.js"></script> -->
+    <script type="module" src="../scripts/mainUserProfile.js"></script>
+    <script type="module" src="../scripts/susperderActivarUser.js"></script>
 </body>
 </html>
