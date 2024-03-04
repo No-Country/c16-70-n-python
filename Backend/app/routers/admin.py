@@ -283,6 +283,72 @@ class Turnos(Resource):
 ###################################################################################################
 ###################################################################################################
 ###################################################################################################
+#Lista de Turnos Asignados
+@admin.route("/turnos/assigned")
+class Turnos(Resource):
+    def get(self):
+        """ 
+        Obtener Listado de Turnos ASIGNADOS
+        Ejemplo: http://127.0.0.1:40709/admin/turnos?page=1
+
+        """
+        auth = request.headers.get('Authorization')
+
+        if not auth:
+            return jsonify({'message': "Token no proporcionado"})
+
+
+        datosToken = descodificarToken(auth)
+        id = datosToken.get('id')
+        role = datosToken.get('role')
+
+
+        try:
+            if role != 'Admin':
+                return jsonify({'message': 'No Estas Autorizado'})
+        
+            # Paginacion
+            page = request.args.get('page', 1, type=int)
+            per_page = request.args.get('per_page', 10, type=int)
+
+            exitsAdmin = User.query.filter_by(use_int_id=id, use_str_role=role).first()
+
+            if exitsAdmin is None:
+                return jsonify({'message':'No estás autorizado'})
+
+            turnos = Turn.query.filter_by(turn_bol_assigned=True).paginate(page=page, per_page=per_page, error_out=False)
+            #
+
+            lista_turno = []
+            for turno in turnos.items:
+                if turno.service:
+                            service_description = turno.service.ser_str_category_name
+                formatted_turno = {
+                    'id': turno.turn_int_id,
+                    'service_info': {
+                                'idservice': turno.service_id,
+                                'service_description': service_description
+                    },
+                    #'user_id': turno.turn_int_user_id,
+                    'name': turno.turn_str_name_turn,
+                    'description': turno.turn_str_description,
+                    'creation_date': turno.turn_date_creation_date,
+                    'date_assignment': turno.turn_date_date_assignment.strftime('%Y-%m-%d %H:%M:%S'),
+                    'start_turn': turno.turn_time_start_turn,
+                    'finish_turn': turno.turn_time_finish_turn('%Y-%m-%d %H:%M:%S'),
+                    'bol_assigned': turno.turn_bol_assigned
+                }
+                lista_turno.append(formatted_turno)
+
+            return jsonify(lista_turno)
+        except Exception as e:
+            return jsonify({'message': str(e)})
+###################################################################################################
+###################################################################################################
+###################################################################################################
+###################################################################################################
+
+
 #crear turno
 @admin.route("/turnos")
 class TurnoCrear(Resource):
