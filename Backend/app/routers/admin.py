@@ -321,21 +321,22 @@ class Turnos(Resource):
 
             lista_turno = []
             for turno in turnos.items:
+                service_description = None
                 if turno.service:
-                            service_description = turno.service.ser_str_category_name
+                    service_description = turno.service.ser_str_category_name
+
                 formatted_turno = {
                     'id': turno.turn_int_id,
                     'service_info': {
-                                'idservice': turno.service_id,
-                                'service_description': service_description
+                        'idservice': turno.service_id,
+                        'service_description': service_description
                     },
-                    #'user_id': turno.turn_int_user_id,
                     'name': turno.turn_str_name_turn,
                     'description': turno.turn_str_description,
                     'creation_date': turno.turn_date_creation_date,
                     'date_assignment': turno.turn_date_date_assignment.strftime('%Y-%m-%d %H:%M:%S'),
-                    'start_turn': turno.turn_time_start_turn,
-                    'finish_turn': turno.turn_time_finish_turn('%Y-%m-%d %H:%M:%S'),
+                    'start_turn': str(turno.turn_time_start_turn), 
+                    'finish_turn': str(turno.turn_time_finish_turn),
                     'bol_assigned': turno.turn_bol_assigned
                 }
                 lista_turno.append(formatted_turno)

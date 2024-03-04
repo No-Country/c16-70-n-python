@@ -385,6 +385,7 @@ class AssignerTurnsUser(Resource):
     def put(self, turn_int_id):
         # Verificar el token de autenticación
         user_id = verify_token().get('id')
+        
 
         # Verificar si el usuario existe
         if user_id is None:
@@ -400,6 +401,7 @@ class AssignerTurnsUser(Resource):
 
             turno.turn_int_user_id = int(user_id)
             turno.service_id = data.get('id_servicio')
+            turno.turn_bol_assigned=True
             print(turno)
             print(turno.turn_int_user_id)
             db.session.commit()
