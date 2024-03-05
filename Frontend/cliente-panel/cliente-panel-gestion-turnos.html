@@ -15,31 +15,39 @@
        </header>
        <div class="title">
         <h2>
-            <p>Administracion de Turnos</p>
+            <p>Seleccionar un turno disponible</p>
         </h2>
     </div>
-       <nav>
-        <div class="nav-selection">
-            <p class = "nav-selection--active">Todos</p>
-            <p class="nav-selection--inactive">Activos</p>
-            <p class = "nav-selection--inactive">Completados</p>
-            <p class = "nav-selection--inactive">Cancelados</p>
-        </div>
-       </nav>
+       
 
     <div id="table-container">
-        <div id="table-person-template" class="card-turn-container"> <!-- template start--->
-            <div class="card-turn">
+        <template id="table-person-template" class="card-turn-container"> <!-- template start--->
+            <div class="card-turn card-services">
                 <div class="card-turn-img --active">
                     <img src="../img/notification-unread-lines-svgrepo-com.svg" alt="">
                 </div>
                 <div  class="card-turn-info">
-                    <h3>Robert 20_10_24 9:00</h3>
-                    <p>Empaste dental</p>
-                    <small>20/10/2020 9:00</small>
+                    <h3>Turno</h3>
+                    
+                    <div class= "turn-start">
+                      <h4>Inicio: </h4>
+                      <p>12:00</p>
+                    </div>
+                    <div class="turn-date">
+                      <p>Fecha</p>
+                      <small>20/10/2020 9:00</small>
+                    </div>
+                </div>
+                <div class="action action-services">
+                    
+                    <a href="#" class="url-delete">
+                        <div class="selection delete">
+                            <img src="../img/backspace-svgrepo-com.svg" alt="">
+                        </div>
+                    </a>
                 </div>
             </div>
-            <div class="card-turn">
+           <!-- <div class="card-turn">
                 <div class="card-turn-img --complete">
                     <img src="../img/task-square-svgrepo-com.svg" alt="">
                 </div>
@@ -58,8 +66,8 @@
                     <p>Empaste dental</p>
                     <small>20/10/2020 9:00</small>
                 </div>
-            </div>
-        </div> <!-- template end-->
+            </div> -->
+        </template> <!-- template end-->
     </div>
     <div class="pagination-container" id="pagination-container">
         <div class="pagination-prev hidden" id="pagination-prev">
@@ -75,7 +83,7 @@
 
     </main>
     
-    <script type="module" src="../scripts/main.js"></script>
-    <script type="module" src="../scripts/saveIdUser.js"></script>
+    <script type="module" src="../scripts/mainSelectionturn.js"></script>
+    
 </body>
 </html>

@@ -1,5 +1,5 @@
-import selectionServices from "./selectionService.js"
-import editCardService from "./editServices.js"
+//import deleteServices from "./deleteServices.js"
+import selectionTurn from "./selectionTurn.js"
 function capitalizarPrimeraLetra(texto) {
   return texto.charAt(0).toUpperCase() + texto.slice(1); 
 }
@@ -12,7 +12,7 @@ function cleanUserCards() {
     }
   }
 
-export  default function renderCardsService(data) {
+export  default function renderCardsTurn(data) {
     cleanUserCards();
     console.log("service_data:",data);
     const container = document.getElementById('table-container');
@@ -21,20 +21,22 @@ export  default function renderCardsService(data) {
     const paginationNext = document.getElementById('pagination-next');
     
     
-    data.forEach(services => {
+    data.forEach((turn,index) => {
       console.log("data_service",data)
       const userCard = document.importNode(template, true);
       // userCard.querySelector('.card-turn-info h3').textContent = "Servicio " + services.id
+      userCard.querySelector('.card-turn-info h3').textContent = "Turno #" + (index+1)
       
-      userCard.querySelector('.card-turn-info strong').textContent = capitalizarPrimeraLetra(services.name);
-      userCard.querySelector('.card-turn-info strong').contentEditable = "false"
+      userCard.querySelector('.turn-start p').textContent = turn.turn_start
+      userCard.querySelector('.turn-date small').textContent = turn.assigmentturn
       
-      userCard.querySelector('.selection').dataset.id = services.id;
+      userCard.querySelector('.selection').dataset.id = turn.idturn;
       
       container.appendChild(userCard);
     });
     
-    selectionServices()
+   selectionTurn()
+    //editCardService()
     // paginationPrev.classList.toggle('hidden', currentPage = 1); // ! checar el control de la paginacion
     // paginationNext.classList.toggle('hidden', currentPage == 1);
 

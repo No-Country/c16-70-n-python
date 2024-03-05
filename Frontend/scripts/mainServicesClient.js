@@ -1,8 +1,8 @@
-import obtenerServiciosAPI from "./fetchServices.js";
+import obtenerServiciosClientAPI from "./fetchServiceClient.js";
 import renderCardsService from "./renderCardServicesClient.js"
 
 function main() {
-  obtenerServiciosAPI()
+  obtenerServiciosClientAPI()
   .then(datos => {
     renderCardsService(datos);
   })
