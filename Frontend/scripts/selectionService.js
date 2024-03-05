@@ -6,7 +6,9 @@ export default function selectionServices () {
       console.dir(button.dataset.id)
 
       
-      putTurnClient()
+      putTurnClient().then(() => {
+        window.location.href = "/frontend/cliente-panel/cliente-panel-principal.html"
+      })
       
      
     })

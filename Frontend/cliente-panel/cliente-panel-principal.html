@@ -23,27 +23,33 @@
 
             <div class="table-turns">
                 <h3 class="title-list">Turno activo</h3>
-                <div id="table-container">
-                    <div id="table-client-template" >
+                <div id="table-container-active">
+                    <template id="table-client-template-turn-active" >
                         <div class="card-turn">
                             <div class="card-turn-img --active">
                                 <img src="../img/notification-unread-lines-svgrepo-com.svg" alt="">
                             </div>
                             <div  class="card-turn-info">
-                                <h3>Robert 20_10_24 9:00</h3>
-                                <p>Empaste dental</p>
-                                <p>20/10/2020</p>
-                                <p>9:00</p>
+                                <h3>Turno</h3>
+                                
+                                <div class= "turn-start">
+                                  <h4>Inicio: </h4>
+                                  <p>12:00</p>
+                                </div>
+                                <div class="turn-date">
+                                  <p>Fecha</p>
+                                  <small>20/10/2020 9:00</small>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </template>
                 </div>
                 <!-- <button class="btn-all">Ver todos</button> -->
             </div>
     
             <div class="table-providers">
                 <h3 class="title-list">Historial de turnos</h3>
-                <div id="table-client-template">
+                <template id="table-client-template-turn-history">
                     <div class="card-turn">
                         <div class="card-turn-img --active">
                             <img src="../img/notification-unread-lines-svgrepo-com.svg" alt="">
@@ -55,7 +61,7 @@
                             <p>9:00</p>
                         </div>
                     </div>
-                </div>
+                </template>
                 <button class="btn-all">Ver todos</button>
             </div>
         </div>
@@ -75,7 +81,7 @@
 
 
     </main>
-    
+    <script type="module" src="../scripts/mainClient.js"></script>
  
 </body>
 </html>
