@@ -1,7 +1,7 @@
 from flask_restx import Resource
 from flask import Blueprint, jsonify, request
 from .auth import api
-from ..models.models import User, db, Turn
+from ..models.models import User, db, Turn, Services
 from ..utils.segurity import verify_token
 from datetime import datetime , date
 
@@ -379,19 +379,29 @@ class ProcessTurnsUser(Resource):
         
         try:
             select_turn = Turn.query.filter_by(turn_int_user_id=id).all()
-        
+            user = User.query.get(id)
+            service_info = Services.query.get()
             if select_turn is None:
                 return jsonify({'error': 'Turno no encontrado'}), 404
             
             turn_data = {
-                            'idturn' : select_turn.turn_int_id,
-                            'idservice':select_turn.service_id,
-                            'nameturn':select_turn.turn_str_name_turn,
-                            'descriptionturn': select_turn.turn_str_description,
-                            'creationdate': select_turn.turn_date_creation_date.strftime('%Y-%m-%d'),
-                            'assigmentturn': select_turn.turn_date_date_assignment.strftime('%Y-%m-%d'),
-                            'turn_start': select_turn.turn_time_start_turn.strftime('%H:%M:%S'),
-                            'turn_finish': select_turn.turn_time_finish_turn.strftime('%H:%M:%S')
+                    'idturn' : select_turn.turn_int_id,
+                    'service_info': {
+                        'idservice': service_info.service_id,
+                        'service_description': service_info.service_description
+                    },
+                    'user_info': {
+                        'iduser': user.use_int_id,
+                        'user_first_name': user.use_str_first_name,
+                        'user_last_name': user.use_str_last_name,
+                        'user_phone': user.use_str_phone
+                    },
+                    'nameturn':select_turn.turn_str_name_turn,
+                    'descriptionturn': select_turn.turn_str_description,
+                    'creationdate': select_turn.turn_date_creation_date.strftime('%Y-%m-%d'),
+                    'assigmentturn': select_turn.turn_date_date_assignment.strftime('%Y-%m-%d'),
+                    'turn_start': select_turn.turn_time_start_turn.strftime('%H:%M:%S'),
+                    'turn_finish': select_turn.turn_time_finish_turn.strftime('%H:%M:%S')
             }
             return jsonify(turn_data)
         
