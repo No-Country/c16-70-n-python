@@ -10,7 +10,7 @@ user = api.namespace("user", description="Rutas User")
 
 
 # [X] MARCOS
-# Para que el usuario vea sus datos
+# Mostrar data del usuario
 @user.route('/get')
 class GetUserDataById(Resource):
     def get(self):
@@ -369,15 +369,34 @@ class GetTurnoUser(Resource):
 ###################################################################################################
 ###################################################################################################
 # [] MARCOS // FERNANDO
-@user.route('/turno/<int:use_int_id>')
+@user.route('/turno/<int:turn_int_id>')
 class ProcessTurnsUser(Resource):
-    #MARCOS
+    # MARCOS
     # ver el turno por id de url
     def get(self, id):
         verify_token()
         id = verify_token().get('id')
         
-        pass
+        try:
+            select_turn = Turn.query.filter_by(turn_int_user_id=id).all()
+        
+            if select_turn is None:
+                return jsonify({'error': 'Turno no encontrado'}), 404
+            
+            turn_data = {
+                            'idturn' : select_turn.turn_int_id,
+                            'idservice':select_turn.service_id,
+                            'nameturn':select_turn.turn_str_name_turn,
+                            'descriptionturn': select_turn.turn_str_description,
+                            'creationdate': select_turn.turn_date_creation_date.strftime('%Y-%m-%d'),
+                            'assigmentturn': select_turn.turn_date_date_assignment.strftime('%Y-%m-%d'),
+                            'turn_start': select_turn.turn_time_start_turn.strftime('%H:%M:%S'),
+                            'turn_finish': select_turn.turn_time_finish_turn.strftime('%H:%M:%S')
+            }
+            return jsonify(turn_data)
+        
+        except Exception as d:
+            return jsonify({'message': 'Error en la operacion'}), 501
 
 @user.route('/turno/asignar/<int:turn_int_id>')
 class AssignerTurnsUser(Resource):
