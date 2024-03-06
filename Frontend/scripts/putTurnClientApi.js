@@ -5,7 +5,10 @@ import { apiUrlServer } from '../js/config.js';
 
 
 export const putTurnClient = () => {
-    const data = {id_servicio : sessionStorage.getItem('service_id')}
+    const data = {
+        id_servicio : sessionStorage.getItem('service_id'),
+        descriptionturn: sessionStorage.getItem('service_description')
+    }
     const Url = apiUrlServer + `/user/turno/asignar/` + sessionStorage.getItem('turn_id');
     const headers = {
     'Authorization': 'Bearer ' + sessionStorage.getItem('token'),

@@ -27,7 +27,7 @@ export  default function renderCardsService(data) {
       // userCard.querySelector('.card-turn-info h3').textContent = "Servicio " + services.id
       
       userCard.querySelector('.card-turn-info strong').textContent = capitalizarPrimeraLetra(services.name);
-      userCard.querySelector('.card-turn-info strong').contentEditable = "false"
+      // userCard.querySelector('.card-turn-info strong').contentEditable = "false"
       
       userCard.querySelector('.selection').dataset.id = services.id;
       

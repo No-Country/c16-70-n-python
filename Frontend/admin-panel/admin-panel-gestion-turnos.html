@@ -33,16 +33,25 @@
         </div>
        </nav>
 
-    <div id="table-container">
+    <div id="table-container" class="card-turn-container">
         <template id="table-person-template" class="card-turn-container"> <!-- template start--->
             <div class="card-turn">
                 <div class="card-turn-img --active">
                     <img src="../img/notification-unread-lines-svgrepo-com.svg" alt="">
                 </div>
                 <div  class="card-turn-info">
-                    <h3>Robert 20_10_24 9:00</h3>
-                    <p>Empaste dental</p>
-                    <small>20/10/2020 9:00</small>
+                    <h3>Turno</h3>
+                    <div class="turn-service">
+                        <p>Limpieza</p>
+                    </div>
+                    <div class= "turn-start">
+                      <h4>Inicio: </h4>
+                      <p>12:00</p>
+                    </div>
+                    <div class="turn-date">
+                      <h4>Fecha</h4>
+                      <small>20/10/2020 9:00</small>
+                    </div>
                 </div>
             </div>
           
@@ -55,7 +64,7 @@
 
     </main>
     
-    <script type="module" src="../scripts/main.js"></script>
+    <script type="module" src="../scripts/mainAdminTurn.js"></script>
     <script type="module" src="../scripts/saveIdUser.js"></script>
 </body>
 </html>

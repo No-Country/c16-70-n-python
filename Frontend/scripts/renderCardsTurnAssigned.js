@@ -12,30 +12,31 @@ function cleanUserCards() {
     }
   }
 
-export  default function renderCardsTurn(data) {
+export function renderCardsTurnAssigned(data) {
     cleanUserCards();
     console.log("service_data:",data);
     const container = document.getElementById('table-container');
     const template = document.getElementById('table-person-template').content;
     const paginationPrev = document.getElementById('pagination-prev');
     const paginationNext = document.getElementById('pagination-next');
+    console.log("data_service",data)
+    console.log("data_service",data[0].assigmentturn)
     
+      data.forEach((turn,index) => {
+        console.log("data_service",data)
+        const userCard = document.importNode(template, true);
+        userCard.querySelector('.card-turn-info h3').textContent = "Turno #" + turn.id
+        userCard.querySelector('.turn-service p').textContent = turn.service_info.service_description
+        userCard.querySelector('.turn-start p').textContent = turn.start_turn
+        userCard.querySelector('.turn-date small').textContent = turn.assigmentturn
+        // userCard.querySelector('.selection').dataset.id = turn.id;
+        container.appendChild(userCard);
+      });
+      
     
-    data.forEach((turn,index) => {
-      console.log("data_service",data)
-      const userCard = document.importNode(template, true);
-      // userCard.querySelector('.card-turn-info h3').textContent = "Servicio " + services.id
-      userCard.querySelector('.card-turn-info h3').textContent = "Turno #" + turn.idturn
-      
-      userCard.querySelector('.turn-start p').textContent = turn.turn_start
-      userCard.querySelector('.turn-date small').textContent = turn.assigmentturn
-      
-      userCard.querySelector('.selection').dataset.id = turn.idturn;
-      
-      container.appendChild(userCard);
-    });
+   
     
-   selectionTurn()
+      //releaseTurn()
     //editCardService()
     // paginationPrev.classList.toggle('hidden', currentPage = 1); // ! checar el control de la paginacion
     // paginationNext.classList.toggle('hidden', currentPage == 1);
@@ -52,3 +53,5 @@ export  default function renderCardsTurn(data) {
    // })
     
   }
+
+  

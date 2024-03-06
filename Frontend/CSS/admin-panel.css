@@ -248,6 +248,11 @@ button:active{
     margin-bottom: 2px;
 }
 
+.table-container-active{
+    display: flex;
+    flex-wrap: wrap;
+}
+
 
 .user{
     display: flex;

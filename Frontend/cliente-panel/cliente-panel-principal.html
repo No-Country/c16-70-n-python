@@ -23,21 +23,60 @@
 
             <div class="table-turns">
                 <h3 class="title-list">Turno activo</h3>
-                <div id="table-container-active">
+                <div id="table-container-active" class="card-turn-container">
                     <template id="table-client-template-turn-active" >
-                        <div class="card-turn">
+                        <div class="card-turn card-turn-width">
                             <div class="card-turn-img --active">
                                 <img src="../img/notification-unread-lines-svgrepo-com.svg" alt="">
                             </div>
                             <div  class="card-turn-info">
                                 <h3>Turno</h3>
-                                
+                                <div class="turn-service">
+                                    <p>Limpieza</p>
+                                </div>
                                 <div class= "turn-start">
-                                  <h4>Inicio: </h4>
+                                  <h4>Inicia: </h4>
                                   <p>12:00</p>
                                 </div>
                                 <div class="turn-date">
-                                  <p>Fecha</p>
+                                  <h4>Fecha</h4>
+                                  <small>20/10/2020 9:00</small>
+                                </div>
+                                
+                            </div>
+                            <!-- <div class="action action-services">
+                   
+                                <a href="#" class="url-delete">
+                                    <div class="selection delete">
+                                        <img src="../img/backspace-svgrepo-com.svg" alt="">
+                                    </div>
+                                </a>
+                            </div> -->
+                        </div>
+                    </template>
+                </div>
+                <!-- <button class="btn-all">Ver todos</button> -->
+            </div>
+    
+            <div class="table-provider">
+                <h3 class="title-list">Historial de turnos</h3>
+                <div id="table-container-inactive" class="card-turn-container">
+                    <template id="table-client-template-turn-inactive" >
+                        <div class="card-turn card-turn-width ">
+                            <div class="card-turn-img --complete">
+                                <img src="../img/task-square-svgrepo-com.svg" alt="">
+                            </div>
+                            <div  class="card-turn-info">
+                                <h3>Turno</h3>
+                                <div class="turn-service">
+                                    <p>Limpieza</p>
+                                </div>
+                                <div class= "turn-start">
+                                  <h4>Finalizo: </h4>
+                                  <p>12:00</p>
+                                </div>
+                                <div class="turn-date">
+                                  <h4>Finalizado</h4>
                                   <small>20/10/2020 9:00</small>
                                 </div>
                             </div>
@@ -45,24 +84,6 @@
                     </template>
                 </div>
                 <!-- <button class="btn-all">Ver todos</button> -->
-            </div>
-    
-            <div class="table-providers">
-                <h3 class="title-list">Historial de turnos</h3>
-                <template id="table-client-template-turn-history">
-                    <div class="card-turn">
-                        <div class="card-turn-img --active">
-                            <img src="../img/notification-unread-lines-svgrepo-com.svg" alt="">
-                        </div>
-                        <div  class="card-turn-info">
-                            <h3>Robert 20_10_24 9:00</h3>
-                            <p>Empaste dental</p>
-                            <p>20/10/2020</p>
-                            <p>9:00</p>
-                        </div>
-                    </div>
-                </template>
-                <button class="btn-all">Ver todos</button>
             </div>
         </div>
         <div class="nav-selection">
