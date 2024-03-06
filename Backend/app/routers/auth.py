@@ -4,6 +4,7 @@ from flask_restx import Api, Resource
 from ..utils.segurity import descodificarPassword, codificarPassword, codificarToken, descodificarToken
 # import os
 from datetime import datetime
+import traceback
 
 fecha_registro = datetime.now()
 
@@ -18,7 +19,7 @@ autho = api.namespace("auth", description="Rutas para Autotificacion")
 ###################################################################################################
 ###################################################################################################
 ###################################################################################################
-#
+# @app.errorhandler(404)
 #@auth.doc(description="")
 #@auth.doc(params={
 #})
@@ -36,9 +37,10 @@ class Users(Resource):
             500: 'Error del servidor. No se pudo completar la solicitud debido a un problema en el servidor.'
         }
     )
+    #@app.errorhandler(404)
     def post(self):
         """
-        Registrar Usuario
+        Registrar Usuario *
         """
         data = request.get_json()
         email = data.get("email")
@@ -55,10 +57,10 @@ class Users(Resource):
             User.ensure_admin_exists()
             if exitsEmail:
                 return jsonify({"message": "El correo electrónico ya está en uso. Por favor, utilice otro."})
-            
+
             passwordH = codificarPassword(password)
             new_user = User(use_str_email=email,
-                            use_str_password=passwordH, 
+                            use_str_password=passwordH,
                             use_date_register_date=fecha_registro,
                             #use_str_first_name=first_name,
                             #use_str_last_name=last_name,
@@ -93,7 +95,7 @@ class Login(Resource):
     )
     def post(self):
         """
-        Login de Usuario
+        Login de Usuario *
         """
         data = request.get_json()
         email = data.get("email")
@@ -101,28 +103,36 @@ class Login(Resource):
 
         try:
             exitsEmail = User.query.filter_by(use_str_email=email).first()
-            
+
             if exitsEmail:
                 passwordDB = exitsEmail.use_str_password
                 compararPassword = descodificarPassword(password=password, passwordDB=passwordDB)
-                
-            if compararPassword:
-                id = exitsEmail.use_int_id
-                role = exitsEmail.use_str_role
-                    
-                print(role)
-                    
-                token = codificarToken({'id': id, 'role': role})
-                    
-                print(token)
-                return jsonify({'token': token})
-            
-            else:
-                return jsonify({'message': 'Datos incorrectos'})
+#se le agrego una sangria extra al if compararPassword.
+                if compararPassword:
+                    id = exitsEmail.use_int_id
+                    role = exitsEmail.use_str_role
+
+                    print(role)
+
+                    token = codificarToken({'id': id, 'role': role})
+
+                    #print(token)
+                    return jsonify({'token': token})
+
+                else:
+                    return jsonify({'message': 'Datos incorrectos'})
 
         except Exception as e:
-            print("Error:", e)
-            return jsonify({"message": "Error en el Servidor"})
+            error_message = {
+                "error_type": type(e).__name__,
+                "error_message": str(e),
+                "stack_trace": traceback.format_exc(),
+                }
+            print("Error:", error_message)
+            return jsonify({"message": "Error en el Servidor", "error": error_message})
+    #    except Exception as e:
+    #        print("Error:", e)
+    #        return jsonify({"message": "Error en el Servidorr"})
 ###################################################################################################
 ###################################################################################################
 ###################################################################################################
@@ -131,7 +141,7 @@ class Login(Resource):
 @autho.route("/rol")
 class Token(Resource):
     @autho.doc(
-        description="Muestra el tipo de rol que posee el usuario.",
+        description="Muestra el tipo de rol que posee el usuario",
         params={
             'Authorization': {'description': 'El token de acceso del usuario.', 'type': 'string', 'required': True}
         },
@@ -143,12 +153,12 @@ class Token(Resource):
     )
     def post(self):
         """
-        Muestra El Tipo de Rol Que Posee El Usuario
+        Conocer el del Usuario Rol *
         """
         auth = request.headers.get('Authorization')
         if not auth:
             return jsonify({"message": "Token no proporcionado"})
-        
+
         datosToken = descodificarToken(auth)
         id = datosToken.get('id')
         role = datosToken.get('role')

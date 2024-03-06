@@ -10,12 +10,13 @@ user = api.namespace("user", description="Rutas User")
 
 
 # [X] MARCOS
-# Mostrar data del usuario
+# Para que el usuario vea sus datos
 @user.route('/get')
 class GetUserDataById(Resource):
+    #@app.errorhandler(200, 404, 500)
     def get(self):
         """
-        Obtiene los datos de un usuario específico por su ID.
+        Obtiene los datos de un usuario *
 
         Parámetros:
         -----------
@@ -43,7 +44,7 @@ class GetUserDataById(Resource):
                 La fecha de suspensión del usuario (en formato 'YYYY-MM-DD').
             - status: bool
                 El estado de suspensión del usuario (True si está suspendido, False si no lo está).
-            
+
             Un mensaje de error si el usuario no se encuentra o si ocurre algún problema durante la operación.
 
         """
@@ -53,7 +54,7 @@ class GetUserDataById(Resource):
         try:
             user = User.query.get(id)
             if user is None:
-                return jsonify({'error': 'Usuario no encontrado'}), 404
+                return jsonify({'error': 'Usuario no encontrado'})
             user_data = {
                     'user_id': user.use_int_id,
                     'email': user.use_str_email,
@@ -66,7 +67,7 @@ class GetUserDataById(Resource):
                     'suspension_date': user.use_date_suspension_date,
                 }
             return jsonify(user_data)
-        except Exception as d:
+        except Exception as e:
             return jsonify({'message': 'Error en la operacion'})
 
 #FERNANDO
@@ -75,8 +76,7 @@ class GetUserDataById(Resource):
 class PutDatosUser(Resource):
     def put(self):
         """
-        Actualiza los datos de un usuario en la base de datos.
-
+        Actualiza los datos de un usuario *
         Parámetros:
         -----------
         No recibe parámetros directamente de la solicitud.
@@ -138,6 +138,9 @@ class PutDatosUser(Resource):
 @user.route('/img')
 class PutImgUser(Resource):
     def put(self):
+        """
+        Actualiza Imagen de Perfil *
+        """
         #Solicitud de Token por el headers
         verify_token()
         img = request.files['img']
@@ -147,16 +150,16 @@ class PutImgUser(Resource):
         try:
             # Verificar el rol del usuario
             if role == 'Admin' or role == 'Paciente':
-                    
+
                     user = User.query.filter_by(use_int_id=id, use_str_role=role).first()
-                    
+
                     if not user:
                         return jsonify({"message": "Usuario no encontrado"})
                     # Guardar la imagen para el cliente
                     user.save_use_str_profile_img(img)
 
                     return jsonify({"message": "Imagen de perfil actualizada correctamente"})
-            
+
             else:
                 return jsonify({"message": "Rol de usuario desconocido"})
 
@@ -172,7 +175,9 @@ class PutImgUser(Resource):
 class TurnosGet(Resource):
     def get(self):
         """
-        Obtiene los turnos no asignados cuya fecha de asignación es posterior al día actual.
+        Obtiene los turnos no asignados cuya fecha de asignación es posterior al día actual *.
+        paginando, ejemplo:
+        /user/turnos?page=1
 
         Retorna:
         --------
@@ -200,39 +205,46 @@ class TurnosGet(Resource):
 
             Si hay un error al conectarse con la base de datos, se devuelve un mensaje de error JSON.
         """
-        verify_token()
-        id = verify_token().get('id')
-        hoy = date.today()
-        if id:
-            select_turn = Turn.query.filter_by(turn_bol_assigned=False).filter(Turn.turn_date_date_assignment > hoy).all()
-            turn_list = []  
+        auth = request.headers.get('Authorization')
 
-            try:
-                if select_turn:    
-                    for data in select_turn:
-                        service_description = None
-                        if data.service:
-                            service_description = data.service.ser_str_category_name
-                        
-                        turn_data = {
-                            'idturn': data.turn_int_id,
-                            'service_info': {
-                                'idservice': data.service_id,
-                                'service_description': service_description
-                            },
-                            'id_user_assig': data.turn_int_user_id,
-                            'nameturn': data.turn_str_name_turn,
-                            'descriptionturn': data.turn_str_description,
-                            'creationdate': data.turn_date_creation_date.strftime('%Y-%m-%d'),
-                            'assigmentturn': data.turn_date_date_assignment.strftime('%Y-%m-%d'),
-                            'turn_start': data.turn_time_start_turn.strftime('%H:%M:%S'),
-                            'turn_finish': data.turn_time_finish_turn.strftime('%H:%M:%S')
-                        }
-                        turn_list.append(turn_data)
-                return jsonify(turn_list)
-            except Exception as db:
-                print("Error", db)
-                return jsonify({"message": "error al conectarse con la DB"})
+        if not auth:
+            return jsonify({'message': "Token no proporcionado"})
+
+        try:
+            hoy = date.today()
+            # Paginacion
+            page = request.args.get('page', 1, type=int)
+            per_page = request.args.get('per_page', 10, type=int)
+
+            turnos = Turn.query.filter_by(turn_bol_assigned=False).filter(Turn.turn_date_date_assignment > hoy).paginate(page=page, per_page=per_page, error_out=False)
+
+
+            lista_turno = []
+            for turno in turnos.items:
+                service_description = None
+                if turno.service:
+                    service_description = turno.service.ser_str_category_name
+
+                formatted_turno = {
+                    'id': turno.turn_int_id,
+                    'service_info': {
+                        'idservice': turno.service_id,
+                        'service_description': service_description
+                    },
+                    'name': turno.turn_str_name_turn,
+                    'description': turno.turn_str_description,
+                    'creation_date': turno.turn_date_creation_date.strftime('%Y-%m-%d'),
+                    'date_assignment': turno.turn_date_date_assignment.strftime('%Y-%m-%d %H:%M:%S'),
+                    'start_turn': str(turno.turn_time_start_turn),
+                    'finish_turn': str(turno.turn_time_finish_turn),
+                    'bol_assigned': turno.turn_bol_assigned
+                }
+                lista_turno.append(formatted_turno)
+
+            return jsonify(lista_turno)
+        except Exception as e:
+            return jsonify({'message': str(e)})
+
 
 ###################################################################################################
 ###################################################################################################
@@ -245,7 +257,7 @@ class GetTurnoUser(Resource):
     def get(self):
         """
         Obtiene los turnos pendientes de un usuario.
-
+        Ejemplo: http://127.0.0.1:40709/user/turnos?page=1
         Retorna:
         --------
         jsonify:
@@ -272,33 +284,47 @@ class GetTurnoUser(Resource):
 
             Si hay un error al conectarse con la base de datos, se devuelve un mensaje de error JSON.
         """
-        verify_token()
-        id = verify_token().get('id')
-        hoy = date.today()
-        if id:
-            select_turn = Turn.query.filter_by(turn_int_user_id=id).filter(Turn.turn_date_date_assignment > hoy).all()
-            turn_list = []  
+        auth = request.headers.get('Authorization')
 
-            try:
-                if select_turn:    
-                    for data in select_turn:
-                        turn_data = {
-                            'idturn' : data.turn_int_id,
-                            'idservice':data.service_id,
-                            'nameturn':data.turn_str_name_turn,
-                            'descriptionturn': data.turn_str_description,
-                            'creationdate': data.turn_date_creation_date.strftime('%Y-%m-%d'),
-                            'assigmentturn': data.turn_date_date_assignment.strftime('%Y-%m-%d'),
-                            'turn_start': data.turn_time_start_turn.strftime('%H:%M:%S'),
-                            'turn_finish': data.turn_time_finish_turn.strftime('%H:%M:%S')
-                            }
-                        turn_list.append(turn_data)
-                    return jsonify(turn_list)
-                else:
-                    return jsonify({"message": "No hay turnos finalizados para este usuario"})
-            except Exception as db:
-                print("Error", db)
-                return jsonify({"message": "error al conectarse con la DB"})
+        if not auth:
+            return jsonify({'message': "Token no proporcionado"})
+
+
+
+        try:
+            hoy = date.today()
+            # Paginacion
+            page = request.args.get('page', 1, type=int)
+            per_page = request.args.get('per_page', 10, type=int)
+
+            turnos = Turn.query.filter_by(turn_bol_assigned=False).filter(Turn.turn_date_date_assignment > hoy).paginate(page=page, per_page=per_page, error_out=False)
+
+
+            lista_turno = []
+            for turno in turnos.items:
+                service_description = None
+                if turno.service:
+                    service_description = turno.service.ser_str_category_name
+
+                formatted_turno = {
+                    'id': turno.turn_int_id,
+                    'service_info': {
+                        'idservice': turno.service_id,
+                        'service_description': service_description
+                    },
+                    'name': turno.turn_str_name_turn,
+                    'description': turno.turn_str_description,
+                    'creation_date': turno.turn_date_creation_date.strftime('%Y-%m-%d'),
+                    'date_assignment': turno.turn_date_date_assignment.strftime('%Y-%m-%d %H:%M:%S'),
+                    'start_turn': str(turno.turn_time_start_turn),
+                    'finish_turn': str(turno.turn_time_finish_turn),
+                    'bol_assigned': turno.turn_bol_assigned
+                }
+                lista_turno.append(formatted_turno)
+
+            return jsonify(lista_turno)
+        except Exception as e:
+            return jsonify({'message': str(e)})
 ###################################################################################################
 ###################################################################################################
 ###################################################################################################
@@ -306,7 +332,7 @@ class GetTurnoUser(Resource):
 #FERNANDO
 #Listado de Turnos Finalizados del Paciente
 @user.route('/turnos/end')
-class GetTurnoUser(Resource):
+class GetTurnoEnd(Resource):
     def get(self):
         """
         Obtiene los turnos finalizados de un usuario.
@@ -342,10 +368,10 @@ class GetTurnoUser(Resource):
         hoy = date.today()
         if id:
             select_turn = Turn.query.filter_by(turn_int_user_id=id).filter(Turn.turn_date_date_assignment < hoy).all()
-            turn_list = []  
+            turn_list = []
 
             try:
-                if select_turn:    
+                if select_turn:
                     for data in select_turn:
                         turn_data = {
                             'idturn' : data.turn_int_id,
@@ -369,76 +395,58 @@ class GetTurnoUser(Resource):
 ###################################################################################################
 ###################################################################################################
 # [] MARCOS // FERNANDO
-@user.route('/turno/<int:turn_int_id>')
+@user.route('/turno/<int:turno>')
 class ProcessTurnsUser(Resource):
-    # MARCOS
-    # ver el turno por id de url
+    #MARCOS
+    # ver el turno de forma individual , usando la url para que sea dinamicas las rutas
     def get(self, id):
+        """
+        Ver turno
+        """
         verify_token()
         id = verify_token().get('id')
-        
-        try:
-            select_turn = Turn.query.filter_by(turn_int_user_id=id).all()
-            user = User.query.get(id)
-            service_info = Services.query.get()
-            if select_turn is None:
-                return jsonify({'error': 'Turno no encontrado'}), 404
-            
-            turn_data = {
-                    'idturn' : select_turn.turn_int_id,
-                    'service_info': {
-                        'idservice': service_info.service_id,
-                        'service_description': service_info.service_description
-                    },
-                    'user_info': {
-                        'iduser': user.use_int_id,
-                        'user_first_name': user.use_str_first_name,
-                        'user_last_name': user.use_str_last_name,
-                        'user_phone': user.use_str_phone
-                    },
-                    'nameturn':select_turn.turn_str_name_turn,
-                    'descriptionturn': select_turn.turn_str_description,
-                    'creationdate': select_turn.turn_date_creation_date.strftime('%Y-%m-%d'),
-                    'assigmentturn': select_turn.turn_date_date_assignment.strftime('%Y-%m-%d'),
-                    'turn_start': select_turn.turn_time_start_turn.strftime('%H:%M:%S'),
-                    'turn_finish': select_turn.turn_time_finish_turn.strftime('%H:%M:%S')
-            }
-            return jsonify(turn_data)
-        
-        except Exception as d:
-            return jsonify({'message': 'Error en la operacion'}), 501
+        pass
 
-@user.route('/turno/asignar/<int:turn_int_id>')
+@user.route('/turno/asignar/<int:turn>')
 class AssignerTurnsUser(Resource):
-    # Asignar un turno a un usuario
-    def put(self, turn_int_id):
+    @user.doc(
+        description="Solicitar Turno",
+        params={
+            'id_servicio': 'id de Servicio',
+            'token':'token de auorizacion',
+        },
+    )
+    def put(self, turn):
+        """
+        Soliciar Turno *
+        """
+
+        data = request.get_json()
         # Verificar el token de autenticación
         user_id = verify_token().get('id')
-        
+        id_servicio = data.get('id_servicio')
 
         # Verificar si el usuario existe
         if user_id is None:
-            return jsonify({'error': 'Usuario no encontrado'}), 404
-        # Intentar asignar el turno al usuario
-        id_turno=turn_int_id
-        data = request.get_json()
+            return jsonify({'error': 'Usuario no encontrado'})
+
+        id_turno = turn
         try:
-            print(turn_int_id)
             turno = Turn.query.filter_by(turn_int_id=id_turno).first()
+
             if turno is None:
                 return jsonify({'error': 'Turno no encontrado'})
 
             turno.turn_int_user_id = int(user_id)
-            turno.service_id = data.get('id_servicio')
-            turno.turn_bol_assigned=True
-            print(turno)
-            print(turno.turn_int_user_id)
+            turno.service_id = int(id_servicio)
+            turno.turn_bol_assigned = True
             db.session.commit()
+
             return jsonify({'message': 'Turno asignado correctamente'})
 
-        except Exception as e:
+        except Exception:
             db.session.rollback()
-            return jsonify({'error': 'Error al asignar el turno', 'details': str(e)})
+            return jsonify({'error': 'Error al asignar el turno'})
 
 ###################################################################################################
 ###################################################################################################
@@ -448,10 +456,8 @@ class AssignerTurnsUser(Resource):
 @user.route("/servicios")
 class Servicios(Resource):
     def get(self):
-        """ 
-        Obtener Listado de Servicios
-        Ejemplo: http://127.0.0.1:40709/admin/servicios?page=1
-
+        """
+        Obtener Listado de Servicios *
         """
         auth = request.headers.get('Authorization')
 
@@ -462,14 +468,12 @@ class Servicios(Resource):
         verify_token()
         id = verify_token().get('id')
 
-
-
         try:
             # Paginacion
             page = request.args.get('page', 1, type=int)
             per_page = request.args.get('per_page', 10, type=int)
 
-            servicios = Servicios.query.paginate(page=page, per_page=per_page, error_out=False)
+            servicios = Services.query.paginate(page=page, per_page=per_page, error_out=False)
             #
 
             lista_servicio = []
@@ -488,99 +492,3 @@ class Servicios(Resource):
 ###################################################################################################
 ###################################################################################################
 
-
-###################################################################################################
-###################################################################################################
-###################################################################################################
-###################################################################################################
-#################End Point Viejos ##############
-# # Ruta para obtener información del cliente
-# @client.route("/get")
-# class GetDataClient(Resource):
-#     def get(self):
-#         # Solicitud de Token
-#         auth = request.headers.get('Authorization')
-#         if not auth:
-#             return jsonify({"message": "Token no proporcionado"})
-        
-#         datosToken = descodificarToken(auth)
-#         id = datosToken.get('id')
-        
-#         try:
-#             # Ejecuta la consulta para obtener el usuario
-#             user = Cliente.query.filter_by(cli_int_user_id=id).first()
-            
-#             # Traemos la data del cliente
-#             client_data = Cliente.query.all()
-#             client_list = []
-#             for data in client_data:
-#                 clients_data = {
-#                     'firstname': data.cli_str_first_name,
-#                     'lastname': data.cli_str_last_name,
-#                     'phone': data.cli_str_phone,
-#                     'direction': data.cli_str_direction,
-#                     'profile_image': data.cli_str_profile_img,
-#                     'register_date': data.cli_date_register_date,
-#                     'suspension_date': data.cli_date_suspension_date,
-#                 }
-#                 client_list.append(clients_data)
-#             return jsonify({'users': client_list})
-#         except Exception as db:
-#             print("Error:", db)
-#             return jsonify({"message": "Error al conectarse con la BD"})
-
-# # Rutas registrar información del cliente
-# @client.route("/post")
-# class PostClient(Resource):
-#     def post(self):
-#         pass
-
-
-# # Rutas de actualización de data del cliente
-# @client.route("/put")
-# class UpgradeDataClient(Resource):
-#     def put(self):
-#         pass
-
-# @client.route("/img")
-# class UpgrdadeImgClient(Resource):
-#     def put(self):
-#         #Solicitud de Token por el headers
-#         auth = request.headers.get('Authorization')
-#         img = request.files['img']
-
-#         if not auth:
-#             return jsonify({"message": "Token no proporcionado"})
-
-#         datosToken = descodificarToken(auth)
-#         id = datosToken.get('id')
-#         role = datosToken.get('role')
-
-#         try:
-#             # Verificar el rol del usuario
-#             if role == 'clie' or role == 'prov':
-#                 user = None
-#                 if role == 'clie':
-#                     user = Cliente.query.filter_by(cli_int_user_id=id).first()
-#                     if not user:
-#                         return jsonify({"message": "Cliente no encontrado"})
-#                     # Guardar la imagen para el cliente
-#                     user.save_cli_str_profile_img(img)
-#                     if not user:
-#                         return jsonify({"message": "Proveedor no encontrado"})
-#                     # Guardar la imagen para el proveedor
-#                     user.save_pro_str_profile_img(img)
-
-#                 return jsonify({"message": "Imagen de perfil actualizada correctamente"})
-#             else:
-#                 return jsonify({"message": "Rol de usuario desconocido"})
-
-#         except Exception as e:
-#             print("Error:", e)
-#             return jsonify({"message": "Error al conectarse con la BD"})
-
-
-# Obtener turnos
-# actualziar ,el campo de turno.
-# obtener categorias
-# ver Ubicacion 
