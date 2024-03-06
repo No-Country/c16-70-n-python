@@ -6,7 +6,7 @@ from ..utils.segurity import codificarPassword
 
 db = SQLAlchemy()
 
-# ejemplo 
+# ejemplo
 # Doc: https://flask-sqlalchemy.palletsprojects.com/en/2.x/models simple-example
 
 # se junto los datosque serepiten en unasolatabla
@@ -20,24 +20,24 @@ class User(db.Model):
     use_str_first_name = db.Column(db.String(100),nullable=True, default= '')
     use_str_last_name = db.Column(db.String(100), nullable=True, default= '')
     use_str_phone = db.Column(db.String(15), nullable=True, default= '')
-    use_str_profile_img = db.Column(db.String(200), nullable=True, default= 'profile_pictures/logo.png')
+    use_str_profile_img = db.Column(db.String(200), nullable=True, default= '/static/profile_pictures/logo.png')
     use_date_register_date = db.Column(db.DateTime)
     use_bol_suspension = db.Column(db.Boolean, default=False)
     use_date_suspension_date = db.Column(db.DateTime, nullable=True)
-    use_str_role = db.Column(db.String(50), default="Paciente") 
+    use_str_role = db.Column(db.String(50), default="Paciente")
 
     def __repr__(self):
         return '<User %r>' % self.use_str_email
 
-# Metodos .... 
-    
+# Metodos ....
+
     # 1-) Metodo para que el backEnd coloque la hora de registro
     def __init__(self, **kwargs):
         super(User, self).__init__(**kwargs)
         self.set_register_date()  # Llama al método para establecer la hora de registro
 
     def set_register_date(self):
-        self.use_date_register_date = datetime.now() 
+        self.use_date_register_date = datetime.now()
 
     # 2-) Metodo para guardar la imagen de perfil se mejoro el nombre de la imagen y carpeta
     def save_use_str_profile_img(self, picture):
@@ -48,7 +48,7 @@ class User(db.Model):
             os.makedirs(os.path.dirname(picture_path), exist_ok=True)
 
             picture.save(picture_path)
-            self.use_str_profile_img = f"profile_pictures/{picture_filename}"
+            self.use_str_profile_img = f"/static/imgs/{picture_filename}"
             db.session.commit()
 
     # 3-) Se debe revisar este metodo es para eliminar la imagen por defecto
@@ -90,19 +90,18 @@ class Turn(db.Model):
     turn_int_id = db.Column(db.Integer, primary_key=True, autoincrement=True) # queda
     service_id = db.Column(db.Integer, db.ForeignKey("services.ser_int_id")) # queda
     turn_int_user_id = db.Column(db.Integer, db.ForeignKey("user.use_int_id")) #queda
-    turn_str_name_turn = db.Column(db.String(100)) # dia 
-    turn_str_description = db.Column(db.String(200)) # No va 
+    turn_str_name_turn = db.Column(db.String(100)) # dia
+    turn_str_description = db.Column(db.String(200)) # No va
     turn_date_creation_date = db.Column(db.Date) # Paciente, solo love el Cliente
-    turn_date_date_assignment = db.Column(db.Date) # es la fecha del turno, 
-    turn_time_start_turn = db.Column(db.Time)  # ver Cliente, Admin. Hora que inicia 
+    turn_date_date_assignment = db.Column(db.Date) # es la fecha del turno,
+    turn_time_start_turn = db.Column(db.Time)  # ver Cliente, Admin. Hora que inicia
     turn_time_finish_turn = db.Column(db.Time)  # ver Admin , ver Cliente pasarlo como a boleano .
     turn_bol_assigned = db.Column(db.Boolean, default=False) # Si asignado .   # se debe crear una columna mas tipo boolean para finalizar el turno
-    
+
     service = db.relationship("Services", backref="turns")
 
-    #metodo para que tambien se vea la categoria del Turno 
+    #metodo para que tambien se vea la categoria del Turno
     def get_service_info(self):
         return {
             'category_name': self.service.ser_str_category_name,
         }
-    
