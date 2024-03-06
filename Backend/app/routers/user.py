@@ -24,7 +24,9 @@ class GetUserDataById(Resource):
         Retorna:
         --------
         jsonify:
+        
             Un JSON que contiene los siguientes datos del usuario si se encuentra:
+            
             - user_id: int
                 El ID del usuario.
             - email: str
@@ -69,7 +71,7 @@ class GetUserDataById(Resource):
         except Exception as d:
             return jsonify({'message': 'Error en la operacion'})
 
-#FERNANDO
+# [X] FERNANDO
 # EndPoint para que el usuario pueda editar sus Datos
 @user.route('/put')
 class PutDatosUser(Resource):
@@ -96,6 +98,7 @@ class PutDatosUser(Resource):
         Retorna:
         --------
         jsonify:
+        
             Un mensaje de éxito si la actualización fue exitosa.
             Un mensaje de error si ocurrió algún problema durante la actualización.
 
@@ -133,7 +136,8 @@ class PutDatosUser(Resource):
 ###################################################################################################
 ###################################################################################################
 ###################################################################################################
-# [] MARCOS
+
+# [X] MARCOS
 # Actualizar su imagen
 @user.route('/img')
 class PutImgUser(Resource):
@@ -165,22 +169,27 @@ class PutImgUser(Resource):
             return jsonify({"message": "Error al conectarse con la BD"})
 
 
-
-#FERNANDO
-#Listado de Turnos Disponibles
+# [X] FERNANDO
+# Listado de Turnos Disponibles
 @user.route('/turnos')
 class TurnosGet(Resource):
     def get(self):
         """
         Obtiene los turnos no asignados cuya fecha de asignación es posterior al día actual.
+        
+        Parámetros:
+        -----------
+        No recibe parámetros directamente de la solicitud.
 
         Retorna:
         --------
         jsonify:
+        
             Devuelve una lista de objetos JSON que representan los turnos disponibles.
             Cada objeto JSON contiene la información de un turno no asignado.
 
             Los campos de cada objeto JSON incluyen:
+            
             - idturn: int
                 El ID único del turno.
             - idservice: int
@@ -238,21 +247,27 @@ class TurnosGet(Resource):
 ###################################################################################################
 ###################################################################################################
 ###################################################################################################
-# [] MARCOS
+# [X] MARCOS
 # Listado de Turnos del Paciente
 @user.route('/turnos/pendientes')
 class GetTurnoUser(Resource):
     def get(self):
         """
         Obtiene los turnos pendientes de un usuario.
+        
+        Parámetros:
+        -----------
+        No recibe parámetros directamente de la solicitud.
 
         Retorna:
         --------
         jsonify:
+        
             Devuelve una lista de objetos JSON que representan los turnos finalizados de un usuario.
             Cada objeto JSON contiene la información de un turno finalizado.
 
             Los campos de cada objeto JSON incluyen:
+            
             - idturn: int
                 El ID único del turno.
             - idservice: int
@@ -303,21 +318,28 @@ class GetTurnoUser(Resource):
 ###################################################################################################
 ###################################################################################################
 ###################################################################################################
-#FERNANDO
+
+# [X] FERNANDO
 #Listado de Turnos Finalizados del Paciente
 @user.route('/turnos/end')
 class GetTurnoUser(Resource):
     def get(self):
         """
         Obtiene los turnos finalizados de un usuario.
+        
+        Parámetros:
+        -----------
+        No recibe parámetros directamente de la solicitud.
 
         Retorna:
         --------
         jsonify:
+        
             Devuelve una lista de objetos JSON que representan los turnos finalizados de un usuario.
             Cada objeto JSON contiene la información de un turno finalizado.
 
             Los campos de cada objeto JSON incluyen:
+            
             - idturn: int
                 El ID único del turno.
             - idservice: int
@@ -368,12 +390,58 @@ class GetTurnoUser(Resource):
 ###################################################################################################
 ###################################################################################################
 ###################################################################################################
-# [] MARCOS // FERNANDO
+
+# [X] MARCOS // FERNANDO
 @user.route('/turno/<int:turn_int_id>')
 class ProcessTurnsUser(Resource):
     # MARCOS
     # ver el turno por id de url
     def get(self, id):
+        """
+        Obtiene el detalle del turno seleccionado.
+        
+        Parámetros:
+        -----------
+        No recibe parámetros directamente de la solicitud.
+
+        Retorna:
+        --------
+        jsonify:
+        
+            Devuelve una lista de objetos JSON que representan los detalles del turno.
+            Cada objeto JSON contiene la información detalla de un turno.
+
+            Los campos de cada objeto JSON incluyen:
+            
+            - idturn: int
+                El ID único del turno.
+            - idservice: int
+                El ID del servicio al que pertenece el turno.
+            - service_description: str
+                La descripcion del servicio al que pertenece el turno.
+            - iduser: int
+                El ID del usuario al que pertenece el turno.
+            - user_first_name: str
+                El primer nombre del usuario al que pertenece el turno.
+            - user_last_name: str
+                El apellido del usuario al que pertenece el turno.
+            - user_phone: str
+                El telefono del usuario al que pertenece el turno.
+            - nameturn: str
+                El nombre del turno.
+            - descriptionturn: str
+                La descripción del turno.
+            - creationdate: str
+                La fecha de creación del turno en formato 'YYYY-MM-DD'.
+            - assigmentturn: str
+                La fecha de asignación del turno en formato 'YYYY-MM-DD'.
+            - turn_start: str
+                La hora de inicio del turno en formato 'HH:MM:SS'.
+            - turn_finish: str
+                La hora de finalización del turno en formato 'HH:MM:SS'.
+
+            Si hay un error al conectarse con la base de datos, se devuelve un mensaje de error JSON.
+        """
         verify_token()
         id = verify_token().get('id')
         
@@ -408,20 +476,23 @@ class ProcessTurnsUser(Resource):
         except Exception as d:
             return jsonify({'message': 'Error en la operacion'}), 501
 
+# [X] FERNANDO
 @user.route('/turno/asignar/<int:turn_int_id>')
 class AssignerTurnsUser(Resource):
     # Asignar un turno a un usuario
     def put(self, turn_int_id):
+        
         # Verificar el token de autenticación
         user_id = verify_token().get('id')
         
-
         # Verificar si el usuario existe
         if user_id is None:
             return jsonify({'error': 'Usuario no encontrado'}), 404
+        
         # Intentar asignar el turno al usuario
         id_turno=turn_int_id
         data = request.get_json()
+        
         try:
             print(turn_int_id)
             turno = Turn.query.filter_by(turn_int_id=id_turno).first()
@@ -444,13 +515,19 @@ class AssignerTurnsUser(Resource):
 ###################################################################################################
 ###################################################################################################
 ###################################################################################################
-#End Point Servicio
+
+# [X] FERNANDO
+# End Point Servicio
 @user.route("/servicios")
 class Servicios(Resource):
     def get(self):
         """ 
         Obtener Listado de Servicios
         Ejemplo: http://127.0.0.1:40709/admin/servicios?page=1
+        
+        Parámetros:
+        -----------
+        No recibe parámetros directamente de la solicitud.
 
         """
         auth = request.headers.get('Authorization')
@@ -483,6 +560,7 @@ class Servicios(Resource):
             return jsonify(lista_servicio)
         except Exception as e:
             return jsonify({'message': str(e)})
+        
 ###################################################################################################
 ###################################################################################################
 ###################################################################################################
