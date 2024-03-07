@@ -1,4 +1,3 @@
 .venv
-producionDB.db
 __pycache__
-Backend
+.vscode
