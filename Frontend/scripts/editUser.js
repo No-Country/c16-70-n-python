@@ -1,5 +1,17 @@
 import { apiUrlServer } from "../js/config.js";
 import fetchDataAll from "./fetchDataAll.js";
+import obtenerDatosAPIUserProfile from "./fetchDataUserProfile.js";
+
+window.onload = () => {
+    obtenerDatosAPIUserProfile().
+    then(data => {
+        document.getElementById('first-name').value = data.firt_name;
+        document.getElementById('last-name').value = data.last_name;
+        document.getElementById('email').value = data.email;
+        document.getElementById('phone').value = data.phone;
+        
+    })
+}
 
 const form = document.querySelector('.form-update-user');
 form.addEventListener('submit', async (e) => {
@@ -18,7 +30,7 @@ form.addEventListener('submit', async (e) => {
     console.log("aqui_form_data|",data)
     
     // const Url = apiUrlServer + `/admin/paciente/` + sessionStorage.getItem('userid');
-    const Url = apiUrlServer + `/admin/paciente/` + sessionStorage.getItem('userid');
+    const Url = apiUrlServer + `user/put`;
 
 const headers = {
     'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
