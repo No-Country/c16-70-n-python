@@ -394,15 +394,16 @@ class GetTurnoUser(Resource):
 # [X] MARCOS // FERNANDO
 @user.route('/turno/<int:turn_int_id>')
 class ProcessTurnsUser(Resource):
+    
     # MARCOS
     # ver el turno por id de url
-    def get(self, id):
+    def get(self, turn_int_id):
         """
         Obtiene el detalle del turno seleccionado.
         
         Parámetros:
         -----------
-        No recibe parámetros directamente de la solicitud.
+        Como parametro esta el id del turno que se ha seleccionado.
 
         Retorna:
         --------
@@ -445,13 +446,24 @@ class ProcessTurnsUser(Resource):
         verify_token()
         id = verify_token().get('id')
         
+        turn_id = turn_int_id
+        
         try:
-            select_turn = Turn.query.filter_by(turn_int_user_id=id).all()
+            
+            # Filtramos por el id del turno
+            select_turn = Turn.query.filter_by(turn_int_user_id=turn_id)
+            
+            # Consultamos la data del usuario
             user = User.query.get(id)
+            
+            # Consultamos la data del servicio
             service_info = Services.query.get()
+            
+            # Verificamos si el turn existe
             if select_turn is None:
                 return jsonify({'error': 'Turno no encontrado'}), 404
             
+            # Mostramos los detalles del turno
             turn_data = {
                     'idturn' : select_turn.turn_int_id,
                     'service_info': {
@@ -474,7 +486,7 @@ class ProcessTurnsUser(Resource):
             return jsonify(turn_data)
         
         except Exception as d:
-            return jsonify({'message': 'Error en la operacion'}), 501
+            return jsonify({'message': 'Error en la operacion'})
 
 # [X] FERNANDO
 @user.route('/turno/asignar/<int:turn_int_id>')
