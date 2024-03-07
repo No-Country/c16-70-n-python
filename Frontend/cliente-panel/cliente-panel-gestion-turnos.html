@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/admin-panel.css">
+    <link rel="stylesheet" href="../CSS/cliente-panel.css">
+    <title>Agendify</title>
+</head>
+<body>
+    <main>
+       <header>
+        <div><img src="" alt=""></div>
+        <p>Odontologica Dentrify</p>
+       </header>
+       <div class="title">
+        <h2>
+            <p>Seleccionar un turno disponible</p>
+        </h2>
+    </div>
+       
+
+    <div id="table-container" class="card-turn-container">
+        <template id="table-person-template" class="card-turn-container"> <!-- template start--->
+            <div class="card-turn card-services">
+                <div class="card-turn-img --active">
+                    <img src="../img/notification-unread-lines-svgrepo-com.svg" alt="">
+                </div>
+                <div  class="card-turn-info">
+                    <h3>Turno</h3>
+                    <div class="turn-service">
+                        <p></p>
+                    </div>
+                    <div class= "turn-start">
+                      <h4>Inicio: </h4>
+                      <p>12:00</p>
+                    </div>
+                    <div class="turn-date">
+                      <h4>Fecha</h4>
+                      <small>20/10/2020 9:00</small>
+                    </div>
+                </div>
+                <div class="action action-services">
+                    
+                    <a href="#" class="url-delete">
+                        <div class="selection delete">
+                            <img src="../img/backspace-svgrepo-com.svg" alt="">
+                        </div>
+                    </a>
+                </div>
+            </div>
+           <!-- <div class="card-turn">
+                <div class="card-turn-img --complete">
+                    <img src="../img/task-square-svgrepo-com.svg" alt="">
+                </div>
+                <div  class="card-turn-info">
+                    <h3>Robert 20_10_24 9:00</h3>
+                    <p>Empaste dental</p>
+                    <small>20/10/2020 9:00</small>
+                </div>
+            </div>
+            <div class="card-turn">
+                <div class="card-turn-img --cancel">
+                    <img src="../img/notification-lines-remove-svgrepo-com.svg" alt="">
+                </div>
+                <div  class="card-turn-info">
+                    <h3>Robert 20_10_24 9:00</h3>
+                    <p>Empaste dental</p>
+                    <small>20/10/2020 9:00</small>
+                </div>
+            </div> -->
+        </template> <!-- template end-->
+    </div>
+    <div class="pagination-container" id="pagination-container">
+        <div class="pagination-prev hidden" id="pagination-prev">
+            <a href="#"><img src="../img/arrow-left-svgrepo-com.svg" alt=""></a>
+        </div>
+        <div class="pagination-next" id="pagination-next">
+            <a href="#"><img src="../img/arrow-right-svgrepo-com.svg" alt=""></a>
+        </div>
+    </div>
+
+
+
+
+    </main>
+    
+    <script type="module" src="../scripts/mainSelectionturn.js"></script>
+    
+</body>
+</html>

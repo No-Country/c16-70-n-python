@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+      integrity="sha384-4LISF5TTJX/fLmGSxO53rV4miRxdg84mZsxmO8Rx5jGtp/LbrixFETvWa5a6sESd"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+    <title>Angendify - Register</title>
+    <link rel="icon" href="../imagenes/favicon.ico" type="image/x-icon">
+  </head>
+  <body>
+    <!--Navegacion-->
+    <header class="header">
+      <nav class="nav">
+        <ul class="lista">
+          <li><a href="../Home Page/Index.html">Agendify</a></li>
+          <li><a href="../login/index.html">Iniciar sesion</a></li>
+        </ul>
+      </nav>
+    </header>
+    <!--Main-->
+    <main class="main">
+      <div class="card">
+        <div class="login">
+          <div class="login1">
+            <div class="title">
+              <h2>GESTIONA TUS TURNOS DE UNA MANERA FACIL Y PRACTICA</h2>
+            </div>
+            <br/>
+            <div class="texts">
+              <div class="text">
+                <div><i class="bi bi-person-circle"></i></div>
+                <div><h4>Gestione sus usuarios</h4></div>
+              </div>
+              <div class="text">
+                <div><i class="bi bi-calendar-check"></i></div>
+                <div>
+                  <h4>Organice sus turnos de una manera sencilla y ágil</h4>
+                </div>
+              </div>
+              <div class="text">
+                <div><i class="bi bi-envelope"></i></div>
+                <div>
+                  <h4>
+                    Notifique a sus clientes por email de forma automática el
+                    recordatorio de sus turnos
+                  </h4>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="login2">
+            <div class="logo">
+              <img src="./../imagenes/Logo.png" alt="logo" />
+            </div>
+
+            <form id="registroForm" class="formulario">
+              <div id="message-container"></div>
+              <div>
+                <label for="nombre"></label>
+                <input
+                  id="nombre"
+                  placeholder="Nombre"
+                  type="text"
+                  required
+                  autocomplete="off"
+                />
+              </div>
+              <div>
+                <label for="apellido"></label>
+                <br/>
+                <input
+                  id="apellido"
+                  placeholder="Apellido"
+                  type="text"
+                  required
+                  autocomplete="off"
+                />
+              </div>
+              <div>
+                <label for="email"> </label>
+                <br/>
+                <input
+                  id="email"
+                  placeholder="Correo electrónico"
+                  type="email"
+                  required
+                  autocomplete="off"
+                />
+              </div>
+              <div>
+                <label for="telefono"></label>
+                <br/>
+                <input
+                  id="telefono"
+                  placeholder="Teléfono"
+                  type="text"
+                  required
+                  autocomplete="off"
+                />
+              </div>
+              <div>
+                <label for="direccion"></label>
+                <br/>
+                <input
+                  id="direccion"
+                  placeholder="Dirección"
+                  type="text"
+                  required
+                  autocomplete="off"
+                />
+              </div>
+              <div>
+                <label for="password"></label>
+                <br/>
+                <input
+                  id="password"
+                  placeholder="Contraseña"
+                  type="password"
+                  required
+                  autocomplete="off"
+                />
+              </div>
+              <div>
+                <label for="password2"></label>
+                <br/>
+                <input
+                  id="password2"
+                  placeholder="Repetir Contraseña"
+                  type="password"
+                  required
+                  autocomplete="off"
+                />
+              </div>
+              <div>
+                <br/>
+                <label for="role"></label>
+                <select id="role" required autocomplete="off">
+                  <option value="">Seleccionar Rol</option>
+                  <option value="clie">Cliente</option>
+                  <option value="prov">Proveedor</option>
+                </select>
+              </div>
+              <br/>
+              <button type="submit" class="btn">Enviar</button>
+            </form>
+            
+            <div>
+              <spam
+                >Ya Tienes cuenta?
+                <a href="./../login/index.html"> ingresa Aqui</a></spam
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer class="footer">
+      <div class="div-footer">
+        <div>
+          <i class="bi bi-twitter-x"></i>
+        </div>
+        <div>
+          <i class="bi bi-facebook"></i>
+        </div>
+        <div>
+          <i class="bi bi-whatsapp"></i>
+        </div>
+      </div>
+    </footer>
+    <script type="module" src="./register.js"></script>
+  </body>
+</html>

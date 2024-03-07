@@ -1,0 +1,1 @@
+export let apiUrlServer = "http://localhost:5000/";
