@@ -38,3 +38,13 @@ La plataforma es versátil, de rápida implementación y tiene un sistema flexib
     <img src="https://skillicons.dev/icons?i=python,flask,mysql" />
   </a>
 </p>
+
+python3 -m venv .venv
+. .venv/bin/activate
+
+si se instalo un Modulo nuevo y quieres tenerlo en los requirements.txt use este comando
+
+pip freeze > requirements.txt
+
+comando para instalar todos los requeriments.txt
+pip install -r requirements.txt
