@@ -116,12 +116,12 @@ Comienza registrándote en nuestra plataforma. Una vez dentro, podrás iniciar s
             <tr>
               <td>Camilo Molina</td>
               <td>
-                <a href="https://www.linkedin.com/in/camilo-andres-molina-daza-871bb424b">
+                <a href="https://www.linkedin.com/in/camilo-andres-molina-daza-871bb424b" target="_blank">
                   <img src="https://img.shields.io/badge/linkedin-%230A66C2.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/>
                 </a>
               </td>
               <td>
-                <a href="https://github.com/Camilopro22">
+                <a href="https://github.com/Camilopro22" target="_blank">
                   <img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/>
                 </a>
               </td>
@@ -129,12 +129,12 @@ Comienza registrándote en nuestra plataforma. Una vez dentro, podrás iniciar s
             <tr>
               <td>Leonardo Salvatierra</td>
               <td>
-                <a href="https://www.linkedin.com/in/leosalvatierra">
+                <a href="https://www.linkedin.com/in/leosalvatierra" target="_blank">
                   <img src="https://img.shields.io/badge/linkedin-%230A66C2.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/>
                 </a>
               </td>
               <td>
-                <a href="https://github.com/LeonardoSalvatierra">
+                <a href="https://github.com/LeonardoSalvatierra" target="_blank">
                   <img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/>
                 </a>
               </td>
@@ -143,12 +143,12 @@ Comienza registrándote en nuestra plataforma. Una vez dentro, podrás iniciar s
             <tr>
               <td>Robert Rengel</td>
               <td>
-                <a href="https://www.linkedin.com/in/robert-jose-asdrubal-rengel-osorio">
+                <a href="https://www.linkedin.com/in/robert-jose-asdrubal-rengel-osorio" target="_blank">
                   <img src="https://img.shields.io/badge/linkedin-%230A66C2.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/>
                 </a>
               </td>
               <td>
-                <a href="https://github.com/robertrengel">
+                <a href="https://github.com/robertrengel" target="_blank">
                   <img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/>
                 </a>
               </td>
@@ -174,12 +174,12 @@ Comienza registrándote en nuestra plataforma. Una vez dentro, podrás iniciar s
             <tr>
               <td>Fernando Suarez</td>
               <td>
-                <a href="https://www.linkedin.com/in/fernandogabrielsuarez">
+                <a href="https://www.linkedin.com/in/fernandogabrielsuarez" target="_blank">
                   <img src="https://img.shields.io/badge/linkedin-%230A66C2.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/>
                 </a>
               </td>
               <td>
-                <a href="https://github.com/fer-gab-sua">
+                <a href="https://github.com/fer-gab-sua" target="_blank">
                   <img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/>
                 </a>
               </td>
@@ -187,12 +187,12 @@ Comienza registrándote en nuestra plataforma. Una vez dentro, podrás iniciar s
             <tr>
               <td>Marcos Mateo</td>
               <td>
-                <a href="https://www.linkedin.com/in/marcos-mateo-tiburcio-7013991ba">
+                <a href="https://www.linkedin.com/in/marcos-mateo-tiburcio-7013991ba" target="_blank">
                   <img src="https://img.shields.io/badge/linkedin-%230A66C2.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/>
                 </a>
               </td>
               <td>
-                <a href="https://github.com/KMBMarcos">
+                <a href="https://github.com/KMBMarcos" target="_blank">
                   <img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/>
                 </a>
               </td>
@@ -200,12 +200,12 @@ Comienza registrándote en nuestra plataforma. Una vez dentro, podrás iniciar s
             <tr>
               <td>Orlando Cárdenas</td>
               <td>
-                <a href="https://www.linkedin.com/in/orlando-cardenas-villegas-7a2390248">
+                <a href="https://www.linkedin.com/in/orlando-cardenas-villegas-7a2390248" target="_blank">
                   <img src="https://img.shields.io/badge/linkedin-%230A66C2.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/>
                 </a>
               </td>
               <td>
-                <a href="https://github.com/Orlandoc0107">
+                <a href="https://github.com/Orlandoc0107" target="_blank">
                   <img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/>
                 </a>
               </td>
@@ -231,12 +231,12 @@ Comienza registrándote en nuestra plataforma. Una vez dentro, podrás iniciar s
             <tr>
               <td>Carloh Villasmil</td>
               <td>
-                <a href="https://www.linkedin.com/in/carloh-villasmil-tester-qa">
+                <a href="https://www.linkedin.com/in/carloh-villasmil-tester-qa" target="_blank">
                   <img src="https://img.shields.io/badge/linkedin-%230A66C2.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/>
                 </a>
               </td>
               <td>
-                <a href="https://github.com/cdvillas">
+                <a href="https://github.com/cdvillas" target="_blank">
                   <img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/>
                 </a>
               </td>
@@ -262,12 +262,12 @@ Comienza registrándote en nuestra plataforma. Una vez dentro, podrás iniciar s
             <tr>
               <td>Sofia Brandauer</td>
               <td>
-                <a href="https://www.behance.net/sofiabrandauer">
+                <a href="https://www.behance.net/sofiabrandauer" target="_blank">
                   <img src="https://img.shields.io/badge/linkedin-%230A66C2.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/>
                 </a>
               </td>
               <td>
-                <a href=="https://www.behance.net/sofiabrandauer">
+                <a href=="https://www.behance.net/sofiabrandauer" target="_blank">
                   <img src="https://img.shields.io/badge/behance-%231769FF.svg?&style=for-the-badge&logo=behance&logoColor=white"/>
                 </a>
               </td>
