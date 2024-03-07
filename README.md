@@ -116,12 +116,12 @@ Comienza registrándote en nuestra plataforma. Una vez dentro, podrás iniciar s
             <tr>
               <td>Camilo Molina</td>
               <td>
-                <a href="https://www.linkedin.com/in/camilo-andres-molina-daza-871bb424b" target="_blank">
+                <a href="https://www.linkedin.com/in/camilo-andres-molina-daza-871bb424b" target="_blank" >
                   <img src="https://img.shields.io/badge/linkedin-%230A66C2.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/>
                 </a>
               </td>
               <td>
-                <a href="https://github.com/Camilopro22" target="_blank">
+                <a href="https://github.com/Camilopro22" target="_blank" >
                   <img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/>
                 </a>
               </td>
