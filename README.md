@@ -1,4 +1,4 @@
-<<div>
+<div>
 
 <!-- PROJECT LOGO -->
 <br />
@@ -41,8 +41,7 @@ Nuestro equipo está comprometido con la excelencia en el desarrollo de software
 ![Skills](https://skillicons.dev/icons?i=postman&theme=light)
 
 <!-- Organización -->
-<h1> Organización
-</h1>
+<h1>Organización</h1>
 
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/trello/trello-plain-wordmark.svg" alt="Logo" width="90" height="90">
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Logo" width="60" height="60">
@@ -51,8 +50,7 @@ Nuestro equipo está comprometido con la excelencia en el desarrollo de software
 
 <!-- GETTING STARTED -->
 <br>
-<h1> Comenzando
-</h1>
+<h1>Comenzando</h1>
 
 Para instalar el proyecto localmente:
 
@@ -92,12 +90,8 @@ Correr el proyecto
 flask --app run run --debug
 ```
 
-O simplemente clickea en el link de
-<a href="https://stockwise-client.vercel.app/" target="_blank">Ver Demo.</a>
-
 <!-- USAGE EXAMPLES -->
-<h1> Uso
-</h1>
+<h1>Uso</h1>
 
 Comienza registrándote en nuestra plataforma. Una vez dentro, podrás iniciar sesión y acceder a todas las herramientas necesarias para gestionar eficientemente tu clínica dental. Desde la programación de citas hasta el seguimiento de tratamientos, Agendify te ofrece un completo sistema de gestión diseñado específicamente para clínicas odontológicas. Además, recibirás notificaciones y alertas relevantes para mantener el control de tu negocio en todo momento.
 
