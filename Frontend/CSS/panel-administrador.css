@@ -1,86 +1,77 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-:root{
-    --primary-color: rgb(34, 33, 48);
-    --secondary-color: rgb(78, 201, 234);
-    --third-color: rgb(42, 139, 234);
-    --fourth-color: #f73c5c;
-    --fifth-color: rgb(255, 157, 0);
-    --bagraun-color: #fafafa;
-    --white-color-black:#f0f0f0;
-}
-
-@font-face {
-    font-family: "Montserrat-italic-variablefont_wght";
-    src: url("/Frontend/fuentes/Montserrat-Italic-VariableFont_wght.ttf");
+:root {
+  --primary-color: rgb(34, 33, 48);
+  --secondary-color: rgb(78, 201, 234);
+  --third-color: rgb(42, 139, 234);
+  --fourth-color: #f73c5c;
+  --fifth-color: rgb(255, 157, 0);
+  --bagraun-color: #fafafa;
+  --white-color-black: #f0f0f0;
 }
 
 @font-face {
-    font-family: "Montserrat-VariableFont_wght";
-    src: url("/Frontend/fuentes/Montserrat-VariableFont_wght.ttf");
+  font-family: "Montserrat-italic-variablefont_wght";
+  src: url("../fuentes/Montserrat-Italic-VariableFont_wght.ttf");
 }
 
-
-.navbar{
-    background-color: var(--primary-color);
-    color: var(--bagraun-color);
-    font-family: "Montserrat-VariableFont_wght";
-    
+@font-face {
+  font-family: "Montserrat-VariableFont_wght";
+  src: url("../fuentes/Montserrat-VariableFont_wght.ttf");
 }
 
-.container-nav{
-    background-color: var(--primary-color);
+.navbar {
+  background-color: var(--primary-color);
+  color: var(--bagraun-color);
+  font-family: "Montserrat-VariableFont_wght";
 }
 
-
-
-.logo img{
-    width: 135px;
-    height: 60px;
-    margin-left: 0px;
+.container-nav {
+  background-color: var(--primary-color);
 }
 
-.dropdown{
-    margin-right: 110px;
+.logo img {
+  width: 135px;
+  height: 60px;
+  margin-left: 0px;
 }
 
-.dropdown button{
-    background-color: var(--primary-color);
-    border:white 1px solid;
-    width: 80px;
-    height: 50px;
+.dropdown {
+  margin-right: 110px;
 }
 
-.dropdown button:hover{
-    background-color: var(--secondary-color);
-    color: var(--bagraun-color);
+.dropdown button {
+  background-color: var(--primary-color);
+  border: white 1px solid;
+  width: 80px;
+  height: 50px;
 }
 
+.dropdown button:hover {
+  background-color: var(--secondary-color);
+  color: var(--bagraun-color);
+}
 
-.dropdown img{
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
+.dropdown img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
 }
 
 .d-flex-custom {
-    height: 91vh; /* Define la altura que desees */
+  height: 91vh; /* Define la altura que desees */
 }
 
-
-.text-section{
-    font-family: "Montserrat-VariableFont_wght";
-    color: black;
+.text-section {
+  font-family: "Montserrat-VariableFont_wght";
+  color: black;
 }
 
-.container-table{
-display: flex;
-justify-content: center;
-
+.container-table {
+  display: flex;
+  justify-content: center;
 }
-
-

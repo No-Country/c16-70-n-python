@@ -13,7 +13,7 @@ const login = (email, password) => {
 
   fetch(apiUrlServer + "/auth/login", requestOptions)
     .then((response) => {
-      console.log("aqui", response)
+      console.log("aqui", response);
       if (!response.ok) {
         throw new Error(
           "Error al iniciar sesión. Por favor, verifique sus credenciales."
@@ -24,7 +24,7 @@ const login = (email, password) => {
     .then((data) => {
       if (data.token) {
         sessionStorage.setItem("token", data.token);
-        window.location.href = "/Frontend/loanding/index.html";
+        window.location.href = "/loanding";
       } else if (data.message) {
         showMessage(data.message);
       } else {

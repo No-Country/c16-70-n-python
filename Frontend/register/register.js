@@ -4,30 +4,29 @@ const register = (userData) => {
   myHeaders.append("Content-Type", "application/json");
 
   const requestOptions = {
-    method: 'POST',
+    method: "POST",
     headers: myHeaders,
     body: JSON.stringify(userData),
-    redirect: 'follow'
+    redirect: "follow",
   };
 
   fetch(apiUrlServer + "/auth/register", requestOptions)
-    .then(response => response.json())
-    .then(data => {
+    .then((response) => response.json())
+    .then((data) => {
       // Mostrar mensaje en un alert
       alert(data.message);
       // Redireccionar al usuario al login
-      window.location.href = "/Frontend/login/login.html";
-
+      window.location.href = "/cliente-panel/cliente-panel-principal.html";
     })
-    .catch(error => {
+    .catch((error) => {
       // Mostrar el error en el DOM
-      const errorContainer = document.getElementById('error-container');
+      const errorContainer = document.getElementById("error-container");
       errorContainer.textContent = error.message;
-      console.error('Error:', error);
+      console.error("Error:", error);
     });
 };
 
-// Validacion de Variables 
+// Validacion de Variables
 document
   .getElementById("registroForm")
   .addEventListener("submit", function (event) {

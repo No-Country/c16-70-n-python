@@ -1,79 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../CSS/admin-panel.css">
-    <link rel="stylesheet" href="../CSS/cliente-panel.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="../img/favicon-96x96.png" type="image/x-icon" />
+    <link rel="stylesheet" href="../CSS/admin-panel.css" />
+    <link rel="stylesheet" href="../CSS/cliente-panel.css" />
     <title>Agendify</title>
-</head>
-<body>
+  </head>
+  <body>
     <main>
-        
-        <header>
-            <div><img src="" alt=""></div>
-            <p>Odontologica Dentrify</p>
-        </header>
-        <div class="title">
-            <h2>
-                <p>Creacion de Turnos</p>
-            </h2>
-        </div>
-     
+      <header>
+        <div><img src="" alt="" /></div>
+        <p>Odontologica Dentrify</p>
+      </header>
+      <div class="title">
+        <h2>
+          <p>Creacion de Turnos</p>
+        </h2>
+      </div>
 
-        <div id="table-container">
-            <form id="form-create-turno">
-                <div>
-                    <label for="fecha">Fecha:</label>
-                    <input type="date" id="fecha" name="fecha" required>
-                </div>
-                <div>
-                    <label for="inicio">Inicio:</label> 
-                  
-                    <input
-                      type="time"
-                      id="inicio" 
-                      name="inicio"
-                      min="08:00"
-                      max="20:00"
-                      step="300"
-                      required
-                    >
-                  
-                  </div>
-                  <div>
+      <div id="table-container">
+        <form id="form-create-turno">
+          <div>
+            <label for="fecha">Fecha:</label>
+            <input type="date" id="fecha" name="fecha" required />
+          </div>
+          <div>
+            <label for="inicio">Inicio:</label>
 
-                    <label for="fin">Fin:</label>
-                  
-                    <input
-                      type="time" 
-                      id="fin"
-                      name="fin"
-                      min="08:00"
-                      max="20:00"
-                      step="300" 
-                      required
-                    >
-                  
-                  </div>
-                <div>
-                    <label for="duracion">Duración (min):</label>
-                    
-                    <input 
-                    type="number"
-                    id="duracion"
-                    name="duracion"
-                    min="15"
-                    max="180" 
-                    step="15"
-                    required
-                    >
-                    
-                </div>
-                <button type="submit">Crear</button>
-            </form> 
-         </div>
+            <input
+              type="time"
+              id="inicio"
+              name="inicio"
+              min="08:00"
+              max="20:00"
+              step="300"
+              required
+            />
+          </div>
+          <div>
+            <label for="fin">Fin:</label>
+
+            <input
+              type="time"
+              id="fin"
+              name="fin"
+              min="08:00"
+              max="20:00"
+              step="300"
+              required
+            />
+          </div>
+          <div>
+            <label for="duracion">Duración (min):</label>
+
+            <input
+              type="number"
+              id="duracion"
+              name="duracion"
+              min="15"
+              max="180"
+              step="15"
+              required
+            />
+          </div>
+          <button type="submit">Crear</button>
+        </form>
+      </div>
     </main>
-        <script type="module" src="../scripts/createTurns.js"> </script>
-</body>
-    
+    <script type="module" src="../scripts/createTurns.js"></script>
+  </body>
+</html>

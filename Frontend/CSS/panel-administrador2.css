@@ -1,83 +1,78 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-:root{
-    --primary-color: rgb(34, 33, 48);
-    --secondary-color: rgb(78, 201, 234);
-    --third-color: rgb(42, 139, 234);
-    --fourth-color: #f73c5c;
-    --fifth-color: rgb(255, 157, 0);
-    --bagraun-color: #fafafa;
-    --white-color-black:#f0f0f0;
-}
-
-@font-face {
-    font-family: "Montserrat-italic-variablefont_wght";
-    src: url("/Frontend/fuentes/Montserrat-Italic-VariableFont_wght.ttf");
+:root {
+  --primary-color: rgb(34, 33, 48);
+  --secondary-color: rgb(78, 201, 234);
+  --third-color: rgb(42, 139, 234);
+  --fourth-color: #f73c5c;
+  --fifth-color: rgb(255, 157, 0);
+  --bagraun-color: #fafafa;
+  --white-color-black: #f0f0f0;
 }
 
 @font-face {
-    font-family: "Montserrat-VariableFont_wght";
-    src: url("/Frontend/fuentes/Montserrat-VariableFont_wght.ttf");
+  font-family: "Montserrat-italic-variablefont_wght";
+  src: url("../fuentes/Montserrat-Italic-VariableFont_wght.ttf");
 }
 
-
-.navbar{
-    background-color: var(--primary-color);
-    color: var(--bagraun-color);
-    font-family: "Montserrat-VariableFont_wght";
-    
+@font-face {
+  font-family: "Montserrat-VariableFont_wght";
+  src: url("../fuentes/Montserrat-VariableFont_wght.ttf");
 }
 
-.logo img{
-    width: 135px;
-    height: 60px;
-    margin-left: 0px;
+.navbar {
+  background-color: var(--primary-color);
+  color: var(--bagraun-color);
+  font-family: "Montserrat-VariableFont_wght";
 }
 
-.dropdown{
-    margin-right: 100px;
+.logo img {
+  width: 135px;
+  height: 60px;
+  margin-left: 0px;
 }
 
-.dropdown img{
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
+.dropdown {
+  margin-right: 100px;
 }
 
-
-
-.text-section{
-    font-family: "Montserrat-VariableFont_wght";
-    color: black;
+.dropdown img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
 }
 
-
-
-.table{
-    border-collapse:collapse;
-    margin: 25px 0;
-    font-size: 17px;
-
-    border-radius: 5px 5px 0 0;
+.text-section {
+  font-family: "Montserrat-VariableFont_wght";
+  color: black;
 }
 
-table thead th, th{
-    border: 1px solid var(--primary-color);
+.table {
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 17px;
+
+  border-radius: 5px 5px 0 0;
 }
 
-table tbody td, th{
-    border: 1px solid var(--primary-color);
+table thead th,
+th {
+  border: 1px solid var(--primary-color);
 }
 
+table tbody td,
+th {
+  border: 1px solid var(--primary-color);
+}
 
 .fixed-height tbody tr {
-    height: 50px; /* Altura máxima deseada para cada fila */
+  height: 50px; /* Altura máxima deseada para cada fila */
 }
 
 .d-flex-custom {
-    height: 91vh; /* Define la altura que desees */
+  height: 91vh; /* Define la altura que desees */
 }

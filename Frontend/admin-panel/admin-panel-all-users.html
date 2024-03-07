@@ -1,101 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../CSS/admin-panel.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="../img/favicon-96x96.png" type="image/x-icon" />
+    <link rel="stylesheet" href="../CSS/admin-panel.css" />
     <title>Agendify</title>
-</head>
-<body>
+  </head>
+  <body>
     <main>
-        
-       <header>
-        <div><img src="" alt=""></div>
+      <header>
+        <div><img src="" alt="" /></div>
         <p>Odontologica Dentrify</p>
-       </header>
-    <div class="title">
+      </header>
+      <div class="title">
         <h2>
-            <p>Administracion de usuarios</p>
+          <p>Administracion de usuarios</p>
         </h2>
-       
-    </div>
-    <div class="navegation">
+      </div>
+      <div class="navegation">
         <nav>
-            <div class="nav-selection">
-                <p class = "nav-selection--active">Todos</p>
-                <p class="nav-selection--inactive">Activos</p>
-                <p class = "nav-selection--inactive">Suspendidos</p>
-            </div>
+          <div class="nav-selection">
+            <p class="nav-selection--active">Todos</p>
+            <p class="nav-selection--inactive">Activos</p>
+            <p class="nav-selection--inactive">Suspendidos</p>
+          </div>
         </nav>
         <nav>
-            <div class="nav-selection">
-                <button>
-                    <a href="../admin-panel/admin-panel-gestion-turnos.html">Turnos</a>
-                </button>
-                <button>
-                    <a href="../admin-panel/admin-panel-creacion-turnos.html">Crear Turnos</a>
-                </button>
-                <button>
-                    <a href="../admin-panel/admin-panel-gestion-servicios.html">Servicios</a>
-                </button>
-            </div>
-       </nav>
-    </div>
-      
+          <div class="nav-selection">
+            <button>
+              <a href="../admin-panel/admin-panel-gestion-turnos.html"
+                >Turnos</a
+              >
+            </button>
+            <button>
+              <a href="../admin-panel/admin-panel-creacion-turnos.html"
+                >Crear Turnos</a
+              >
+            </button>
+            <button>
+              <a href="../admin-panel/admin-panel-gestion-servicios.html"
+                >Servicios</a
+              >
+            </button>
+          </div>
+        </nav>
+      </div>
 
-    <div id="table-container">
+      <div id="table-container">
         <template id="table-person-template" class="table-person-container">
-            <div class="table-person">
-                <div class="user">
-                    <img src="images/profile_8.jpg" alt="perfil">
-                    <div class="user-info">
-                        <strong>Elisabeth R. Thompson</strong>
-                        <small>ElisabethRThompson@teleworm.us</small>
-                    </div>
-                </div>
-                <div class="role">
-                    <p>User</p>
-                </div>
-                <div class="count-type">
-                    <p>Free</p>
-                </div>
-                <div class="status">
-                    <p>Activo</p>
-                </div>
-                <div class="date-incription">
-                    <p>10/10/2020</p>
-                    <small>inscripcion</small>
-                </div>
-                <div class="action">
-                    <a href="/Frontend/admin-panel/admin-panel-detail-user.html" class="url-edit">
-                        <div class="edit">
-                            <img src="../img/pen-new-square-svgrepo-com.svg" alt="">
-                        </div>
-                    </a>
-                    <a href="" class="url-delete">
-                        <div class="delete">
-                            <img src="../img/backspace-svgrepo-com.svg" alt="">
-                        </div>
-                    </a>
-                </div>
+          <div class="table-person">
+            <div class="user">
+              <img src="images/profile_8.jpg" alt="perfil" />
+              <div class="user-info">
+                <strong>Elisabeth R. Thompson</strong>
+                <small>ElisabethRThompson@teleworm.us</small>
+              </div>
             </div>
+            <div class="role">
+              <p>User</p>
+            </div>
+            <div class="count-type">
+              <p>Free</p>
+            </div>
+            <div class="status">
+              <p>Activo</p>
+            </div>
+            <div class="date-incription">
+              <p>10/10/2020</p>
+              <small>inscripcion</small>
+            </div>
+            <div class="action">
+              <a
+                href="/Frontend/admin-panel/admin-panel-detail-user.html"
+                class="url-edit"
+              >
+                <div class="edit">
+                  <img src="../img/pen-new-square-svgrepo-com.svg" alt="" />
+                </div>
+              </a>
+              <a href="" class="url-delete">
+                <div class="delete">
+                  <img src="../img/backspace-svgrepo-com.svg" alt="" />
+                </div>
+              </a>
+            </div>
+          </div>
         </template>
-    </div>
-    <div class="pagination-container" id="pagination-container">
+      </div>
+      <div class="pagination-container" id="pagination-container">
         <div class="pagination-prev" id="pagination-prev">
-            <a href="#"><img src="../img/arrow-left-svgrepo-com.svg" alt="left"></a>
+          <a href="#"
+            ><img src="../img/arrow-left-svgrepo-com.svg" alt="left"
+          /></a>
         </div>
         <div class="pagination-next" id="pagination-next">
-            <a href="#"><img src="../img/arrow-right-svgrepo-com.svg" alt="right"></a>
+          <a href="#"
+            ><img src="../img/arrow-right-svgrepo-com.svg" alt="right"
+          /></a>
         </div>
-    </div>
-
-
-
-
+      </div>
     </main>
-    
+
     <script type="module" src="../scripts/main.js"></script>
     <script type="module" src="../scripts/saveIdUser.js"></script>
-</body>
+  </body>
 </html>

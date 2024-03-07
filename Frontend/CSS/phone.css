@@ -1,0 +1,238 @@
+@font-face {
+  font-family: "font_1";
+  src: url("../fuentes/Montserrat-VariableFont_wght.ttf");
+}
+@font-face {
+  font-family: "font_2";
+  src: url("../fuentes/Montserrat-Italic-VariableFont_wght.ttf");
+}
+* {
+  box-sizing: 0;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: rgb(240, 238, 238);
+}
+
+p {
+  font-family: "font_2";
+}
+
+.cuadro {
+  background-color: rgb(248, 248, 248);
+}
+.header {
+  background-color: rgb(34, 33, 48);
+  width: 100%;
+  height: 6em;
+}
+.nav a {
+  text-decoration: none;
+  color: rgb(224, 158, 127);
+  font-family: "font_1";
+  border-radius: 30px;
+  padding: 8px 12px 8px 12px;
+  font-size: 16px;
+  font-weight: 600;
+  transition: 0.7s;
+  text-transform: uppercase;
+}
+.lista > li > a:hover {
+  background-color: brown;
+  color: white;
+  transition: 0.7s;
+}
+.lista {
+  padding-top: 2.2em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  list-style-type: none;
+}
+.foto-celular {
+  display: block;
+}
+.section-info img {
+  width: 100%;
+  height: auto;
+}
+.seccion_1 {
+  height: auto;
+  margin: 0;
+  padding: 0;
+}
+.texto > .foto-celular {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+.texto {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+.cuadro {
+  background: linear-gradient(
+    to bottom,
+    #fff,
+    #fff,
+    #ffffffe6,
+    #ffffffb9,
+    #ffffff00
+  );
+  position: absolute;
+  top: 96px;
+  height: auto;
+  margin: 0 auto;
+  padding-bottom: 100px;
+  padding-inline: 25px;
+  padding-top: 25px;
+}
+.cuadro img {
+  width: 100%;
+  height: auto;
+  border-radius: 70px;
+}
+.cuadro p {
+  text-align: center;
+  padding-top: 20px;
+  font-size: 22px;
+  padding-inline: 12px;
+}
+.texto button {
+  position: absolute;
+  top: 95vw;
+  left: 25%;
+  right: 25%;
+  background-color: rgba(252, 252, 252, 0);
+  border: none;
+}
+.texto button a {
+  color: rgb(24, 22, 37);
+  text-decoration: none;
+  font-family: Arial;
+  font-size: 28px;
+  padding: 20px 30px 20px 30px;
+  background-color: rgba(252, 252, 252, 0.789);
+  border-radius: 40px;
+  box-shadow: 0 0 8px black;
+  transition: 0.5s;
+}
+.texto button a:hover {
+  color: rgb(224, 158, 127);
+  background-color: rgba(34, 33, 48, 0.85);
+  transition: 0.5s;
+}
+h2 {
+  text-align: center;
+  border-bottom: solid 3px rgb(224, 158, 127);
+  margin-inline: 3%;
+  padding-top: 25px;
+  padding-bottom: 10px;
+  margin-bottom: 35px;
+  font-family: Arial;
+  color: rgb(34, 33, 48);
+}
+.section-info {
+  display: flex;
+  flex-direction: column;
+}
+.info-1 {
+  display: flex;
+  flex-direction: column-reverse;
+  border-bottom: solid 2px rgba(224, 158, 127, 0.591);
+  margin-bottom: 40px;
+  margin-inline: 20px;
+}
+.info-2 {
+  display: flex;
+  flex-direction: column;
+  border-bottom: solid 2px rgb(224, 158, 127);
+  margin-bottom: 40px;
+  margin-inline: 20px;
+}
+.info-1 div,
+.info-2 div {
+  text-align: center;
+}
+.info-1 .text-info p,
+.info-2 .text-info p {
+  padding-inline: 35px;
+  font-family: Arial;
+  font-size: 20px;
+}
+.info-1 .text-info h3,
+.info-2 .text-info h3 {
+  padding-inline: 35px;
+  font-family: Arial;
+  font-size: 30px;
+  padding-bottom: 25px;
+}
+.section-info img {
+  height: 100%;
+  width: auto;
+  padding: 30px;
+}
+.info-1 img,
+.info-2 img {
+  border-radius: 120px;
+}
+.foto-desktop {
+  display: none;
+}
+.footer {
+  text-align: center;
+  height: 100%;
+  background-color: rgb(24, 22, 37);
+  margin: 0;
+}
+.footer > img {
+  width: 3.5em;
+  height: auto;
+  padding-top: 8px;
+  margin: 0px;
+  padding-bottom: 0px;
+}
+.footer1 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  justify-content: space-evenly;
+  padding-bottom: 15px;
+  padding-top: 0px;
+  margin-top: 0px;
+}
+.footer1 > ul {
+  list-style-type: none;
+  color: rgb(224, 158, 127);
+}
+.footer1 > ul > li > a > img {
+  width: 25px;
+  padding-inline: 10%;
+}
+.footer1 > ul > li > a,
+li {
+  color: rgb(240, 238, 238);
+  text-align: left;
+  padding-left: 5%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  list-style-type: none;
+  text-decoration: none;
+  font-family: "font_1";
+}
+.footer1 h3 {
+  text-align: left;
+  text-indent: 10%;
+  padding: 12px;
+}
+.footer2 {
+  background-color: rgb(34, 33, 48);
+  color: rgb(136, 136, 149);
+  padding: 10px;
+}
+
+@media screen and (max-width: 700) {
+}

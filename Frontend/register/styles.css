@@ -43,44 +43,45 @@
   font-size: 15px;
 }
 
-*{
+* {
   box-sizing: 0;
   margin: 0;
   padding: 0;
-  
 }
 
-
 @font-face {
-  font-family: 'font_1';
+  font-family: "font_1";
   src: url(../fuentes/Montserrat-VariableFont_wght.ttf);
 }
 @font-face {
-  font-family: 'font_2';
+  font-family: "font_2";
   src: url(../fuentes/Montserrat-Italic-VariableFont_wght.ttf);
 }
 
-a{
+a {
   text-decoration: none;
 }
 
-
-h1, h2, h3, h4, h5{
-  font-family: 'font_1';
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: "font_1";
 }
 
-p{
-  font-family: 'font_2';
+p {
+  font-family: "font_2";
 }
 
-body{
+body {
   display: grid;
   grid-template-columns: 100%;
   grid-template-rows: auto auto auto;
   grid-template-areas:
-  "header"
-  "main"
-  "footer";
+    "header"
+    "main"
+    "footer";
   margin: 0;
   padding: 0;
   background-color: var(--color8);
@@ -88,7 +89,7 @@ body{
 }
 
 header {
-  display:grid;
+  display: grid;
   grid-area: header;
   background-color: rgb(34, 33, 48);
   width: 100%;
@@ -102,19 +103,18 @@ header {
   align-items: center;
   justify-content: center;
   padding: 2%;
-  height:100vh;
+  height: 100vh;
 }
 
-.lista{
+.lista {
   padding: 2rem;
   display: flex;
   justify-content: space-evenly;
-  
 }
-.lista > li{
+.lista > li {
   list-style: none;
 }
-.lista > li > a{
+.lista > li > a {
   text-decoration: none;
   color: rgb(224, 158, 127);
   font-family: "font_1";
@@ -122,15 +122,14 @@ header {
   border-radius: 30px;
   font-size: 15px;
   font-weight: 600;
-  transition: .70s;
+  transition: 0.7s;
   text-transform: uppercase;
-  
 }
 
-.lista > li > a:hover{
+.lista > li > a:hover {
   background-color: brown;
   color: white;
-  transition: .70s;
+  transition: 0.7s;
   transform: translateY(-6px);
 }
 
@@ -144,30 +143,30 @@ header {
   border-radius: 1rem;
 }
 
-.login1, .login2 {
+.login1,
+.login2 {
   display: flex;
   flex-direction: column;
   padding: 3rem;
 }
 
-.title{
+.title {
   align-items: center;
 }
 
-.texts{
+.texts {
   display: flex;
   flex-direction: column;
 }
 
-.text{
+.text {
   display: flex;
   flex-direction: row;
   padding: 0.5rem;
   gap: 1.5rem;
 }
 
-
-.login2{
+.login2 {
   padding: 1rem;
   text-align: center;
   gap: 0.5rem;
@@ -176,9 +175,8 @@ header {
 .logo {
   text-align: center;
   display: flex;
-  align-items: center; 
+  align-items: center;
   justify-content: center;
-
 }
 
 .logo img {
@@ -186,7 +184,6 @@ header {
   height: auto;
   border: 3px solid var(--color3);
   border-radius: 2px;
-  
 }
 
 .form {
@@ -196,19 +193,19 @@ header {
   justify-items: center;
 }
 
-.formulario input , select{
-  background-color:var(--color4-5);
-  color:var(--color1-1);
+.formulario input,
+select {
+  background-color: var(--color4-5);
+  color: var(--color1-1);
   padding: 0.2rem;
-  border-color: var(--color1) ;
+  border-color: var(--color1);
   border: 2px solid var(--color3);
   text-align: center;
 }
 
-
-.btn{
-  width:80%;
-  background-color:var(--color3-4);
+.btn {
+  width: 80%;
+  background-color: var(--color3-4);
   padding: 0.3rem;
   border-radius: 1px;
   border-color: var(--color5);
@@ -216,7 +213,6 @@ header {
   border: 2px solid var(--color3);
   font-family: fon_;
 }
-
 
 footer {
   grid-area: footer;
@@ -228,7 +224,7 @@ footer {
   margin-bottom: 0px;
 }
 
-.div-footer{
+.div-footer {
   display: flex;
   flex-direction: row;
   padding: 1rem;

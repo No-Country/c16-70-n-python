@@ -1,72 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../CSS/admin-panel.css">
-    <link rel="stylesheet" href="../CSS/admin-user.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="../img/favicon-96x96.png" type="image/x-icon">
+    <link rel="stylesheet" href="../CSS/admin-panel.css" />
+    <link rel="stylesheet" href="../CSS/admin-user.css" />
     <title>Agendify</title>
-</head>
-<body>
+  </head>
+  <body>
     <main>
-       <header>
-            <div><img src="" alt=""></div>
-            <p>Agendify Administracion</p>
-       </header>
-       <div class="title">
-            <h2>
-                <p>Perfil de usuarios</p>
-            </h2>
-       </div>
-        <div id="table-container">
-            <div id="table-person-template" class="table-person-container"><!-- template--->
-                <div class="table-person">
-                    <div class="user">
-                        <img src="../admin-panel/images/profile_8.jpg" alt="perfil">
-                    </div>
-                </div>
-                <div class="user-info">
-                    <div class="personal-info">
-                        <div class="user-name">
-                            <strong>Nombre</strong>
-                            <p>Elisabeth R. Thompson</p>
-                        </div>
-                        <div class="user-email">
-                            <strong>Correo</strong>
-                            <p>ElisabethRThompson@teleworm.us</p>
-                        </div>
-                        
-                    </div>
-                    <div class="user-direction-phone">
-                        <div class="phone-number">
-                            <strong>Telefono</strong>
-                            <p>Telef. 123456789</p>
-                        </div>
-                    </div>
-                    <div class="status-info">
-                        
-                        
-                        <div class="date-incription">
-                            <strong>Inscripcion</strong>
-                            <p>10/10/2020</p>
-                        </div>
-                        
-                    </div>
-                    <div class="nav-selection">
-
-                        <button id="btn-suspender">Suspender cuenta</button>
-                        <button>
-                            <a href="../admin-panel/admin-panel-edit-user.html">Actualizar</a>
-                        </button>
-                    </div>
-                    <!-- <button>Eliminar</button> -->
-                </div>
+      <header>
+        <div><img src="" alt="" /></div>
+        <p>Agendify Administracion</p>
+      </header>
+      <div class="title">
+        <h2>
+          <p>Perfil de usuarios</p>
+        </h2>
+      </div>
+      <div id="table-container">
+        <div id="table-person-template" class="table-person-container">
+          <!-- template--->
+          <div class="table-person">
+            <div class="user">
+              <img src="../admin-panel/images/profile_8.jpg" alt="perfil" />
             </div>
-         <!-- template fin--->
-         </div>
+          </div>
+          <div class="user-info">
+            <div class="personal-info">
+              <div class="user-name">
+                <strong>Nombre</strong>
+                <p>Elisabeth R. Thompson</p>
+              </div>
+              <div class="user-email">
+                <strong>Correo</strong>
+                <p>ElisabethRThompson@teleworm.us</p>
+              </div>
+            </div>
+            <div class="user-direction-phone">
+              <div class="phone-number">
+                <strong>Telefono</strong>
+                <p>Telef. 123456789</p>
+              </div>
+            </div>
+            <div class="status-info">
+              <div class="date-incription">
+                <strong>Inscripcion</strong>
+                <p>10/10/2020</p>
+              </div>
+            </div>
+            <div class="nav-selection">
+              <button id="btn-suspender">Suspender cuenta</button>
+              <button>
+                <a href="../admin-panel/admin-panel-edit-user.html"
+                  >Actualizar</a
+                >
+              </button>
+            </div>
+            <!-- <button>Eliminar</button> -->
+          </div>
+        </div>
+        <!-- template fin--->
+      </div>
     </main>
-    
+
     <script type="module" src="../scripts/mainUserProfile.js"></script>
     <script type="module" src="../scripts/susperderActivarUser.js"></script>
-</body>
+  </body>
 </html>

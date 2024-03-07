@@ -1,50 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../CSS/admin-panel.css">
-    <link rel="stylesheet" href="../CSS/cliente-panel.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="../img/favicon-96x96.png" type="image/x-icon">
+    <link rel="stylesheet" href="../CSS/admin-panel.css" />
+    <link rel="stylesheet" href="../CSS/cliente-panel.css" />
     <title>Agendify</title>
-</head>
-<body>
+  </head>
+  <body>
     <main>
-       <header>
-        <div><img src="" alt=""></div>
+      <header>
+        <div><img src="" alt="" /></div>
         <p>Odontologica Dentrify</p>
-       </header>
-       <div class="title">
+      </header>
+      <div class="title">
         <h2>
-            <p>Panel principal</p>
+          <p>Panel principal</p>
         </h2>
-
-        </div>
-        <div class="lists-cliente">
-
-            <div class="table-turns">
-                <h3 class="title-list">Turno activo</h3>
-                <div id="table-container-active" class="card-turn-container">
-                    <template id="table-client-template-turn-active" >
-                        <div class="card-turn card-turn-width">
-                            <div class="card-turn-img --active">
-                                <img src="../img/notification-unread-lines-svgrepo-com.svg" alt="">
-                            </div>
-                            <div  class="card-turn-info">
-                                <h3>Turno</h3>
-                                <div class="turn-service">
-                                    <p>Limpieza</p>
-                                </div>
-                                <div class= "turn-start">
-                                  <h4>Inicia: </h4>
-                                  <p>12:00</p>
-                                </div>
-                                <div class="turn-date">
-                                  <h4>Fecha</h4>
-                                  <small>20/10/2020 9:00</small>
-                                </div>
-                                
-                            </div>
-                            <!-- <div class="action action-services">
+      </div>
+      <div class="lists-cliente">
+        <div class="table-turns">
+          <h3 class="title-list">Turno activo</h3>
+          <div id="table-container-active" class="card-turn-container">
+            <template id="table-client-template-turn-active">
+              <div class="card-turn card-turn-width">
+                <div class="card-turn-img --active">
+                  <img
+                    src="../img/notification-unread-lines-svgrepo-com.svg"
+                    alt=""
+                  />
+                </div>
+                <div class="card-turn-info">
+                  <h3>Turno</h3>
+                  <div class="turn-service">
+                    <p>Limpieza</p>
+                  </div>
+                  <div class="turn-start">
+                    <h4>Inicia:</h4>
+                    <p>12:00</p>
+                  </div>
+                  <div class="turn-date">
+                    <h4>Fecha</h4>
+                    <small>20/10/2020 9:00</small>
+                  </div>
+                </div>
+                <!-- <div class="action action-services">
                    
                                 <a href="#" class="url-delete">
                                     <div class="selection delete">
@@ -52,57 +53,49 @@
                                     </div>
                                 </a>
                             </div> -->
-                        </div>
-                    </template>
-                </div>
-                <!-- <button class="btn-all">Ver todos</button> -->
-            </div>
-    
-            <div class="table-provider">
-                <h3 class="title-list">Historial de turnos</h3>
-                <div id="table-container-inactive" class="card-turn-container">
-                    <template id="table-client-template-turn-inactive" >
-                        <div class="card-turn card-turn-width ">
-                            <div class="card-turn-img --complete">
-                                <img src="../img/task-square-svgrepo-com.svg" alt="">
-                            </div>
-                            <div  class="card-turn-info">
-                                <h3>Turno</h3>
-                                <div class="turn-service">
-                                    <p>Limpieza</p>
-                                </div>
-                                <div class= "turn-start">
-                                  <h4>Finalizo: </h4>
-                                  <p>12:00</p>
-                                </div>
-                                <div class="turn-date">
-                                  <h4>Finalizado</h4>
-                                  <small>20/10/2020 9:00</small>
-                                </div>
-                            </div>
-                        </div>
-                    </template>
-                </div>
-                <!-- <button class="btn-all">Ver todos</button> -->
-            </div>
+              </div>
+            </template>
+          </div>
+          <!-- <button class="btn-all">Ver todos</button> -->
         </div>
-        <div class="nav-selection">
-            <button>
-                <a href="cliente-panel-perfil.html">Actualizar perfil</a>
-            </button>
-            <button>
-                <a href="cliente-panel-gestion-turnos.html">Tomar turno</a>
-            </button>
 
+        <div class="table-provider">
+          <h3 class="title-list">Historial de turnos</h3>
+          <div id="table-container-inactive" class="card-turn-container">
+            <template id="table-client-template-turn-inactive">
+              <div class="card-turn card-turn-width">
+                <div class="card-turn-img --complete">
+                  <img src="../img/task-square-svgrepo-com.svg" alt="" />
+                </div>
+                <div class="card-turn-info">
+                  <h3>Turno</h3>
+                  <div class="turn-service">
+                    <p>Limpieza</p>
+                  </div>
+                  <div class="turn-start">
+                    <h4>Finalizo:</h4>
+                    <p>12:00</p>
+                  </div>
+                  <div class="turn-date">
+                    <h4>Finalizado</h4>
+                    <small>20/10/2020 9:00</small>
+                  </div>
+                </div>
+              </div>
+            </template>
+          </div>
+          <!-- <button class="btn-all">Ver todos</button> -->
         </div>
-    
-   
-
-
-
-
+      </div>
+      <div class="nav-selection">
+        <button>
+          <a href="cliente-panel-perfil.html">Actualizar perfil</a>
+        </button>
+        <button>
+          <a href="cliente-panel-gestion-turnos.html">Tomar turno</a>
+        </button>
+      </div>
     </main>
     <script type="module" src="../scripts/mainClient.js"></script>
- 
-</body>
+  </body>
 </html>

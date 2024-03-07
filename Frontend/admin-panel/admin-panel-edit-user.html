@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../CSS/admin-panel.css">
-    <link rel="stylesheet" href="../CSS/admin-user.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="../img/favicon-96x96.png" type="image/x-icon" />
+    <link rel="stylesheet" href="../CSS/admin-panel.css" />
+    <link rel="stylesheet" href="../CSS/admin-user.css" />
     <title>Agendify</title>
-</head>
-<body>
-
+  </head>
+  <body>
     <!-- <nav class="navbar navbar-principal">
         <div class="container">
 
@@ -34,51 +34,48 @@
     </nav> -->
 
     <main>
-       <header>
-            <div><img src="" alt=""></div>
-            <p>Agendify Administracion</p>
-       </header>
-       <div class="title">
-            <h2>
-                <p>Actualizar perfil de paciente</p>
-            </h2>
-       </div>
-        <div id="table-container">
-            <div id="table-person-template" class="table-person-container"><!-- template--->
-                <form class="form-update-user" action="">
-                    <div class="table-person">
-                       
-                    </div>
-                    <div class="user-info">
-                        <div class="personal-info">
-                            <div class="user-name">
-                                <strong>Nombre</strong>
-                                <input type="text" name="first-name" id="first-name">
-                            </div>
-                            <div class="user-name">
-                                <strong>Apellido</strong>
-                                <input type="text" name="last-name" id="last-name">
-                            </div>
-                            <div class="user-email">
-                                <strong>Correo</strong>
-                                <input type="email" name="email" id="email">
-                            </div>
-                            
-                        </div>
-                        <div class="user-direction-phone">
-                            <div class="phone-number">
-                                <strong>Telefono</strong>
-                                <input type="tel" name="phone" id="phone">
-                            </div>
-                        </div>
-                        <button type="submit" id="btn-update-user">Actualizar</button>
-                    </div>
-                </form>
-
+      <header>
+        <div><img src="" alt="" /></div>
+        <p>Agendify Administracion</p>
+      </header>
+      <div class="title">
+        <h2>
+          <p>Actualizar perfil de paciente</p>
+        </h2>
+      </div>
+      <div id="table-container">
+        <div id="table-person-template" class="table-person-container">
+          <!-- template--->
+          <form class="form-update-user" action="">
+            <div class="table-person"></div>
+            <div class="user-info">
+              <div class="personal-info">
+                <div class="user-name">
+                  <strong>Nombre</strong>
+                  <input type="text" name="first-name" id="first-name" />
+                </div>
+                <div class="user-name">
+                  <strong>Apellido</strong>
+                  <input type="text" name="last-name" id="last-name" />
+                </div>
+                <div class="user-email">
+                  <strong>Correo</strong>
+                  <input type="email" name="email" id="email" />
+                </div>
+              </div>
+              <div class="user-direction-phone">
+                <div class="phone-number">
+                  <strong>Telefono</strong>
+                  <input type="tel" name="phone" id="phone" />
+                </div>
+              </div>
+              <button type="submit" id="btn-update-user">Actualizar</button>
             </div>
-         <!-- template fin--->
-         </div>
+          </form>
+        </div>
+        <!-- template fin--->
+      </div>
     </main>
     <script type="module" src="../scripts/editUser.js"></script>
-</body>
+  </body>
 </html>
