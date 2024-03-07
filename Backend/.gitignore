@@ -3,3 +3,16 @@ __pycache__/
 *.py[cod]
 .vscode
 static
+.venv
+Backend/app/__pycache__/__init__.cpython-311.pyc
+Backend/app/models/__pycache__/__init__.cpython-311.pyc
+Backend/app/models/__pycache__/models.cpython-311.pyc
+Backend/app/routers/__pycache__/__init__.cpython-311.pyc
+Backend/app/routers/__pycache__/admin.cpython-311.pyc
+Backend/app/static/imgs/logo.png
+Backend/app/static/imgs/user.jpg
+Backend/app/utils/__pycache__/segurity.cpython-311.pyc
+Backend/app/routers/__pycache__/user.cpython-311.pyc
+Backend/app/routers/__pycache__/proveedor.cpython-311.pyc
+Backend/app/routers/__pycache__/cliente.cpython-311.pyc
+Backend/app/routers/__pycache__/auth.cpython-311.pyc
