@@ -32,13 +32,20 @@
     
 }
 
-.container-nav{
+/* .container{
+    background-color: #f73c5c;
+    margin-left: -60px;
+    margin-right: -60px;
+} */
+
+/* .container-nav{
     background-color: var(--primary-color);
-}
+    margin-left: -20px;
+} */
 
 
 
-.logo img{
+.logo-container img{
     width: 135px;
     height: 60px;
     margin-left: 0px;

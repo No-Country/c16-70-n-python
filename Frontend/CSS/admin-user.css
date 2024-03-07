@@ -1,3 +1,13 @@
+:root{
+    --primary-color: rgb(34, 33, 48);
+    --secondary-color: rgb(78, 201, 234);
+    --third-color: rgb(42, 139, 234);
+    --fourth-color: #f73c5c;
+    --fifth-color: rgb(255, 157, 0);
+    --bagraun-color: #fafafa;
+    --white-color-black:#f0f0f0;
+}
+
 .user-info{
     display: flex;
     flex-direction: column;
@@ -47,3 +57,55 @@
     min-width: 100px;
 
 }
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f4f4;
+  }
+  
+  .form-update-user {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Estilos para los campos de entrada */
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+  }
+  
+  /* Estilos para las etiquetas */
+  strong {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  /* Estilos para el botón */
+  #btn-update-user {
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+  }
+  
+  #btn-update-user:hover {
+    background-color: #45a049;
+  }
+
+  

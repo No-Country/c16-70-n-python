@@ -81,7 +81,9 @@ header{
     display: flex;
     justify-content:center;
     background-color: var(--primary-color);
-    margin-bottom: 100px;
+    margin-bottom: 70px;
+    margin-left: -30px;
+    margin-right: -30px;
 }
 
 .navbar-principal .container {
@@ -143,6 +145,10 @@ button:hover{
 button:active{
     background-color: var(--third-color);
     
+}
+
+.btn-margin-left-0{
+    margin-left: 0px;
 }
 
 .btn-service{
@@ -229,6 +235,17 @@ button:active{
     border: none;
 }
 
+.nav-margin-20px{
+    margin-left: -20px;
+}
+
+
+.nav-title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .table-person-container{
     display: flex;
     justify-content: center;
@@ -246,6 +263,10 @@ button:active{
     background-color: var(--white-color-black);
     border-radius: 5px;
     margin-bottom: 2px;
+}
+
+.table-person--center{
+    justify-content: center;
 }
 
 .table-container-active{
@@ -312,18 +333,22 @@ button:active{
     scale: 0.9;
 }
 
+.edit:hover img {
+    scale: 1.1;
+}
+
 .delete img{
     width: 30px;
     cursor: pointer;
 }
 
 .delete:hover img {
-    content: url('../img/backspace-svgrepo-com_copy.svg');
+    /* content: url('../img/backspace-svgrepo-com_copy.svg'); */
     scale: 1.2;
 }
 
 .delete:active img {
-    content: url('../img/backspace-svgrepo-com_copy.svg');
+    /* content: url('../img/backspace-svgrepo-com_copy.svg'); */
     scale: 0.9;
 }
 
@@ -400,6 +425,108 @@ button:active{
     background-color: #0069d9;
 }
 
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f4f4;
+  }
+  
+  #form-add-service {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Estilos para la etiqueta */
+  label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  
+  /* Estilos para el campo de entrada */
+  #name {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+  }
+  
+  /* Estilos para el botón */
+  #form-add-service button {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+  }
+  
+  #form-add-service button:hover {
+    background-color: var(--secondary-color);
+  }
+
+/* ----------------------- */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f4f4;
+  }
+  
+  #form-create-turno {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Estilos para las divisiones */
+  #form-create-turno div {
+    margin-bottom: 20px;
+  }
+  
+  /* Estilos para las etiquetas */
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  /* Estilos para los campos de entrada */
+  input[type="date"],
+  input[type="time"],
+  input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  /* Estilos para el botón */
+  #form-create-turno button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+  }
+  
+  #form-create-turno button:hover {
+    background-color: #45a049;
+  }
 
 @media screen and (max-width: 970px) {
     .role{
