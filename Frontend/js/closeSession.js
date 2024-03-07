@@ -1,4 +1,5 @@
 function close() {
+    console.log("close session");
     localStorage.clear();
     sessionStorage.clear();
     document.cookie.split(";").forEach(function(c) {
@@ -6,6 +7,13 @@ function close() {
     });
 }
 
-window.onload = () => {
+
+
+
+
+document.querySelector(".cerrar-sesion").addEventListener("click", () => {
     close();
-};
+    window.location.href = "../Home Page/Index.html";
+});
+
+

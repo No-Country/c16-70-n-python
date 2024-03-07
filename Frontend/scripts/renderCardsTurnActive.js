@@ -45,7 +45,7 @@ export function renderCardsTurnActive(data) {
     
    
     
-      releaseTurn()
+      // releaseTurn()
     //editCardService()
     // paginationPrev.classList.toggle('hidden', currentPage = 1); // ! checar el control de la paginacion
     // paginationNext.classList.toggle('hidden', currentPage == 1);
