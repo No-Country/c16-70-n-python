@@ -1,4 +1,4 @@
-import obtenerDatosAPIUserProfileForAdmin from './fetchDataUserProfile.js';
+import obtenerDatosAPIUserProfileForAdmin from './fetchDataUserProfileForAdmin.js';
 import renderUserProfile from './renderUserProfile.js';
 
 console.log("aqui_id", sessionStorage.getItem("userid"))

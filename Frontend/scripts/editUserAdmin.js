@@ -50,8 +50,8 @@ form.addEventListener('submit', async (e) => {
     
     console.log("aqui_form_data|",data)
     
-    // const Url = apiUrlServer + `/admin/paciente/` + sessionStorage.getItem('userid');
-    const Url = apiUrlServer + `user/put`;
+    const Url = apiUrlServer + `/admin/paciente/` + sessionStorage.getItem('userid');
+    //const Url = apiUrlServer + `user/put`;
 
 const headers = {
     'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
