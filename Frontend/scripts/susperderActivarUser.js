@@ -3,7 +3,7 @@ import fetchDataAll from "./fetchDataAll.js";
 
 export const suspenderUsuario = () => {
     const data = {suspender : "True"}
-    const Url = apiUrlServer + `/admin/paciente/` + sessionStorage.getItem('userid');
+    const Url = apiUrlServer + `admin/paciente/` + sessionStorage.getItem('userid');
     const headers = {
     'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
     'Content-Type': 'application/json', 
@@ -22,7 +22,7 @@ export const activarUsuario = () => {
     console.log("aqui_click_suspender")  
     const data = {suspender : "False"}   
     console.log("aqui_form_data|",data)
-    const Url = apiUrlServer + `/admin/paciente/` + sessionStorage.getItem('userid');
+    const Url = apiUrlServer + `admin/paciente/` + sessionStorage.getItem('userid');
 
 const headers = {
     'Authorization': 'Bearer ' + sessionStorage.getItem('token'),

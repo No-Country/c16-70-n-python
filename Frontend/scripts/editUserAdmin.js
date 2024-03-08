@@ -1,21 +1,21 @@
 import { apiUrlServer } from "../js/config.js";
 import fetchDataAll from "./fetchDataAll.js";
-import obtenerDatosAPIUserProfile from "./fetchDataUserProfile.js";
+import obtenerDatosAPIUserProfileForAdmin from "./fetchDataUserProfileForAdmin.js";
 
 
-// document.addEventListener('DOMContentLoaded', () => {
-//     console.log("aqui");
-//     obtenerDatosAPIUserProfile().then(datos => {
-//         document.getElementById('first-name').value = datos.firtname;
-//         document.getElementById('last-name').value = datos.lastname;
-//         document.getElementById('email').value = datos.email;
-//         document.getElementById('phone').value = datos.phone;
-//         // document.getElementById('status').value = data.status;
-//         // document.getElementById('date-incription').value = data.register_date;
-//         // document.getElementById('date-suspension').value = data.data_suspension;
+document.addEventListener('DOMContentLoaded', () => {
+    console.log("aqui");
+    obtenerDatosAPIUserProfileForAdmin(sessionStorage.getItem("userid")).then(datos => {
+        document.getElementById('first-name').value = datos.first_name;
+        document.getElementById('last-name').value = datos.last_name;
+        document.getElementById('email').value = datos.email;
+        document.getElementById('phone').value = datos.phone;
+        // document.getElementById('status').value = data.status;
+        // document.getElementById('date-incription').value = data.register_date;
+        // document.getElementById('date-suspension').value = data.data_suspension;
 
-//     })
-// })
+    })
+})
 // window.onload = () => {
 //     obtenerDatosAPIUserProfile().
 //     then(data => {
@@ -66,8 +66,8 @@ fetchDataAll(Url, headers, "PUT", data)
     .catch(error => {
         console.error('Error:', error);
     }).then(() => {
-        // window.location.href = "../cliente-panel/cliente-panel-perfil.html"
-        console.log("aqui_data-despues", data)
+         window.location.href = "../admin-panel/admin-panel-detail-user.html"
+        // console.log("aqui_data-despues", data)
     })
     
 })

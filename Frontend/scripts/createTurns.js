@@ -27,5 +27,6 @@ document.getElementById("form-create-turno").addEventListener("submit", function
     fetch(apiUrlServer + "/admin/turnos", myInit)
     .then(response => response.json())
     .then(data => console.log(data))
-    .catch(error => console.log(error));
+    .catch(error => console.log(error)).
+    then(() => window.location.href = "../admin-panel/admin-panel-gestion-turnos.html");
 });

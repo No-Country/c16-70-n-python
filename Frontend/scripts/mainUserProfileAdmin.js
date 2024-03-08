@@ -1,5 +1,5 @@
 import obtenerDatosAPIUserProfileForAdmin from './fetchDataUserProfileForAdmin.js';
-import renderUserProfile from './renderUserProfile.js';
+import renderUserProfile from './renderUserProfileAdmin.js';
 
 console.log("aqui_id", sessionStorage.getItem("userid"))
 const userId = sessionStorage.getItem("userid");
