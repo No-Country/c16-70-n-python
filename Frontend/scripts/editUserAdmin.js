@@ -6,6 +6,7 @@ import obtenerDatosAPIUserProfileForAdmin from "./fetchDataUserProfileForAdmin.j
 document.addEventListener('DOMContentLoaded', () => {
     console.log("aqui");
     obtenerDatosAPIUserProfileForAdmin(sessionStorage.getItem("userid")).then(datos => {
+        console.log("date-get", datos)
         document.getElementById('first-name').value = datos.first_name;
         document.getElementById('last-name').value = datos.last_name;
         document.getElementById('email').value = datos.email;

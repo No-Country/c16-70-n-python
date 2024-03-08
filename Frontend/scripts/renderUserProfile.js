@@ -21,7 +21,7 @@ function cleanUserCards() {
       // } else {
       //     userCard.querySelector('.user img').src = data.profileImgUrl;
       // }
-      userCard.querySelector('.user-name p').textContent = data.first_name + " " + data.last_name;
+      userCard.querySelector('.user-name p').textContent = data.firstname + " " + data.lastname;
       userCard.querySelector('.user-email p').textContent = data.email;
       userCard.querySelector('.phone-number p').textContent = data.phone;
       // userCard.querySelector('.role p').textContent = data.role;
