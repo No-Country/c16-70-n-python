@@ -24,9 +24,9 @@ class GetUserDataById(Resource):
         Retorna:
         --------
         jsonify:
-        
+
             Un JSON que contiene los siguientes datos del usuario si se encuentra:
-            
+
             - user_id: int
                 El ID del usuario.
             - email: str
@@ -45,7 +45,7 @@ class GetUserDataById(Resource):
                 La fecha de suspensión del usuario (en formato 'YYYY-MM-DD').
             - status: bool
                 El estado de suspensión del usuario (True si está suspendido, False si no lo está).
-            
+
             Un mensaje de error si el usuario no se encuentra o si ocurre algún problema durante la operación.
 
         """
@@ -98,7 +98,7 @@ class PutDatosUser(Resource):
         Retorna:
         --------
         jsonify:
-        
+
             Un mensaje de éxito si la actualización fue exitosa.
             Un mensaje de error si ocurrió algún problema durante la actualización.
 
@@ -127,7 +127,7 @@ class PutDatosUser(Resource):
                 db.session.commit()
                 return jsonify({"message": "Usuario actualizado correctamente"})
             else:
-                return jsonify({'error': 'Usuario no encontrado'}), 404
+                return jsonify({'error': 'Usuario no encontrado'})
         except Exception as e:
             print("Error:", e)
             return jsonify({"message": "Error al actualizar el usuario"})
@@ -151,16 +151,16 @@ class PutImgUser(Resource):
         try:
             # Verificar el rol del usuario
             if role == 'Admin' or role == 'Paciente':
-                    
+
                     user = User.query.filter_by(use_int_id=id, use_str_role=role).first()
-                    
+
                     if not user:
                         return jsonify({"message": "Usuario no encontrado"})
                     # Guardar la imagen para el cliente
                     user.save_use_str_profile_img(img)
 
                     return jsonify({"message": "Imagen de perfil actualizada correctamente"})
-            
+
             else:
                 return jsonify({"message": "Rol de usuario desconocido"})
 
@@ -176,7 +176,7 @@ class TurnosGet(Resource):
     def get(self):
         """
         Obtiene los turnos no asignados cuya fecha de asignación es posterior al día actual.
-        
+
         Parámetros:
         -----------
         No recibe parámetros directamente de la solicitud.
@@ -184,12 +184,12 @@ class TurnosGet(Resource):
         Retorna:
         --------
         jsonify:
-        
+
             Devuelve una lista de objetos JSON que representan los turnos disponibles.
             Cada objeto JSON contiene la información de un turno no asignado.
 
             Los campos de cada objeto JSON incluyen:
-            
+
             - idturn: int
                 El ID único del turno.
             - idservice: int
@@ -214,15 +214,15 @@ class TurnosGet(Resource):
         hoy = date.today()
         if id:
             select_turn = Turn.query.filter_by(turn_bol_assigned=False).filter(Turn.turn_date_date_assignment > hoy).all()
-            turn_list = []  
+            turn_list = []
 
             try:
-                if select_turn:    
+                if select_turn:
                     for data in select_turn:
                         service_description = None
                         if data.service:
                             service_description = data.service.ser_str_category_name
-                        
+
                         turn_data = {
                             'idturn': data.turn_int_id,
                             'service_info': {
@@ -254,7 +254,7 @@ class GetTurnoUser(Resource):
     def get(self):
         """
         Obtiene los turnos pendientes de un usuario.
-        
+
         Parámetros:
         -----------
         No recibe parámetros directamente de la solicitud.
@@ -262,12 +262,12 @@ class GetTurnoUser(Resource):
         Retorna:
         --------
         jsonify:
-        
+
             Devuelve una lista de objetos JSON que representan los turnos finalizados de un usuario.
             Cada objeto JSON contiene la información de un turno finalizado.
 
             Los campos de cada objeto JSON incluyen:
-            
+
             - idturn: int
                 El ID único del turno.
             - idservice: int
@@ -292,10 +292,10 @@ class GetTurnoUser(Resource):
         hoy = date.today()
         if id:
             select_turn = Turn.query.filter_by(turn_int_user_id=id).filter(Turn.turn_date_date_assignment > hoy).all()
-            turn_list = []  
+            turn_list = []
 
             try:
-                if select_turn:    
+                if select_turn:
                     for data in select_turn:
                         turn_data = {
                             'idturn' : data.turn_int_id,
@@ -326,7 +326,7 @@ class GetTurnoUser(Resource):
     def get(self):
         """
         Obtiene los turnos finalizados de un usuario.
-        
+
         Parámetros:
         -----------
         No recibe parámetros directamente de la solicitud.
@@ -334,12 +334,12 @@ class GetTurnoUser(Resource):
         Retorna:
         --------
         jsonify:
-        
+
             Devuelve una lista de objetos JSON que representan los turnos finalizados de un usuario.
             Cada objeto JSON contiene la información de un turno finalizado.
 
             Los campos de cada objeto JSON incluyen:
-            
+
             - idturn: int
                 El ID único del turno.
             - idservice: int
@@ -364,10 +364,10 @@ class GetTurnoUser(Resource):
         hoy = date.today()
         if id:
             select_turn = Turn.query.filter_by(turn_int_user_id=id).filter(Turn.turn_date_date_assignment < hoy).all()
-            turn_list = []  
+            turn_list = []
 
             try:
-                if select_turn:    
+                if select_turn:
                     for data in select_turn:
                         turn_data = {
                             'idturn' : data.turn_int_id,
@@ -394,13 +394,13 @@ class GetTurnoUser(Resource):
 # [X] MARCOS // FERNANDO
 @user.route('/turno/<int:turn_int_id>')
 class ProcessTurnsUser(Resource):
-    
+
     # MARCOS
     # ver el turno por id de url
     def get(self, turn_int_id):
         """
         Obtiene el detalle del turno seleccionado.
-        
+
         Parámetros:
         -----------
         Como parametro esta el id del turno que se ha seleccionado.
@@ -408,12 +408,12 @@ class ProcessTurnsUser(Resource):
         Retorna:
         --------
         jsonify:
-        
+
             Devuelve una lista de objetos JSON que representan los detalles del turno.
             Cada objeto JSON contiene la información detalla de un turno.
 
             Los campos de cada objeto JSON incluyen:
-            
+
             - idturn: int
                 El ID único del turno.
             - idservice: int
@@ -445,24 +445,24 @@ class ProcessTurnsUser(Resource):
         """
         verify_token()
         id = verify_token().get('id')
-        
+
         turn_id = turn_int_id
-        
+
         try:
-            
+
             # Filtramos por el id del turno
             select_turn = Turn.query.filter_by(turn_int_user_id=turn_id)
-            
+
             # Consultamos la data del usuario
             user = User.query.get(id)
-            
+
             # Consultamos la data del servicio
             service_info = Services.query.get()
-            
+
             # Verificamos si el turn existe
             if select_turn is None:
                 return jsonify({'error': 'Turno no encontrado'}), 404
-            
+
             # Mostramos los detalles del turno
             turn_data = {
                     'idturn' : select_turn.turn_int_id,
@@ -484,7 +484,7 @@ class ProcessTurnsUser(Resource):
                     'turn_finish': select_turn.turn_time_finish_turn.strftime('%H:%M:%S')
             }
             return jsonify(turn_data)
-        
+
         except Exception as d:
             return jsonify({'message': 'Error en la operacion'})
 
@@ -493,18 +493,18 @@ class ProcessTurnsUser(Resource):
 class AssignerTurnsUser(Resource):
     # Asignar un turno a un usuario
     def put(self, turn_int_id):
-        
+
         # Verificar el token de autenticación
         user_id = verify_token().get('id')
-        
+
         # Verificar si el usuario existe
         if user_id is None:
             return jsonify({'error': 'Usuario no encontrado'}), 404
-        
+
         # Intentar asignar el turno al usuario
         id_turno=turn_int_id
         data = request.get_json()
-        
+
         try:
             print(turn_int_id)
             turno = Turn.query.filter_by(turn_int_id=id_turno).first()
@@ -533,10 +533,10 @@ class AssignerTurnsUser(Resource):
 @user.route("/servicios")
 class Servicios(Resource):
     def get(self):
-        """ 
+        """
         Obtener Listado de Servicios
         Ejemplo: http://127.0.0.1:40709/admin/servicios?page=1
-        
+
         Parámetros:
         -----------
         No recibe parámetros directamente de la solicitud.
@@ -547,31 +547,27 @@ class Servicios(Resource):
         if not auth:
             return jsonify({'message': "Token no proporcionado"})
 
-
-        verify_token()
         id = verify_token().get('id')
-
-
 
         try:
             # Paginacion
             page = request.args.get('page', 1, type=int)
             per_page = request.args.get('per_page', 10, type=int)
 
-            servicios = Servicios.query.paginate(page=page, per_page=per_page, error_out=False)
+            servicios = Services.query.paginate(page=page, per_page=per_page, error_out=False)
 
             lista_servicio = []
             for servicio in servicios.items:
-                formatted_turno = {
+                formatted_servicio = {
                     'id': servicio.ser_int_id,
                     'name': servicio.ser_str_category_name
                 }
-                lista_servicio.append(formatted_turno)
+                lista_servicio.append(formatted_servicio)
 
             return jsonify(lista_servicio)
         except Exception as e:
             return jsonify({'message': str(e)})
-        
+
 ###################################################################################################
 ###################################################################################################
 ###################################################################################################
