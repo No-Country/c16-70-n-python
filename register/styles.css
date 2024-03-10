@@ -1,0 +1,253 @@
+/* colores */
+:root {
+  --color1: #ef9300;
+  --color1-1: #1a1000;
+  --color1-2: #452a00;
+  --color1-3: #6f4500;
+  --color1-4: #9a5f00;
+  --color1-5: #c47900;
+  /*  */
+  --color2: #e13754;
+  --color2-1: #0c0305;
+  --color2-3: #370d15;
+  --color2-4: #611824;
+  --color2-5: #8c2234;
+  --color2-6: #b62d44;
+  /*  */
+  --color3: #2a8bea;
+  --color3-1: #040d15;
+  --color3-2: #0b2640;
+  --color3-3: #133f6a;
+  --color3-4: #1b5995;
+  --color3-5: #2272bf;
+  /*  */
+  --color4: #48caed;
+  --color4-1: #071518;
+  --color4-2: #143943;
+  --color4-3: #215d6d;
+  --color4-4: #2e8298;
+  --color4-5: #3ba6c2;
+  /*  */
+  --color5: #222130;
+  --color5-1: #403e5a;
+  --color5-2: #5e5b85;
+  --color5-3: #7c79af;
+  --color5-4: #9a96da;
+  --color5-5: #040405;
+  /*  */
+  --color6: #ffffff;
+  --color7: #000000;
+  --color8: #c8c8c8;
+  --color9: #f0f0f0;
+  --color10: #fafafa;
+  font-size: 15px;
+}
+
+*{
+  box-sizing: 0;
+  margin: 0;
+  padding: 0;
+  
+}
+
+
+@font-face {
+  font-family: 'font_1';
+  src: url(../fuentes/Montserrat-VariableFont_wght.ttf);
+}
+@font-face {
+  font-family: 'font_2';
+  src: url(../fuentes/Montserrat-Italic-VariableFont_wght.ttf);
+}
+
+a{
+  text-decoration: none;
+}
+
+
+h1, h2, h3, h4, h5{
+  font-family: 'font_1';
+}
+
+p{
+  font-family: 'font_2';
+}
+
+body{
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: auto auto auto;
+  grid-template-areas:
+  "header"
+  "main"
+  "footer";
+  margin: 0;
+  padding: 0;
+  background-color: var(--color8);
+  font-family: font_1;
+}
+
+header {
+  display:grid;
+  grid-area: header;
+  background-color: rgb(34, 33, 48);
+  width: 100%;
+  height: auto;
+}
+
+.main {
+  grid-area: main;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2%;
+  height:100vh;
+}
+
+.lista{
+  padding: 2rem;
+  display: flex;
+  justify-content: space-evenly;
+  
+}
+.lista > li{
+  list-style: none;
+}
+.lista > li > a{
+  text-decoration: none;
+  color: rgb(224, 158, 127);
+  font-family: "font_1";
+  padding: 8px 12px 8px 12px;
+  border-radius: 30px;
+  font-size: 15px;
+  font-weight: 600;
+  transition: .70s;
+  text-transform: uppercase;
+  
+}
+
+.lista > li > a:hover{
+  background-color: brown;
+  color: white;
+  transition: .70s;
+  transform: translateY(-6px);
+}
+
+/* Login */
+
+.login {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: 80%;
+  background-color: darkgrey;
+  border-radius: 1rem;
+}
+
+.login1, .login2 {
+  display: flex;
+  flex-direction: column;
+  padding: 3rem;
+}
+
+.title{
+  align-items: center;
+}
+
+.texts{
+  display: flex;
+  flex-direction: column;
+}
+
+.text{
+  display: flex;
+  flex-direction: row;
+  padding: 0.5rem;
+  gap: 1.5rem;
+}
+
+
+.login2{
+  padding: 1rem;
+  text-align: center;
+  gap: 0.5rem;
+}
+
+.logo {
+  text-align: center;
+  display: flex;
+  align-items: center; 
+  justify-content: center;
+
+}
+
+.logo img {
+  width: 70%;
+  height: auto;
+  border: 3px solid var(--color3);
+  border-radius: 2px;
+  
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-items: center;
+}
+
+.formulario input , select{
+  background-color:var(--color4-5);
+  color:var(--color1-1);
+  padding: 0.2rem;
+  border-color: var(--color1) ;
+  border: 2px solid var(--color3);
+  text-align: center;
+}
+
+
+.btn{
+  width:80%;
+  background-color:var(--color3-4);
+  padding: 0.3rem;
+  border-radius: 1px;
+  border-color: var(--color5);
+  color: var(--color10);
+  border: 2px solid var(--color3);
+  font-family: fon_;
+}
+
+
+footer {
+  grid-area: footer;
+  display: flex;
+  flex-direction: row;
+  background-color: #222130;
+  padding-top: 0.5rem;
+  width: 100%;
+  margin-bottom: 0px;
+}
+
+.div-footer{
+  display: flex;
+  flex-direction: row;
+  padding: 1rem;
+  justify-content: center;
+  justify-items: center;
+  gap: 2rem;
+}
+
+/* @media screen and (min-width: 768px) {
+  .login {
+    grid-template-columns: 40% 60%; 
+  }
+} */
+
+@media screen and (max-width: 412px) {
+  .login {
+    grid-template-rows: auto; /* Ajuste para dispositivos móviles */
+    grid-area: "login1" "login2";
+    padding: 0.5rem;
+    margin: 5%;
+  }
+}
