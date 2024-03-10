@@ -14,6 +14,8 @@ let currentPage=1;
 // 
 
 async function fetchPages(apiUrlServer, currentPage, token) {
+  const token = sessionStorage.getItem("token");
+
   try {
     const myHeaders = new Headers();
     myHeaders.append("Authorization", `Bearer ${token}`);
@@ -36,6 +38,7 @@ function handlePaginationClick(offset) {
 }
 
 function main() {
+  const token = sessionStorage.getItem("token");
   obtenerDatosAPI(apiUrlServer, currentPage, token)
     .then(datos => {
       renderUserCards(datos);
