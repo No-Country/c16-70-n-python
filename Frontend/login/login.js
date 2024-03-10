@@ -1,4 +1,4 @@
-import { apiUrlServer } from "../js/config";
+import { apiUrlServer } from "../js/config.js";
 
 const login = (email, password) => {
   const myHeaders = new Headers();
