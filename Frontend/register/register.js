@@ -10,7 +10,7 @@ const register = (userData) => {
     redirect: "follow",
   };
 
-  fetch(apiUrlServer + "/auth/register", requestOptions)
+  fetch("https://c1670python.pythonanywhere.com/auth/register", requestOptions)
     .then((response) => response.json())
     .then((data) => {
       // Mostrar mensaje en un alert
