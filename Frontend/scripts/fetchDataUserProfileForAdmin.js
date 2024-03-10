@@ -1,4 +1,4 @@
-import { apiUrlServer } from "../js/config.js";
+import { apiUrlServer } from "../../js/config.js";
 
 export default async function obtenerDatosAPIUserProfileForAdmin(id) {
   const apiUrl = apiUrlServer + `admin/paciente/${id}`;

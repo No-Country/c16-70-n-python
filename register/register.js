@@ -1,4 +1,4 @@
-import { apiUrlServer } from "../js/config.js";
+import { apiUrlServer } from "/js/config.js";
 const register = (userData) => {
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
@@ -16,7 +16,7 @@ const register = (userData) => {
       // Mostrar mensaje en un alert
       alert(data.message);
       // Redireccionar al usuario al login
-      window.location.href = "/Frontend/login/login.html";
+      window.location.href = "login/login.html";
 
     })
     .catch(error => {
