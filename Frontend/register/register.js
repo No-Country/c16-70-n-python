@@ -16,7 +16,7 @@ const register = (userData) => {
       // Mostrar mensaje en un alert
       alert(data.message);
       // Redireccionar al usuario al login
-      window.location.href = "index.html";
+      window.location.href = "/";
     })
     .catch((error) => {
       // Mostrar el error en el DOM
