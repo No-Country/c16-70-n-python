@@ -69,11 +69,11 @@ export default function renderUserCards(data, currentPage) {
   const paginationNext = document.getElementById("pagination-next");
 
   data.forEach((user) => {
-    console.log("data_user", data);
+    //console.log("data_user", data);
     const userCard = document.importNode(template, true);
 
     let imageUrl = apiUrlServer + "static/" + user.profile_img;
-    console.log(imageUrl);
+    //console.log(imageUrl);
     if (!user.profile_img) {
       imageUrl = imageUrl;
     }
@@ -95,7 +95,7 @@ export default function renderUserCards(data, currentPage) {
   //paginationNext.classList.toggle('hidden', currentPage == 1);
 
   const update = document.querySelectorAll(".edit");
-  console.log("update", update);
+  //console.log("update", update);
   update.forEach((update) => {
     update.addEventListener("click", () => {
       console.log("aquie identificador");

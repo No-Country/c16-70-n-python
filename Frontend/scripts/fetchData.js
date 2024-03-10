@@ -2,7 +2,7 @@ import { apiUrlServer } from "../js/config.js";
 
 export default async function obtenerDatosAPI(page, role="") {
   const apiUrl = apiUrlServer + `/admin/pacientes?role=${role}&_page=${page}`;
-  console.log("aqui", apiUrl);
+  //console.log("aqui", apiUrl);
   
   try {
     const token = sessionStorage.getItem("token"); 
