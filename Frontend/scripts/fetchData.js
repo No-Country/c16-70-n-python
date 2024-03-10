@@ -6,7 +6,7 @@ export default async function obtenerDatosAPI(page, role="") {
   
   try {
     const token = sessionStorage.getItem("token"); 
-      console.log("aqui token",token);// Obtener el token del almacenamiento local
+      //console.log("aqui token",token);// Obtener el token del almacenamiento local
       const headers = {
           'Authorization': `Bearer ${token}` // Formatear el token como "Bearer token"
       };

@@ -27,7 +27,7 @@ async function fetchPages(apiUrlServer, currentPage, token) {
     const data = await response.json();
     renderUserCards(data, currentPage);
   } catch (error) {
-    //console.error('Error:', error);
+    console.error('Error:', error);
   }
 }
 
