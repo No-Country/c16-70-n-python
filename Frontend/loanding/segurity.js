@@ -26,7 +26,7 @@ async function obtenerYMostrarToken() {
       } else {
         console.log("Rol desconocido");
 
-        window.location.href = "../index.html";
+        window.location.href = "/";
       }
     })
     .catch((error) => console.log("error", error));
