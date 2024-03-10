@@ -20,7 +20,7 @@ export default async function obtenerTurnosAssignedAPI() {
         .catch(error => {
             console.error('Error:', error);
         })
-    console.log("constate_datos:",datos)
+    //console.log("constate_datos:",datos)
     return datos
 
     }

@@ -10,10 +10,18 @@
   </head>
   <body>
     <main>
-      <header>
-        <div><img src="" alt="" /></div>
-        <p>Odontologica Dentrify</p>
-      </header>
+      <header style="display: flex; justify-content: space-between; align-items: center;">
+        <div>
+            <img src="" alt="" />
+        </div>
+        <div>
+            <p>Odontologica Agendify</p>
+        </div>
+        <div>
+          <button id="retrocederBtn">Retroceder</button>
+            <button id="logoutButton" >Salir</button>
+        </div>
+    </header>
       <div class="title">
         <h2>
           <p>Gestion de Turnos</p>
@@ -56,6 +64,11 @@
                 <h4>Fecha</h4>
                 <small>20/10/2020 9:00</small>
               </div>
+              <div class="turn-actions">
+                <button class="btn-view">Ver Detalles</button>
+                <button class="btn-edit">Editar</button>
+                <button class="btn-delete">Eliminar</button>
+            </div>
             </div>
           </div>
         </template>
@@ -65,5 +78,6 @@
 
     <script type="module" src="../scripts/mainAdminTurn.js"></script>
     <script type="module" src="../scripts/saveIdUser.js"></script>
+    <script type="module" src="../scripts/closeSession.js"></script>
   </body>
 </html>
