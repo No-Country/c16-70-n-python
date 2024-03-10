@@ -11,7 +11,7 @@ const login = (email, password) => {
     redirect: "follow",
   };
 
-  fetch(apiUrlServer + "auth/login", requestOptions)
+  fetch("https://c1670python.pythonanywhere.com/auth/login", requestOptions)
     .then((response) => {
       console.log("aqui", response);
       if (!response.ok) {
