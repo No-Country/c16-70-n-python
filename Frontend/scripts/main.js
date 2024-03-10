@@ -5,7 +5,7 @@ import obtenerTurnosAssignedAPI from './fetchTurnAssigned.js';
 import { renderCardsTurnActive } from './renderCardsTurnActive.js';
 import {paginationPrevie} from './paginationList.js';
 import {paginationNexti} from './paginationList.js';
-
+import { apiUrlServer } from '../js/config.js';
 
 const token = sessionStorage.getItem("token");
 
