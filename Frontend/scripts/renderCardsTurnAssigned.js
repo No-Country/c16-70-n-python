@@ -122,7 +122,7 @@ export function renderCardsTurnAssigned(data) {
         .then((response) => response.text())
         .then((result) => {
           console.log(result);
-          obtenerYRenderizarTurnos();
+          //obtenerYRenderizarTurnos();
         })
         .catch((error) => console.error(error));
     });
@@ -144,6 +144,7 @@ function deleteTurn(turnId) {
       if (response.ok) {
         // Lógica adicional si la eliminación es exitosa
         console.log("Turno eliminado exitosamente");
+        window.location.reload(); // Recargar la página después de eliminar el turno
       } else {
         // Manejo de errores
         console.error("Error al eliminar el turno");
