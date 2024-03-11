@@ -1,7 +1,7 @@
 import { apiUrlServer } from "../js/config.js";
 
 export default async function obtenerDatosAPIUserProfile(id) {
-  const apiUrl = apiUrlServer + `/admin/paciente/${id}`;
+  const apiUrl = apiUrlServer + `admin/paciente/${id}`;
   console.log("aqui", apiUrl);
   
   try {
