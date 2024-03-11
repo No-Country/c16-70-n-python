@@ -14,7 +14,7 @@ function cleanUserCards() {
 
 export  default function renderCardsService(data) {
     cleanUserCards();
-    console.log("service_data:",data);
+    //console.log("service_data:",data);
     const container = document.getElementById('table-container');
     const template = document.getElementById('table-person-template').content;
     const paginationPrev = document.getElementById('pagination-prev');

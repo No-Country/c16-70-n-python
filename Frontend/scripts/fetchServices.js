@@ -10,7 +10,6 @@ export default async function obtenerServiciosAPI() {
     const headers = {
         'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
         'Content-Type': 'application/json',  
-         
     }
     let datos
     const data = await fetchDataAll(apiUrl, headers)
@@ -20,7 +19,7 @@ export default async function obtenerServiciosAPI() {
         .catch(error => {
             console.error('Error:', error);
         })
-    console.log("constate_datos:",datos)
+    //console.log("constate_datos:",datos)
     return datos
 
     }
