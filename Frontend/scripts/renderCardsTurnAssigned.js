@@ -2,6 +2,29 @@
 
 import selectionTurn from "./selectionTurn.js"
 
+function formatDateTime(dateTimeString) {
+  const dateTime = new Date(dateTimeString);
+  const formattedDate = `${dateTime.getDate()}/${
+    dateTime.getMonth() + 1
+  }/${dateTime.getFullYear()}`;
+  const formattedTime = `${("0" + dateTime.getHours()).slice(-2)}:${(
+    "0" + dateTime.getMinutes()
+  ).slice(-2)}`;
+  return `${formattedDate} ${formattedTime}`;
+}
+
+function capitalizarPrimeraLetra(texto) {
+  return texto.charAt(0).toUpperCase() + texto.slice(1);
+}
+function cleanUserCards() {
+  const container = document.getElementById("table-container");
+  let child = container.lastElementChild;
+  while (child !== document.getElementById("table-person-template")) {
+    container.removeChild(child);
+    child = container.lastElementChild;
+  }
+}
+
 function capitalizarPrimeraLetra(texto) {
   return texto.charAt(0).toUpperCase() + texto.slice(1); 
 }
