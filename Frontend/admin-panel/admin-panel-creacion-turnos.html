@@ -10,10 +10,18 @@
   </head>
   <body>
     <main>
-      <header>
-        <div><img src="" alt="" /></div>
-        <p>Odontologica Dentrify</p>
-      </header>
+      <header style="display: flex; justify-content: space-between; align-items: center;">
+        <div>
+            <img src="" alt="" />
+        </div>
+        <div>
+            <p>Odontologica Agendify</p>
+        </div>
+        <div>
+          <button id="retrocederBtn">Retroceder</button>
+            <button id="logoutButton" >Salir</button>
+        </div>
+    </header>
       <div class="title">
         <h2>
           <p>Creacion de Turnos</p>
@@ -67,8 +75,10 @@
           </div>
           <button type="submit">Crear</button>
         </form>
+        <div id="message-container"></div>
       </div>
     </main>
     <script type="module" src="../scripts/createTurns.js"></script>
+    <script type="module" src="../scripts/closeSession.js"></script>
   </body>
 </html>
