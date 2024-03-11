@@ -1,5 +1,6 @@
 import obtenerTurnosAssignedAPI from './fetchTurnAssigned.js';
 import {renderCardsTurnAssigned} from './renderCardsTurnAssigned.js';
+
 function main() {
     obtenerTurnosAssignedAPI()
     .then(datos => {
