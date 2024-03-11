@@ -4,9 +4,21 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="../img/favicon-96x96.png" type="image/x-icon">
-    <link rel="stylesheet" href="../CSS/admin-panel.css" />
-    <link rel="stylesheet" href="../CSS/cliente-panel.css" />
+    <link rel="stylesheet" href="../css/admin-panel.css" />
+    <link rel="stylesheet" href="../css/cliente-panel.css" />
     <title>Agendify</title>
+    <style>
+      .card-turn {
+        /* Otros estilos de tu tarjeta */
+        transition: background-color 0.3s ease;
+        
+      }
+
+      .card-turn:hover {
+        background-color: #333; /* Cambia al color oscuro deseado */
+        color: #ffffff;
+      }
+    </style>
   </head>
   <body>
     <main>
@@ -53,9 +65,9 @@
               </div>
             </div>
             <div class="action action-services">
-              <a href="#" class="url-delete">
+              <a class="url-delete">
                 <div class="selection delete">
-                  <img src="../img/backspace-svgrepo-com.svg" alt="" />
+                  <button class="btn-select" data-turn-id="ID_DEL_TURNO">Solicitar</button>
                 </div>
               </a>
             </div>
@@ -94,8 +106,7 @@
         </div>
       </div>
     </main>
-
     <script type="module" src="../scripts/mainSelectionturn.js"></script>
-    <script type="module" src="../scripts/closeSession.js"></script>
+    <script type="module" src="../js/closeSession.js"></script>
   </body>
 </html>
