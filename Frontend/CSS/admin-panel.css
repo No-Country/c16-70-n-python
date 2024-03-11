@@ -406,3 +406,198 @@ button:active {
     display: none;
   }
 }
+
+
+/*  */
+
+#message-container {
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-top: 20px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+  font-size: 16px;
+}
+
+#message-container p {
+  color: blue; /* Cambia el color del texto a azul */
+}
+
+.turn-actions {
+  display: flex;
+  justify-content: center; /* Centra los botones horizontalmente */
+  margin-top: 10px; /* Espacio superior */
+}
+
+.turn-actions button {
+  margin: 0 5px; /* Espacio entre los botones */
+}
+
+/* Estilo modalver turno por Id */
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro semi-transparente */
+  z-index: 9999;
+}
+
+.modal-content {
+  background-color: #fff; /* Fondo blanco */
+  padding: 30px;
+  border-radius: 10px; /* Bordes redondeados */
+  max-width: 90%;
+  max-height: 90%;
+  overflow-y: auto;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* Sombra más suave */
+  position: relative;
+}
+
+.close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  font-size: 24px;
+  color: #999;
+  transition: color 0.3s ease;
+}
+
+.close:hover {
+  color: #666; /* Cambio de color al pasar el mouse */
+}
+
+.modal-header {
+  padding-bottom: 20px;
+  border-bottom: 1px solid #ddd; /* Línea divisoria */
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.modal-body {
+  padding: 20px 0;
+}
+
+.modal-body ul {
+  list-style: none;
+  padding: 0;
+}
+
+.modal-body ul li {
+  margin-bottom: 10px;
+}
+
+.btn-view-user {
+  background-color: #007bff; /* Color de fondo */
+  color: #fff; /* Color del texto */
+  padding: 10px 20px; /* Espaciado interno */
+  border: none;
+  border-radius: 5px; /* Bordes redondeados */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 1rem;
+}
+
+.btn-view-user:hover {
+  background-color: #0056b3; /* Cambio de color al pasar el mouse */
+}
+
+/* Actualizar Turno */
+
+#update-form {
+  background-color: white;
+  padding: 30px;
+  border-radius: 8px;
+  max-width: 400px;
+  margin: 0 auto; /* Centrar horizontalmente */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+#update-form h2 {
+  margin-top: 0;
+}
+
+#update-form label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+#update-form input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+#update-form button {
+  width: 80%;
+  padding: 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#update-form button:hover {
+  background-color: #45a049;
+}
+
+.close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  font-size: 24px;
+  color: #999;
+}
+
+.close:hover {
+  color: #666;
+}
+
+
+/* ver detalles de un Turno */
+
+.modal-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000; /* Fondo opaco */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.turno-details {
+  position: relative; /* Agregamos posición relativa */
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Sombra */
+  font-size: 18px; /* Tamaño de fuente aumentado */
+}
+
+button.close-button {
+  position: absolute; /* Posición absoluta */
+  top: 10px; /* Ajustamos la distancia desde la parte superior */
+  right: 10px; /* Ajustamos la distancia desde la parte derecha */
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  color: #fff;
+  outline: none; /* Quitamos el contorno al enfocar */
+}
