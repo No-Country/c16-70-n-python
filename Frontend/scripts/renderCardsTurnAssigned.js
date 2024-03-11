@@ -13,9 +13,10 @@ function formatDateTime(dateTimeString) {
   return `${formattedDate} ${formattedTime}`;
 }
 
-function capitalizarPrimeraLetra(texto) {
-  return texto.charAt(0).toUpperCase() + texto.slice(1);
-}
+// function capitalizarPrimeraLetra(texto) {
+//   return texto.charAt(0).toUpperCase() + texto.slice(1);
+// }
+
 function cleanUserCards() {
   const container = document.getElementById("table-container");
   let child = container.lastElementChild;
