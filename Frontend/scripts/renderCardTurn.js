@@ -1,12 +1,12 @@
 //import deleteServices from "./deleteServices.js"
 import selectionTurn from "./selectionTurn.js";
 import { apiUrlServer } from "../js/config.js";
-
 const token = sessionStorage.getItem("token");
 
 function capitalizarPrimeraLetra(texto) {
   return texto.charAt(0).toUpperCase() + texto.slice(1);
 }
+
 function cleanUserCards() {
   const container = document.getElementById("table-container");
   let child = container.lastElementChild;
@@ -35,7 +35,9 @@ export default function renderCardsTurn(data) {
     userCard.querySelector(".turn-date small").textContent = turn.assigmentturn;
 
     userCard.querySelector(".selection").dataset.id = turn.idturn;
+    
     const btnSelect = userCard.querySelector(".btn-select");
+    
     btnSelect.dataset.id = turn.idturn;
     btnSelect.addEventListener("click", () => {
       console.log("ID del turno:", btnSelect.dataset.id);
