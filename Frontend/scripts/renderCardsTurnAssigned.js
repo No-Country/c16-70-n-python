@@ -156,7 +156,7 @@ function deleteTurn(turnId) {
 // //import deleteServices from "./deleteServices.js"
 // import selectionTurn from "./selectionTurn.js"
 // function capitalizarPrimeraLetra(texto) {
-//   return texto.charAt(0).toUpperCase() + texto.slice(1); 
+//   return texto.charAt(0).toUpperCase() + texto.slice(1);
 // }
 // function cleanUserCards() {
 //     const container = document.getElementById('table-container-active');
@@ -175,7 +175,6 @@ function deleteTurn(turnId) {
 //   }
 // }
 
-
 // export function renderCardsTurnActive(data) {
 //     cleanUserCards();
 //     console.log("service_data:",data);
@@ -185,7 +184,7 @@ function deleteTurn(turnId) {
 //     const paginationNext = document.getElementById('pagination-next');
 //     console.log("data_service",data)
 //     console.log("data_service",data[0].assigmentturn)
-    
+
 //       data.forEach((turn,index) => {
 //         console.log("data_service",data)
 //         const userCard = document.importNode(template, true);
@@ -196,10 +195,7 @@ function deleteTurn(turnId) {
 //         // userCard.querySelector('.selection').dataset.id = turn.id;
 //         container.appendChild(userCard);
 //       });
-      
-    
-   
-    
+
 //       releaseTurn()
 //     //editCardService()
 //     // paginationPrev.classList.toggle('hidden', currentPage = 1); // ! checar el control de la paginacion
@@ -207,7 +203,7 @@ function deleteTurn(turnId) {
 
 //    // const update = document.querySelectorAll(".edit");
 //   //  console.log("update", update);
-    
+
 //     //update.forEach(update => {
 //    //   update.addEventListener('click', () => {
 //      //   console.log("aquie identificador");
@@ -215,7 +211,7 @@ function deleteTurn(turnId) {
 //      //   sessionStorage.setItem("userid", update.dataset.id);
 //     //  })
 //    // })
-    
+
 //   }
 
 //   export  function renderCardsTurnInactive(data) {
@@ -227,7 +223,7 @@ function deleteTurn(turnId) {
 //     const paginationNext = document.getElementById('pagination-next');
 //     console.log("data_service",data)
 //     console.log("data_service",data[0].assigmentturn)
-    
+
 //       data.forEach((turn,index) => {
 //         console.log("data_service",data)
 //         const userCard = document.importNode(template, true);
@@ -237,10 +233,7 @@ function deleteTurn(turnId) {
 //         userCard.querySelector('.turn-date small').textContent = turn.assigmentturn
 //         container.appendChild(userCard);
 //       });
-      
-    
-   
-    
+
 //    //selectionTurn()
 //     //editCardService()
 //     // paginationPrev.classList.toggle('hidden', currentPage = 1); // ! checar el control de la paginacion
@@ -248,7 +241,7 @@ function deleteTurn(turnId) {
 
 //    // const update = document.querySelectorAll(".edit");
 //   //  console.log("update", update);
-    
+
 //     //update.forEach(update => {
 //    //   update.addEventListener('click', () => {
 //      //   console.log("aquie identificador");
@@ -256,5 +249,5 @@ function deleteTurn(turnId) {
 //      //   sessionStorage.setItem("userid", update.dataset.id);
 //     //  })
 //    // })
-    
+
 //   }
