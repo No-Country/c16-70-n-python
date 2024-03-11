@@ -10,10 +10,18 @@
 </head>
 <body>
     <main>
-       <header>
-        <div><img src="" alt=""></div>
-        <p>Odontologica Dentrify</p>
-       </header>
+        <header style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+                <img src="" alt="" />
+            </div>
+            <div>
+                <p>Odontologica Agendify</p>
+            </div>
+            <div>
+              <button id="retrocederBtn">Retroceder</button>
+                <button id="logoutButton" >Salir</button>
+            </div>
+        </header>
        <div class="title">
         <h2>
             <p>Gestion de servicios</p>
@@ -26,9 +34,11 @@
             <label for="new-service">Nuevo servicio</label>
             <input type="text" id="name" name="name" required>
             <button type="submit">Agregar</button>
+            <div id="message-container"></div>
         </form>
     </div>
     </main>
     <script type="module" src="../scripts/mainCreateService.js"></script>
+    <script type="module" src="../scripts/closeSession.js"></script>
 </body>
 </html>

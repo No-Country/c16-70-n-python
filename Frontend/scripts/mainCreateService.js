@@ -5,6 +5,7 @@ import { apiUrlServer } from '../js/config.js';
 
 
 const form = document.getElementById('form-add-service');
+const messageContainer = document.getElementById('message-container');
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
@@ -21,23 +22,30 @@ form.addEventListener('submit', async (e) => {
 
     }
 
+    //fetchDataAll(apiUrl, headers, "POST", data)
 
-    fetchDataAll(apiUrl, headers, "POST", data)
-        .then(data => {
-                console.log(data);
-                console.log(data.message);
-                console.log(data.status);
-                if (data) {
-                    alert(data.message);
-                }
-                location.reload();
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        })
-})
+    try {
+        const response = await fetch(apiUrl, {
+            method: 'POST',
+            headers: headers,
+            body: JSON.stringify(data)
+        });
 
+        if (!response.ok) {
+            throw new Error('Error en la solicitud');
+        }
 
+        const responseData = await response.json();
+        console.log(responseData);
+        console.log(responseData.message);
+        console.log(responseData.status);
 
+        if (responseData) {
+            messageContainer.textContent = responseData.message;
+        }
 
-    
+        //location.reload();
+    } catch (error) {
+        console.error('Error:', error);
+    }
+});
