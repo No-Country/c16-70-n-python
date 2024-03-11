@@ -1,6 +1,7 @@
 //import deleteServices from "./deleteServices.js"
 import selectionTurn from "./selectionTurn.js";
 import { apiUrlServer } from "../js/config.js";
+
 const token = sessionStorage.getItem("token");
 
 function capitalizarPrimeraLetra(texto) {
