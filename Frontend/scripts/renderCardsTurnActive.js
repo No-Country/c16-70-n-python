@@ -1,8 +1,10 @@
 //import deleteServices from "./deleteServices.js"
 import selectionTurn from "./selectionTurn.js"
+
 function capitalizarPrimeraLetra(texto) {
   return texto.charAt(0).toUpperCase() + texto.slice(1); 
 }
+
 function cleanUserCards() {
     const container = document.getElementById('table-container-active');
     let child = container.lastElementChild;
@@ -11,6 +13,7 @@ function cleanUserCards() {
       child = container.lastElementChild;
     }
   }
+
 function cleanUserCardsInactive() {
   const container = document.getElementById('table-container-inactive');
   let child = container.lastElementChild;
@@ -42,10 +45,8 @@ export function renderCardsTurnActive(data) {
         container.appendChild(userCard);
       });
       
-    
-   
-    
       releaseTurn()
+
     //editCardService()
     // paginationPrev.classList.toggle('hidden', currentPage = 1); // ! checar el control de la paginacion
     // paginationNext.classList.toggle('hidden', currentPage == 1);
@@ -84,7 +85,7 @@ export function renderCardsTurnActive(data) {
       });
       
     
-   
+  
     
    //selectionTurn()
     //editCardService()
