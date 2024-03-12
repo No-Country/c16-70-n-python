@@ -1,3 +1,4 @@
+import { apiUrlServer } from "/js/config.js";
 function formatearFecha(fechaISO) {
   var fecha = new Date(fechaISO);
   var dia = fecha.getDate();
@@ -33,10 +34,10 @@ function cleanUserCards() {
     data.forEach(user => {
       console.log("data_user",data)
       const userCard = document.importNode(template, true);
-      if (user.profileImgUrl == undefined) {
-          userCard.querySelector('.user img').src = 'images/profile_8.jpg';
+      if (user.profile_img == undefined) {
+          userCard.querySelector('.user img').src = '/img/profile_8.jpg';
       } else {
-          userCard.querySelector('.user img').src = user.profileImgUrl;
+          userCard.querySelector('.user img').src = apiUrlServer + "/static/" + user.profile_img          ;
       }
       userCard.querySelector('.user-info strong').textContent = user.first_name + " " + user.last_name;
       userCard.querySelector('.user-info small').textContent = user.email;

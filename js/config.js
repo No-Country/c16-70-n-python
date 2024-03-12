@@ -1,1 +1,1 @@
-export let apiUrlServer = "http://localhost:5000/";
+export let apiUrlServer = "https://c1670python.pythonanywhere.com";

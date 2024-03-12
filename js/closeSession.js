@@ -13,7 +13,7 @@ function close() {
 
 document.querySelector(".cerrar-sesion").addEventListener("click", () => {
     close();
-    window.location.href = "../Home Page/Index.html";
+    window.location.href = "/index.html";
 });
 
 

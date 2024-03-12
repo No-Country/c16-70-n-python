@@ -16,12 +16,12 @@
 
 @font-face {
     font-family: "Montserrat-italic-variablefont_wght";
-    src: url("/Frontend/fuentes/Montserrat-Italic-VariableFont_wght.ttf");
+    src: url("/fuentes/Montserrat-Italic-VariableFont_wght.ttf");
 }
 
 @font-face {
     font-family: "Montserrat-VariableFont_wght";
-    src: url("/Frontend/fuentes/Montserrat-VariableFont_wght.ttf");
+    src: url("/fuentes/Montserrat-VariableFont_wght.ttf");
 }
 
 

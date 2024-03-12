@@ -24,7 +24,7 @@ const login = (email, password) => {
     .then((data) => {
       if (data.token) {
         sessionStorage.setItem("token", data.token);
-        window.location.href = "loanding/index.html";
+        window.location.href = "/loanding/index.html";
       } else if (data.message) {
         showMessage(data.message);
       } else {
