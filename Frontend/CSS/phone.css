@@ -236,3 +236,17 @@ li {
 
 @media screen and (max-width: 700) {
 }
+
+
+/*  */
+
+/* Estilos para el formulario */
+form {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+

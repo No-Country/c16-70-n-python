@@ -10,13 +10,21 @@
   </head>
   <body>
     <main>
-      <header>
-        <div><img src="" alt="" /></div>
-        <p>Agendify Administracion</p>
-      </header>
+      <header style="display: flex; justify-content: space-between; align-items: center;">
+        <div>
+            <img src="" alt="" />
+        </div>
+        <div>
+            <p>Odontologica Agendify</p>
+        </div>
+        <div>
+          <button id="retrocederBtn">Retroceder</button>
+            <button id="logoutButton" >Salir</button>
+        </div>
+    </header>
       <div class="title">
         <h2>
-          <p>Perfil de paciente</p>
+          <p>Perfil de Paciente</p>
         </h2>
       </div>
       <div id="table-container">
@@ -79,5 +87,6 @@
 
     <script type="module" src="../scripts/mainUserProfile.js"></script>
     <script type="module" src="../scripts/susperderActivarUser.js"></script>
+    <script type="module" src="../js/closeSession.js"></script>
   </body>
 </html>

@@ -34,12 +34,13 @@
       </div>
       <nav>
         <div class="nav-selection">
-          <a href="/Frontend/admin-panel/admin-panel-gestion-turnos.html"><p class="nav-selection--active">Todos</p></a>
+          <a href="/Frontend/admin-panel/admin-panel-gestion-turnos.html"><p class="nav-selection--inactive">Todos</p></a>
           <a href="/Frontend/admin-panel/admin-panel-gestion-turnos-activos.html"><p class="nav-selection--inactive">Activos</p></a>
           <a href="/Frontend/admin-panel/admin-panel-gestion-turnos-completados.html"><p class="nav-selection--inactive">Completados</p></a>
-          <a href="/Frontend/admin-panel/admin-panel-gestion-turno-cancelados.htm"><p class="nav-selection--inactive">Cancelados</p></a>
+          <a href="/Frontend/admin-panel/admin-panel-gestion-turno-cancelados.htm"><p class="nav-selection--active">Cancelados</p></a>
         </div>
       </nav>
+
       <div id="table-container" class="card-turn-container">
         <template id="table-person-template" class="card-turn-container">
           <!-- template start--->
@@ -76,8 +77,9 @@
         <!-- template end-->
       </div>
     </main>
-    <!-- <script type="module" src="../scripts/mainAdminTurn.js"></script> -->
-    <!-- <script type="module" src="../scripts/saveIdUser.js"></script> -->
+
+    <!-- <script type="module" src="../scripts/mainAdminTurn.js"></script>
+    <script type="module" src="../scripts/saveIdUser.js"></script> -->
     <script type="module" src="../scripts/closeSession.js"></script>
   </body>
 </html>

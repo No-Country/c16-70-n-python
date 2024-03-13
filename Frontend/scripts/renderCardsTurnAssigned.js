@@ -1,4 +1,5 @@
-//import deleteServices from "./deleteServices.js"
+//import deleteServices from "./deleteServices.js";
+
 import selectionTurn from "./selectionTurn.js";
 import { apiUrlServer } from "../js/config.js";
 
@@ -16,6 +17,7 @@ function formatDateTime(dateTimeString) {
 function capitalizarPrimeraLetra(texto) {
   return texto.charAt(0).toUpperCase() + texto.slice(1);
 }
+
 function cleanUserCards() {
   const container = document.getElementById("table-container");
   let child = container.lastElementChild;
@@ -37,7 +39,7 @@ export function renderCardsTurnAssigned(data) {
   data.forEach((turn) => {
     const userCard = document.importNode(template, true);
     userCard.querySelector(".card-turn-info h3").textContent =
-      "Turno #" + turn.id;
+      "Turno " + turn.id;
     userCard.querySelector(".turn-service p").textContent =
       turn.service_info.service_description;
     userCard.querySelector(".turn-start p").textContent = turn.start_turn;
@@ -49,54 +51,84 @@ export function renderCardsTurnAssigned(data) {
     const viewButton = userCard.querySelector(".btn-view");
     viewButton.addEventListener("click", () => {
       // Lógica para ver detalles del turno
-      mostrarDetallesTurno(turn);
+      mostrarDetallesTurno(turn.id);
     });
 
-    function mostrarDetallesTurno(turno) {
-      // Crear contenedor para la ventana emergente
-      const modalContainer = document.createElement("div");
-      modalContainer.classList.add("modal-container");
+    // Funcion para ver el turno Individualmente :
 
-      // Formateas la fecha de inicio
-      const formattedStartTime = formatDateTime(turn.start_turn);
-      // Formateas la fecha de fin
-      const formattedEndTime = formatDateTime(turn.finish_turn);
+    function mostrarDetallesTurno(turnoId) {
+      const token = sessionStorage.getItem("token");
+      const apiUrl = apiUrlServer + `admin/turnos/${turnoId}`;
+      const myHeaders = new Headers();
+      myHeaders.append("Authorization", "Bearer " + token);
+      const requestOptions = {
+        method: "GET",
+        headers: myHeaders,
+        redirect: "follow",
+      };
 
-      // Crear contenedor para los detalles del turno
-      const turnoDetailsContainer = document.createElement("div");
-      turnoDetailsContainer.classList.add("turno-details");
+      // Crear un div para el fondo oscuro
+      const darkBackground = document.createElement("div");
+      darkBackground.classList.add("dark-background");
 
-      // Convertir la cadena de fecha de creación a un objeto Date y formatearla
-      const creationDate = new Date(turno.creation_date);
-      // Convertir la cadena de fecha de asignación a un objeto Date y formatearla
-      const assignmentDate = new Date(turno.date_assignment);
+      // Crear un div para la tarjeta de detalles
+      const detailsCard = document.createElement("div");
+      detailsCard.classList.add("details-card");
 
-      // Determinar si el turno está disponible o no
-      const availability = turno.bol_assigned ? "Disponible" : "No";
+      // Realizar la solicitud Fetch para obtener los detalles del turno
+      fetch(apiUrl, requestOptions)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Error al obtener detalles del turno");
+          }
+          return response.json();
+        })
+        .then((turnoDetalles) => {
+          // Formatear la fecha de inicio y de fin
+          const formattedStartTime = formatDateTime(turnoDetalles.start_time);
+          const formattedEndTime = formatDateTime(turnoDetalles.end_time);
+          const availability = turnoDetalles.assigned ? "Disponible" : "No";
 
-      // Agregar los detalles del turno al contenedor
-      const details = `
-        <p>ID: ${turno.id}</p>
-        <p>Nombre: ${turno.name || "N/A"}</p>
-        <p>Descripción: ${turno.description || "N/A"}</p>
-        <p>Inicio: ${turno.start_turn}</p>
-        <p>Fin: ${turno.finish_turn}</p>
+          // Construir la estructura HTML para mostrar los detalles del turno y del paciente
+          const detailsHTML = `
+        
+        <br/>
+        <p>Turno : ${turnoDetalles.id}</p>
+        <br/>
+        <p>Nombre: ${turnoDetalles.name || "No Disponible"}</p>
+        <p>Descripción: ${turnoDetalles.description || "No Disponible"}</p>
+        <p>Inicio: ${turnoDetalles.start_time}</p>
+        <p>Fin: ${turnoDetalles.end_time}</p>
         <p>Disponibilidad: ${availability}</p>
+        <br/>
+        <p>Información del paciente:</p>
+          <spam>Nombre: ${turnoDetalles.patient_info.first_name} ${
+            turnoDetalles.patient_info.last_name
+          }</spam>
+          <br/>
+          <br/>
+          <img src="${
+            apiUrlServer + "static/" + turnoDetalles.patient_info.img
+          }" alt="Imagen del paciente">
+        
       `;
-      turnoDetailsContainer.innerHTML = details;
 
-      // Botón para cerrar la ventana emergente
-      const closeButton = document.createElement("button");
-      closeButton.textContent = "X";
-      closeButton.classList.add("close-button");
-      closeButton.addEventListener("click", () => {
-        modalContainer.remove();
+          // Agregar el contenido HTML a la tarjeta de detalles
+          detailsCard.innerHTML = detailsHTML;
+
+          // Agregar la tarjeta de detalles al cuerpo del documento
+          document.body.appendChild(darkBackground);
+          document.body.appendChild(detailsCard);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+
+      // Agregar evento para cerrar la tarjeta de detalles
+      darkBackground.addEventListener("click", () => {
+        document.body.removeChild(darkBackground);
+        document.body.removeChild(detailsCard);
       });
-
-      // Agregar los contenedores y el botón al DOM
-      modalContainer.appendChild(turnoDetailsContainer);
-      modalContainer.appendChild(closeButton);
-      document.body.appendChild(modalContainer);
     }
 
     const editButton = userCard.querySelector(".btn-edit");
