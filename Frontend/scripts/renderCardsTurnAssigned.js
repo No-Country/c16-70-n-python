@@ -3,6 +3,9 @@
 import selectionTurn from "./selectionTurn.js";
 import { apiUrlServer } from "../js/config.js";
 
+
+
+
 function formatDateTime(dateTimeString) {
   const dateTime = new Date(dateTimeString);
   const formattedDate = `${dateTime.getDate()}/${
@@ -43,8 +46,9 @@ export function renderCardsTurnAssigned(data) {
     userCard.querySelector(".turn-service p").textContent =
       turn.service_info.service_description;
     userCard.querySelector(".turn-start p").textContent = turn.start_turn;
+    const formattedDate = formatDateTime(turn.date_assignment);
     userCard.querySelector(".turn-date small").textContent =
-      turn.date_assignment;
+    formattedDate;
     userCard.querySelector(".selection").dataset.id = turn.id;
 
     // Botones
@@ -99,7 +103,6 @@ export function renderCardsTurnAssigned(data) {
         <p>Descripción: ${turnoDetalles.description || "No Disponible"}</p>
         <p>Inicio: ${turnoDetalles.start_time}</p>
         <p>Fin: ${turnoDetalles.end_time}</p>
-        <p>Disponibilidad: ${availability}</p>
         <br/>
         <p>Información del paciente:</p>
           <spam>Nombre: ${turnoDetalles.patient_info.first_name} ${

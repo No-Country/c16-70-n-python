@@ -30,7 +30,7 @@ async function fetchPages(apiUrlServer, currentPage, token) {
       redirect: "follow",
     };
     const response = await fetch(
-      `${apiUrlServer}admin/turnos?page=${currentPage}`,
+      `${apiUrlServer}admin/turnos/complet?page=${currentPage}`,
       requestOptions
     );
     if (!response.ok) {
@@ -84,31 +84,6 @@ export function renderTunsCards(data) {
     clone.querySelector(".turn-date small").textContent = fechaFormateada;
 
     clone.querySelector(".selection").dataset.id = turno.id;
-
-    
-    const deleteButton = clone.querySelector(".btn-delete");
-    deleteButton.addEventListener("click", () => {
-      const token = sessionStorage.getItem("token");
-
-      const turnoId = turno.id; // Obtenemos el ID del turno
-      const myHeaders = new Headers();
-      myHeaders.append("Authorization", "Bearer " + token);
-
-      const requestOptions = {
-        method: "DELETE",
-        headers: myHeaders,
-        redirect: "follow",
-      };
-
-      fetch(`${apiUrlServer}admin/turnos/${turnoId}`, requestOptions)
-        .then((response) => response.text())
-        .then((result) => {
-          console.log(result);
-          window.location.reload();
-          //obtenerYRenderizarTurnos();
-        })
-        .catch((error) => console.error(error));
-    });
 
     container.appendChild(clone);
   });
