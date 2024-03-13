@@ -6,22 +6,29 @@
     <link rel="icon" href="../img/favicon-96x96.png" type="image/x-icon" />
     <link rel="stylesheet" href="../CSS/admin-panel.css" />
     <link rel="stylesheet" href="../CSS/cliente-panel.css" />
+    <link rel="stylesheet" href="../CSS/turnos.css"/>
     <title>Agendify</title>
   </head>
   <body>
     <main>
-      <header style="display: flex; justify-content: space-between; align-items: center;">
+      <header
+        style="
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        "
+      >
         <div>
-            <img src="" alt="" />
+          <img src="" alt="" />
         </div>
         <div>
-            <p>Odontologica Agendify</p>
+          <p>Odontologica Agendify</p>
         </div>
         <div>
           <button id="retrocederBtn">Retroceder</button>
-            <button id="logoutButton" >Salir</button>
+          <button id="logoutButton">Salir</button>
         </div>
-    </header>
+      </header>
       <div class="title">
         <h2>
           <p>Gestion de Turnos</p>
@@ -34,50 +41,72 @@
       </div>
       <nav>
         <div class="nav-selection">
-          <a href="/Frontend/admin-panel/admin-panel-gestion-turnos.html"><p class="nav-selection--active">Todos</p></a>
-          <a href="/Frontend/admin-panel/admin-panel-gestion-turnos-activos.html"><p class="nav-selection--inactive">Activos</p></a>
-          <a href="/Frontend/admin-panel/admin-panel-gestion-turnos-completados.html"><p class="nav-selection--inactive">Completados</p></a>
-          <a href="/Frontend/admin-panel/admin-panel-gestion-turno-cancelados.htm"><p class="nav-selection--inactive">Cancelados</p></a>
+          <a href="/Frontend/admin-panel/admin-panel-gestion-turnos.html"
+            ><p class="nav-selection--active">Todos</p></a
+          >
+          <a
+            href="/Frontend/admin-panel/admin-panel-gestion-turnos-activos.html"
+            ><p class="nav-selection--inactive">Activos</p></a
+          >
+          <a
+            href="/Frontend/admin-panel/admin-panel-gestion-turnos-completados.html"
+            ><p class="nav-selection--inactive">Completados</p></a
+          >
+          <a
+            href="/Frontend/admin-panel/admin-panel-gestion-turno-cancelados.htm"
+            ><p class="nav-selection--inactive">Cancelados</p></a
+          >
         </div>
       </nav>
-      <div id="table-container" class="card-turn-container">
-        <template id="table-person-template" class="card-turn-container">
-          <!-- template start--->
-          <div class="card-turn">
-            <div class="card-turn-img --active">
-              <img
-                src="../img/notification-unread-lines-svgrepo-com.svg"
-                alt=""
-              />
-            </div>
+      <div>
+        <div id="table-container">
+        <template id="table-turn-template" >
+          <br/>
+          <hr/>
+          <div >
+            <br/>
+            <!-- Estructura de la tarjeta de turno -->
             <div class="card-turn-info">
-              <h3>Turno</h3>
+              <h3></h3> <!-- Este h3 se llenará con "Turno {ID}" -->
               <div class="turn-service">
-                <p>Limpieza</p>
+                <p></p> <!-- Aquí se colocará la descripción del servicio -->
               </div>
               <div class="turn-start">
                 <h4>Inicio:</h4>
-                <p>12:00</p>
+                <p></p> <!-- Aquí se colocará la hora de inicio del turno -->
               </div>
               <div class="turn-date">
-                <h4>Fecha</h4>
-                <small>20/10/2020 9:00</small>
+                <h4>Fecha:</h4>
+                <small></small> <!-- Aquí se colocará la fecha de asignación del turno -->
               </div>
-                <!-- Botones -->
-                <div class="turn-actions">
-                  <button class="btn-view">Ver Detalles</button>
-                  <button class="btn-edit">Editar</button>
-                  <button class="btn-delete">Eliminar</button>
+              <!-- Botones -->
+              <div class="turn-actions">
+                <button class="btn-view">Asignar</button>
+                <button class="btn-delete">Eliminar</button>
               </div>
+            </div>
+            <div class="selection" data-id=""></div> <!-- El atributo data-id se llenará con el ID del turno -->
           </div>
-          <div class="selection"></div>
-      </div>
         </template>
+        
+        
         <!-- template end-->
       </div>
+      <br/>
+      <div class="pagination-container" id="pagination-container">
+        <div class="pagination-prev" id="pagination-prev">
+          <a href="#"
+            ><img src="../img/arrow-left-svgrepo-com.svg" alt="left"
+          /></a>
+        </div>
+        <div class="pagination-next" id="pagination-next">
+          <a href="#"
+            ><img src="../img/arrow-right-svgrepo-com.svg" alt="right"
+          /></a>
+        </div>
+      </div>
     </main>
-    <!-- <script type="module" src="../scripts/mainAdminTurn.js"></script> -->
-    <!-- <script type="module" src="../scripts/saveIdUser.js"></script> -->
+    <script type="module" src="../scripts/mainAdminTurns.js"></script>
     <script type="module" src="../scripts/closeSession.js"></script>
   </body>
 </html>

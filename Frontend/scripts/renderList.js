@@ -8,7 +8,6 @@ function formatearFecha(fechaISO) {
   return dia + " " + obtenerNombreMes(mes) + " " + año;
 }
 
-
 function eliminarUsuario(id) {
   console.log(id)
   const token = sessionStorage.getItem("token");
