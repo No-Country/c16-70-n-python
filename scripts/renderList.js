@@ -1,20 +1,6 @@
 import { apiUrlServer } from "/js/config.js";
-function formatearFecha(fechaISO) {
-  var fecha = new Date(fechaISO);
-  var dia = fecha.getDate();
-  var mes = fecha.getMonth() + 1;
-  var año = fecha.getFullYear();
-  return dia + ' ' + obtenerNombreMes(mes) + ' ' + año;
-}
+import formatearFecha from "./formatDate.js"
 
-// Función para obtener el nombre del mes
-function obtenerNombreMes(numeroMes) {
-  var meses = [
-      "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
-      "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
-  ];
-  return meses[numeroMes - 1];
-}
 function cleanUserCards() {
     const container = document.getElementById('table-container');
     let child = container.lastElementChild;

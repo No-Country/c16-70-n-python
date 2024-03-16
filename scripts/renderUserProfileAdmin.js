@@ -1,5 +1,8 @@
 import { suspenderUsuario } from "./susperderActivarUser.js";
 import { activarUsuario } from "./susperderActivarUser.js";
+import { apiUrlServer } from "../js/config.js";
+import formatearFecha from "./formatDate.js";
+
 function cleanUserCards() {
     const container = document.getElementById('table-container');
     let child = container.lastElementChild;
@@ -16,11 +19,11 @@ function cleanUserCards() {
     
     
       const userCard = document.importNode(template, true);
-      // if (data.profileImgUrl == undefined) {
-      //     userCard.querySelector('.user img').src = 'images/profile_8.jpg';
-      // } else {
-      //     userCard.querySelector('.user img').src = data.profileImgUrl;
-      // }
+       if (data.img == undefined) {
+           userCard.querySelector('.user img').src = 'img/profile_8.jpg';
+       } else {
+           userCard.querySelector('.user img').src = apiUrlServer + "/static/" + data.img;
+       }
       userCard.querySelector('.user-name p').textContent = data.first_name + " " + data.last_name;
       userCard.querySelector('.user-email p').textContent = data.email;
       userCard.querySelector('.phone-number p').textContent = data.phone;
@@ -30,8 +33,8 @@ function cleanUserCards() {
       } else {
         userCard.querySelector('.status p').textContent = "Activo";
       }
-      userCard.querySelector('.date-incription p').textContent = data.register_date;
-      // userCard.querySelector('.date-suspension p').textContent = data.data_suspension
+      userCard.querySelector('.date-incription p').textContent = formatearFecha(data.data_reister);
+      userCard.querySelector('.date-suspension p').textContent = formatearFecha(data.data_suspension);
       ;
       container.appendChild(userCard);
 

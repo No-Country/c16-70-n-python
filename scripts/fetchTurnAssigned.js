@@ -5,7 +5,7 @@ import { apiUrlServer } from '../js/config.js';
 
 
 export default async function obtenerTurnosAssignedAPI() {
-    const apiUrl = apiUrlServer + 'admin/turnos/assigned';
+    const apiUrl = apiUrlServer + '/admin/turnos/assigned';
 
     const headers = {
         'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
