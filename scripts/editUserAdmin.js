@@ -17,16 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     })
 })
-// window.onload = () => {
-//     obtenerDatosAPIUserProfile().
-//     then(data => {
-//         document.getElementById('first-name').value = data.firtname;
-//         document.getElementById('last-name').value = data.lastname;
-//         document.getElementById('email').value = data.email;
-//         document.getElementById('phone').value = data.phone;
-        
-//     })
-// }
+
 
 const form = document.querySelector('.form-update-user');
 form.addEventListener('submit', async (e) => {

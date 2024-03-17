@@ -5,7 +5,7 @@ import { apiUrlServer } from '../js/config.js';
 
 
 export async function obtenerTurnosClientAPI() {
-    const apiUrl = apiUrlServer + 'user/turnos/pendientes';
+    const apiUrl = apiUrlServer + '/user/turnos/pendientes';
 
     const headers = {
         'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
@@ -26,7 +26,7 @@ export async function obtenerTurnosClientAPI() {
     }
 
 export async function obtenerTurnosHistoryClientAPI() {
-    const apiUrl = apiUrlServer + 'user/turnos/end';
+    const apiUrl = apiUrlServer + '/user/turnos/end';
 
     const headers = {
         'Authorization': 'Bearer ' + sessionStorage.getItem('token'),

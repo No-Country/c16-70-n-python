@@ -8,7 +8,7 @@ export default function selectionServices () {
 
       
       putTurnClient().then(() => {
-        window.location.href = "/frontend/cliente-panel/cliente-panel-principal.html"
+        window.location.href = "../cliente-panel/cliente-panel-principal.html"
       })
       
      

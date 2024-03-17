@@ -5,7 +5,7 @@ import { apiUrlServer } from '../js/config.js';
 
 
 export default async function obtenerTurnosAPI() {
-    const apiUrl = apiUrlServer + 'user/turnos';
+    const apiUrl = apiUrlServer + '/user/turnos';
 
     const headers = {
         'Authorization': 'Bearer ' + sessionStorage.getItem('token'),

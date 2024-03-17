@@ -5,7 +5,7 @@ import { apiUrlServer } from '../js/config.js';
 
 
 export default async function obtenerServiciosClientAPI() {
-    const apiUrl = apiUrlServer + 'user/servicios';
+    const apiUrl = apiUrlServer + '/user/servicios';
 
     const headers = {
         'Authorization': 'Bearer ' + sessionStorage.getItem('token'),

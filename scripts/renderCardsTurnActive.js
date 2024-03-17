@@ -26,11 +26,18 @@ export function renderCardsTurnActive(data) {
     console.log("service_data:",data);
     const container = document.getElementById('table-container-active');
     const template = document.getElementById('table-client-template-turn-active').content;
-    const paginationPrev = document.getElementById('pagination-prev');
-    const paginationNext = document.getElementById('pagination-next');
-    console.log("data_service",data)
-    console.log("data_service",data[0].assigmentturn)
-    
+    // const paginationPrev = document.getElementById('pagination-prev');
+    // const paginationNext = document.getElementById('pagination-next');
+    console.log("data_service", Object.keys(data).length)
+    // console.log("data_service",data[0].assigmentturn)
+    if (Object.keys(data).length == 1){
+      const userCard = document.importNode(template, true);
+      userCard.querySelector('.card-turn-info h3').textContent = "No hay turnos activos"
+      userCard.querySelector('.turn-start').classList.add("hidden");
+      userCard.querySelector('.turn-date').classList.add("hidden")
+      userCard.querySelector('.card-turn-img').classList.add("hidden")
+      container.appendChild(userCard);
+    } else {
       data.forEach((turn,index) => {
         console.log("data_service",data)
         const userCard = document.importNode(template, true);
@@ -41,6 +48,8 @@ export function renderCardsTurnActive(data) {
         // userCard.querySelector('.selection').dataset.id = turn.id;
         container.appendChild(userCard);
       });
+    }
+      
       
     
    
@@ -68,11 +77,18 @@ export function renderCardsTurnActive(data) {
     console.log("service_data:",data);
     const container = document.getElementById('table-container-inactive');
     const template = document.getElementById('table-client-template-turn-inactive').content;
-    const paginationPrev = document.getElementById('pagination-prev');
-    const paginationNext = document.getElementById('pagination-next');
+    // const paginationPrev = document.getElementById('pagination-prev');
+    // const paginationNext = document.getElementById('pagination-next');
     console.log("data_service",data)
-    console.log("data_service",data[0].assigmentturn)
-    
+    // console.log("data_service",data[0].assigmentturn)
+    if(Object.keys(data).length == 1){
+      const userCard = document.importNode(template, true);
+      userCard.querySelector('.card-turn-info h3').textContent = "Sin historial"
+      userCard.querySelector('.turn-start').classList.add("hidden");
+      userCard.querySelector('.turn-date').classList.add("hidden")
+      userCard.querySelector('.card-turn-img').classList.add("hidden")
+      container.appendChild(userCard);
+    }else{
       data.forEach((turn,index) => {
         console.log("data_service",data)
         const userCard = document.importNode(template, true);
@@ -82,6 +98,8 @@ export function renderCardsTurnActive(data) {
         userCard.querySelector('.turn-date small').textContent = turn.assigmentturn
         container.appendChild(userCard);
       });
+    }
+
       
     
    
